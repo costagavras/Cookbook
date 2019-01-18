@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: Cookbook_production
-  username: Cookbook
-  password: <%= ENV['COOKBOOK_DATABASE_PASSWORD'] %>
