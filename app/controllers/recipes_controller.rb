@@ -1,15 +1,21 @@
 class RecipesController < ApplicationController
 
+
+
+
+
   def index
     @categories = Category.all
   end
 
   def new
-
+    @recipe = Recipe.new
+    @categories = Category.all
   end
 
   def show
-
+    @comments = @recipe.comments
+    @comment = Comment.new
   end
 
   def create
