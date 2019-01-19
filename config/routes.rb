@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get '/welcome/about_me', :as => 'about'
 
+  # post '/hunts/search', :as => 'hunt_search'
+
   resources :recipes do
     resources :comments
   end
