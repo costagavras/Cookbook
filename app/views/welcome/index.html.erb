@@ -1,28 +1,47 @@
 
+<% if current_user%>
 
-
-<div class="images_content">
-  <div class="images">
-    <div class="image">
-      <img src="https://images.media-allrecipes.com/images/56589.png" class="stock_pic1" alt="">
-    </div>
-    <div class="image">
-      <img src="https://img.taste.com.au/UCkD8VfP/w1200-h630-cfill/taste/2016/11/chicken-and-prosciutto-parmigiana-79468-1.jpeg" alt="">
-    </div>
-    <div class="image">
-      <%= image_tag 'tiramisu.jpg', :class => "pic_img", :width => "500" %>
-    </div>
-    <div class="image">
-      <%= image_tag 'medovy.jpg', :class => "pic_img", :width => "500" %>
-    </div>
-    <div class="image">
-      <img src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/frying-pan-pizza-easy-recipe-collection.jpg" alt="">
-    </div>
-    <div class="image">
-      <img src="http://assets.kraftfoods.com/recipe_images/opendeploy/113686_640x428.jpg" alt="">
-    </div>
-    <div class="image">
-      <img src="https://drdina.ca/wp-content/uploads/2015/04/drdina-kids-health-easy-dessert-recipes-for-kids-1.jpg" alt="">
+  <div class="category_menu">
+    <div class="categories">
+      <% @categories.each do |category| %>
+      <div class="category_section">
+        <div class="category_logo">
+          <%= link_to("", category_path(category), :class => "category", :id => category.name) %>
+        </div>
+        <div class="category_button">
+          <%= link_to("#{category.name}", category_path(category), :class => "category_names") %>
+        </div>
+      </div>
+      <% end %>
     </div>
   </div>
-</div>
+
+<% else %>
+
+  <div class="images_content">
+    <div class="images">
+      <div class="image">
+        <img src="https://images.media-allrecipes.com/images/56589.png" class="stock_pic1" alt="">
+      </div>
+      <div class="image">
+        <img src="https://img.taste.com.au/UCkD8VfP/w1200-h630-cfill/taste/2016/11/chicken-and-prosciutto-parmigiana-79468-1.jpeg" alt="">
+      </div>
+      <div class="image">
+        <%= image_tag 'tiramisu.jpg', :class => "pic_img", :width => "500" %>
+      </div>
+      <div class="image">
+        <%= image_tag 'medovy.jpg', :class => "pic_img", :width => "500" %>
+      </div>
+      <div class="image">
+        <img src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/frying-pan-pizza-easy-recipe-collection.jpg" alt="">
+      </div>
+      <div class="image">
+        <img src="http://assets.kraftfoods.com/recipe_images/opendeploy/113686_640x428.jpg" alt="">
+      </div>
+      <div class="image">
+        <img src="https://drdina.ca/wp-content/uploads/2015/04/drdina-kids-health-easy-dessert-recipes-for-kids-1.jpg" alt="">
+      </div>
+    </div>
+  </div>
+  
+<% end %>
