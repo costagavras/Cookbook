@@ -1,0 +1,55 @@
+<%= form_for (recipe) do |f| %>
+
+
+<div class="error_css">
+    <%  if @recipe.errors.any? %>
+        <h2> Errors ! </h2>
+
+        <ul>
+            <%  @recipe.errors.full_messages.each do |message| %>
+              <li> <%= message %> </li>
+            <% end  %>
+        </ul>
+    <% end %>
+</div>
+
+<h3> <%= f.label :name %> </h3>
+  <%= f.text_field :name %>
+
+  <p><fieldset><legend>Complexity</legend>
+    <%= radio_button_tag(:complexity, "1") %>
+    <%= label_tag(:complexity, "Easy") %>
+    <%= radio_button_tag(:complexity, "2") %>
+    <%= label_tag(:complexity, "Average") %>
+    <%= radio_button_tag(:complexity, "3") %>
+    <%= label_tag(:complexity, "Hard") %>
+  </p></fieldset>
+
+  <p><fieldset><legend>Category</legend>
+    <% categories.each do |category| %>
+      <%= radio_button_tag(:category_id, "#{category.id}") %>
+      <%= label_tag(:category_id, "#{category.name}") %>
+    <% end %>
+  </p></fieldset>
+
+<h3>  <%= f.label(:servings)%></h3>
+      <%= f.number_field :servings, value: 20, min: 1, max: 20 %>
+
+<h3>  <%= f.label(:prep_time)%></h3>
+      <%= f.number_field :prep_time %>
+
+<p><fieldset><legend>Manual entry or Web address?</legend>
+  <%= radio_button_tag(:entry, "Manual") %>
+  <%= label_tag(:entry, "Manual") %>
+  <%= radio_button_tag(:entry, "Web") %>
+  <%= label_tag(:entry, "Web") %>
+</p></fieldset>
+
+<h3> <%= f.label :ingredients %> </h3>
+  <%= f.text_field :ingredients %>
+
+<h3> <%= f.label :directions %> </h3>
+  <%= f.text_field :directions %>
+
+<h3> <%= f.submit "ADD"%></h3>
+<%end %>

@@ -1,0 +1,34 @@
+<h3><span class = "hunts_link_back">&#8678; <%= link_to('Back to recipes', recipes_path) %></span></h3>
+
+
+<h1 class = "hunt_name"><%= @recipe.name %></h1>
+
+<div class = "hunt">
+
+<% if current_user == @recipe.user %>
+<div class="edit_hunt_button">
+  <%= link_to('Edit recipe', edit_recipe_path) %>
+  <%= link_to('Delete recipe', recipe_path(@recipe), method: :delete, data: {confirm: "Are you sure you want to delete this hunt?"}) %>
+</div>
+<% end %>
+
+<div class = "index_hunt_show">
+  <h3>Category: <span><%= link_to("#{@recipe.category.name}", category_path(@recipe.category)) %></span></h3>
+  <h3>Prep time: <span><%=@recipe.prep_time%></h3>
+  <h3>Complexity:
+    <span><%@recipe.complexity_level.times do %>
+              <%#= image_tag 'raccoon-logo-png.png', :class => "logo_img_diff", :width => "30", :length => "30" %>
+          <%end%>
+    </span>
+  </h3>
+  <h3>Servings: <span><%=@recipe.servings%></h3>
+  <h3>Ingredients: <span><%=@recipe.ingredients%></span></h3>
+  <h3>Directions: <span><%=@recipe.directions%></span></h3>
+</div>
+
+<%= render(partial: 'comments/form', locals: { recipe: @recipe, comment: @comment }) %>
+
+<% @comments.each do |comment| %>
+  <p>posted on:   <%= comment.created_at.strftime("%B %d, %Y") %> <%= comment.created_at.strftime("%I:%M %p ") %></p>
+  <p><%= comment.description %></p>
+<% end %>
