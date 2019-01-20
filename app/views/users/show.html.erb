@@ -1,0 +1,22 @@
+<div class="user_info" id="user_info">
+  <h1><%= @user.name %></h1>
+
+    <h2>You have <%= @user.recipes.length %> recipes.</h2>
+
+    <div class="edit_profile">
+      <% if current_user && current_user[:id] == @user.id %>
+        <%= link_to 'Edit profile', edit_user_path%>
+        <%= link_to 'Delete profile', user_path(@user) ,method: :delete, data: {confirm: "Are you sure you want to delete this profile?"} %>
+      <% end %>
+    </div>
+</div>
+
+  <%if @user.recipes.length > 0 %>
+  <h2>Recipes:</h2>
+    <% @user.recipes.each do |recipe| %>
+        <div class="hunt">
+          <li> <%=link_to("#{recipe.name}", recipe_path(recipe))%> </li>
+          <p> Category: <%= recipe.category %> </p>
+        </div>
+    <% end  %>
+  <% end  %>
