@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get '/welcome/about', :as => 'about'
 
-  # post '/hunts/search', :as => 'hunt_search'
+  # post '/recipes/search', :as => 'recipe_search'
 
   resources :recipes do
     resources :comments

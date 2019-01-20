@@ -1,19 +1,19 @@
-<h1 class="all-hunts">ALL RECIPES</h1>
+<h1 class="all-recipes">ALL RECIPES</h1>
 
 <hr>
 <div class="block">
 
     <% @categories.each do |category|%>
-      <div class="categories_hunts">
+      <div class="categories_recipes">
         <h2><span><%= link_to(category.name, category_path(category))%></span></h2>
       <% category.recipes.each do |recipe|%>
-        <div class = "index_hunt">
+        <div class = "index_recipe">
             <h3><%=link_to("#{recipe.name}", recipe_path(recipe))%></h3>
             <h3>Prep time: <span><%=@recipe.prep_time%></h3>
             <h3>Servings: <span><%=@recipe.servings%></span></h3>
             <h3>Complexity:
-              <span><%hunt.difficulty_level.times do %>
-                        <%= image_tag 'raccoon-logo-png.png', :class => "logo_img_diff", :width => "30", :length => "30" %>
+              <span><%recipe.complexity.times do %>
+                        <%= image_tag 'cookbook_no_bg.png', :class => "logo_img_diff", :width => "30", :length => "30" %>
                     <%end%>
               </span>
             </h3>

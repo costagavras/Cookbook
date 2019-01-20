@@ -1,0 +1,22 @@
+<h3><span class = "recipes_link_back">&#8678; <%= link_to('Back to recipes', recipes_path) %></span></h3>
+
+<h1 class="text-center">Search results:</h1>
+<hr>
+
+
+<div class = "block">
+  <% @recipes.each do |recipe|%>
+    <div class = "index_recipe">
+      <h3>Category: <span><%= link_to(recipe.category.name, category_path(recipe.category)) %></span></h3>
+      <h3>Recipe name: <span class = "recipe_name"><%= link_to(recipe.name, recipe_path(recipe)) %></span></h3>
+      <h3>Prep time: <span><%=@recipe.prep_time%></h3>
+      <h3>Servings: <span><%=@recipe.servings%></span></h3>
+      <h3>Complexity:
+        <span><%recipe.complexity.times do %>
+                  <%= image_tag 'cookbook_no_bg.png', :class => "logo_img_diff", :width => "30", :length => "30" %>
+              <%end%>
+        </span>
+      </h3>
+    </div>
+  <%end%>
+</div>

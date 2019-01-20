@@ -48,11 +48,11 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
   end
 
-  def select_hunt
+  def select_recipe
     @recipe = Recipe.find(params[:id])
   end
 
-  def categories_hunts
+  def categories_recipes
     @categories = Category.all
   end
 

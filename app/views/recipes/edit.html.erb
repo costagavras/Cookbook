@@ -4,7 +4,7 @@
   </div>
 
 
-<%= render 'recipe/form_new_hunt', recipe: @recipe, category: @category, categories: @categories %>
+<%= render 'recipe/form_new_recipe', recipe: @recipe, category: @category, categories: @categories %>
 
 <div class="delete_recipe">
   <%= link_to('Delete recipe', recipe_path(@recipe), method: :delete, data: {confirm: "Are you sure you want to delete this recipe?"}) %>

@@ -8,7 +8,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <% %w(192).each do |s| %>
+    <% %w(192 384).each do |s| %>
       <%= favicon_link_tag "android-chrome-#{s}x#{s}.png", rel: 'android-chrome-icon', type: 'image/png', sizes: "#{s}x#{s}" %>
     <% end %>
 
@@ -26,7 +26,7 @@
       <div class="nav_1">
         <div class="logo">
           <div class="top_left">
-            <%= image_tag 'android-chrome-256x256.png', :class => "logo_img", :width => "100", :length =>"100" %>
+            <%= image_tag 'android-chrome-384x384.png', :class => "logo_img", :width => "100", :length =>"100" %>
           </div>
           <div class="top_center">
             <%= link_to "Your Cookbook", root_path, :class => "logo_text" %>
@@ -58,8 +58,8 @@
           <div class="user_options">
             <% if current_user %>
               <div class="search_bar">
-                <%= form_tag(hunt_search_path, {:id => 'search_form'}) do %>
-                <%= text_field_tag :hunt, params[:hunt], :class => "search_field" %><%= submit_tag t("welcome_controller.index.search_button"), :placeholder => 'Search for hunts!', name: nil, :class => "search_button" %>
+                <%= form_tag(recipe_search_path, {:id => 'search_form'}) do %>
+                <%= text_field_tag :recipe, params[:recipe], :class => "search_field" %><%= submit_tag "search_button", :placeholder => 'Search for recipes!', name: nil, :class => "search_button" %>
                 <% end %>
               </div>
             <% end %>
