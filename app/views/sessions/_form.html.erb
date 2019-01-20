@@ -1,0 +1,17 @@
+<div class="log_in_form open animated fadeInDown">
+  <div class="close_log_in">
+    <%= button_tag "x" %>
+  </div>
+  <%= form_tag sessions_path, :method => :post do %>
+
+  <div class="name_field">
+    <h3><%= label_tag :name %></h3>
+    <%= text_field_tag :name %>
+  </div>
+  <div class="password_field">
+    <h3><%= label_tag :password %></h3>
+    <%= password_field_tag :password %>
+  </div>
+    <h3><%= submit_tag "Login" %></h3>
+  <% end %>
+</div>
