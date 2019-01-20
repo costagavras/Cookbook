@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
   root "welcome#index"
 
-  get '/welcome/about_me', :as => 'about'
+  get '/welcome/about', :as => 'about'
 
   # post '/hunts/search', :as => 'hunt_search'
 
