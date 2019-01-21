@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+ .flash-notice, .flash-alert, .flash-warning {
+   display: inline-block;
+   margin: 0.5rem;
+ }
+
+ .flash-alert {
+   background-color: red;
+ }
+
+ .error_message {
+  font-size: 1.5em;
+  color: red;
+}
