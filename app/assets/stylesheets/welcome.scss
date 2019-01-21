@@ -72,12 +72,12 @@
   grid-column: 1/5;
   grid-row: 2/3;
   position: relative;
-  margin-top: 120px;
+  margin-top: 300px;
   // top: 90px;
   .images {
     .image {
       display: inline-block;
-      width: 33%;
+      width: 25%;
       height:  380px;
       @media screen and (max-width: 1050px) {
         display: block;

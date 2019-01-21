@@ -38,7 +38,7 @@ a {
   // border: solid 2px black;
 }
 
-.top_left, .top_center, .top_right {
+.top_top, .top_center, .top_bottom {
   display: inline-block;
   @media screen and (max-width: 600px) {
     display: block;
@@ -89,13 +89,14 @@ a {
   padding-top: 70px;
   height: 200px;
   text-align: center;
-  .top_center {
+  .top_top {
     .logo_text {
       box-sizing: border-box;
       text-decoration: none;
       color: white;
       font-size: 100px;
-      float: left;
+      display: inline;
+      // float: left;
       text-shadow:
         4px 4px 0 #000,
       -2px -2px 0 #000,
@@ -109,8 +110,11 @@ a {
         font-size: 40px;
       }
     }
+    .logo_img {
+      vertical-align: middle;
+    }
   }
-  .top_right {
+  .top_centre {
     position: absolute;
     right: 50px;
     top: 70px;
@@ -118,17 +122,6 @@ a {
       text-align: center;
     }
   }
-}
-
-.logo_text{
-  display: inline;
-  font-size: 50px;
-}
-.logo_img{
-  vertical-align: middle;
-}
-.logo {
-  width: auto;
 }
 
 .nav_2 {
