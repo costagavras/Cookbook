@@ -73,9 +73,9 @@
     </div>
 
     <main>
-      <%# flash.each do |key, message| %>
-      <div class="flash-<%#= key %>"><span class="error_message"><%#= message %><span></div>
-      <%# end %>
+      <% flash.each do |key, message| %>
+      <div class="flash-<%= key %>"><span class="error_message"><%= message %><span></div>
+      <% end %>
        <%#= render 'sessions/form' %>
        <%#= render 'users/form' %>
       <%= yield %>

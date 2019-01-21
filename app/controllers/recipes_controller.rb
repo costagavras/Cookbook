@@ -1,8 +1,8 @@
 class RecipesController < ApplicationController
 
-
-
-
+  # before_action :select_recipe, except: [:index, :new, :create, :search]
+  # before_action :set_up_new, only: [:new, :create]
+  # before_action :categories_recipes, only: [:index, :new, :create, :edit, :update]
 
   def index
     @categories = Category.all
@@ -19,27 +19,71 @@ class RecipesController < ApplicationController
   end
 
   def create
+    @recipe.user_id = session[:user_id]
+    @category = Category.find_by(id: params[:category_id])
+    @recipe.name = params[:recipe][:name]
+    @recipe.complexity = params[:complexity]
+    @recipe.category_id = params[:category_id]
+    @recipe.prep_time = params[:recipe][:prep_time]
+    @recipe.servings = params[:recipe][:servings]
+    @recipe.grabbed = params[:recipe][:grabbed]
+    @recipe.ingredients = params[:recipe][:ingredients]
+    @recipe.directions = params[:recipe][:directions]
 
-
+    if @recipe.save
+      # flash[:notice] = "Hunt added!"
+      redirect_to recipe_path(@recipe), info: "Recipe added !"
+    else
+      # puts @hunt.errors.full_messages
+      params[:recipe] = nil
+      render :new
+    end
   end
 
   def edit
-
-
+    @category = Category.find_by(id: params[:category_id])
   end
 
   def update
-
-
+    @recipe.user_id = session[:user_id]
+    @category = Category.find_by(id: params[:category_id])
+    @recipe.name = params[:recipe][:name]
+    @recipe.complexity = params[:complexity]
+    @recipe.category_id = params[:category_id]
+    @recipe.prep_time = params[:recipe][:prep_time]
+    @recipe.servings = params[:recipe][:servings]
+    @recipe.grabbed = params[:recipe][:grabbed]
+    @recipe.ingredients = params[:recipe][:ingredients]
+    @recipe.directions = params[:recipe][:directions]
+    
+    if @recipe.save
+      # flash[:notice] = "Hunt updated!"
+      redirect_to recipe_path(@recipe), info: "Recipe updated!"
+    else
+      # puts @hunt.errors.full_messages
+      params[:recipe] = nil
+      render :edit
+    end
   end
 
   def destroy
-
+    @recipe.destroy
+    if @recipe.destroy
+      # flash[:notice] = "Hunt deleted!"
+      redirect_to recipes_path, info: "Recipe deleted!"
+    end
 
   end
 
   def search
-
+    if params[:recipe]
+      @recipes = Recipe.where("name like ?", "%#{params[:recipe]}%")
+      if @recipes.count >= 0
+        flash.now[:notice] = "This search returned #{@recipes.count} recipe(s)."
+      elsif params[:recipe] == ""
+        flash.now[:notice] = "This search returned all recipes!"
+      end
+    end
   end
 
   private
@@ -55,6 +99,5 @@ class RecipesController < ApplicationController
   def categories_recipes
     @categories = Category.all
   end
-
 
 end

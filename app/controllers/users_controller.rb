@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to request.referer, notice: "Logged in as #{@user.name}!"
     else
-      redirect_to request.referer, notice: "Signup failed !"
+      redirect_to request.referer, notice: "Signup failed!"
     end
   end
 
