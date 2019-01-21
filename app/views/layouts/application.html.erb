@@ -5,6 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
@@ -25,15 +27,19 @@
     <div class="navigation_bar">
       <div class="nav_1">
         <div class="logo">
-          <div class="top_left">
-            <%= image_tag 'android-chrome-384x384.png', :class => "logo_img", :width => "100", :length =>"100" %>
+          <div class="top_centre">
+            <% if current_user%>
+              <h2 class = "logo_text"><%= "#{current_user.name}'s" %></h2>
+            <% else %>
+              <h2 class = "logo_text"><%= "Your" %></h2>
+            <% end %>
+            <%= image_tag 'android-chrome-384x384.png', :class => "logo_img", :width => "200", :length =>"100" %>
           </div>
-          <div class="top_center">
-            <%= link_to "Your Cookbook", root_path, :class => "logo_text" %>
+          <div class="top_centre">
             <p><%="The place where your recipes are at home"%></p>
           </div>
         </div>
-          <div class="top_right">
+          <div class="top_bottom">
             <ul class="user_options">
               <% if current_user%>
                 <div class="logged_in">
