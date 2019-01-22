@@ -32,7 +32,7 @@
           <% else %>
             <h2 class = "logo_text"><%= "Your" %></h2>
           <% end %>
-          <%= image_tag 'android-chrome-384x384.png', :class => "logo_img", :width => "250", :length =>"100" %>
+          <%= link_to (image_tag 'android-chrome-384x384.png', :class => "logo_img", :width => "250", :length =>"100"), root_path %>
         </div>
         <div class="top_centre">
           <p><%="The place where your recipes are at home"%></p>
@@ -80,8 +80,8 @@
       <% flash.each do |key, message| %>
       <div class="flash-<%= key %>"><span class="error_message"><%= message %><span></div>
       <% end %>
-       <%#= render 'sessions/form' %>
-       <%#= render 'users/form' %>
+       <%= render 'sessions/form' %>
+       <%= render 'users/form' %>
       <%= yield %>
     </main>
     <footer>
