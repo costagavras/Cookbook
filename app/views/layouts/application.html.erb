@@ -49,8 +49,8 @@
             <% else %>
               <div class="logged_out">
                 <% if !request.path_info.include?("search") %>
-                  <li class="sign_in"><%= link_to "sign_up", new_user_path %></li>
-                  <li class="log_in"><%= link_to "log_in", new_session_path, :class => "login_button" %></li>
+                  <li class="sign_in"><%= link_to "Sign up", new_user_path, :class => "signin_button" %></li>
+                  <li class="log_in"><%= link_to "Log in", new_session_path, :class => "login_button" %></li>
                 <% end %>
               </div>
             <% end %>

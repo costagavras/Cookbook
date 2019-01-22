@@ -2,18 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.welcome_section {
-
-}
-
-.welcome_content {
-  // display: grid;
-  grid-template-rows: 200px 600px 650px ;
-  grid-template-columns: 25% 25% 25% 25% min-content;
-  position: relative;
-  // top: 350px;
-}
-
 .intro {
   grid-column: 2/4;
   border-style: solid white;
@@ -72,13 +60,13 @@
   grid-column: 1/5;
   grid-row: 2/3;
   position: relative;
-  margin-top: 300px;
+  margin: 400px 100px 200px 100px;
   // top: 90px;
   .images {
     .image {
       display: inline-block;
-      width: 25%;
-      height:  380px;
+      width: 30%;
+      height:  300px;
       @media screen and (max-width: 1050px) {
         display: block;
         margin: auto;
@@ -237,12 +225,6 @@ h1{
   font-weight: bold;
   font-size: 40px;
   margin: 40px 0px 20px;
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
 }
 
 .team p {
