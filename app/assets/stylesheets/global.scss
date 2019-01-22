@@ -6,6 +6,10 @@ html{
   font-family: 'Ruluko', sans-serif;
 }
 
+main {
+  margin-top: 5%;
+}
+
 body {
   margin: 0;
   background-image: linear-gradient(rgba(5, 180, 255, 0.3), rgba(255, 255, 255, 0.9)), url("");
@@ -16,7 +20,6 @@ body {
 a {
   text-decoration: none;
   font-weight: bold;
-  color: black;
 }
 
 .navigation_bar {
@@ -76,8 +79,9 @@ a {
     }
   }
 
-  .sign_in{
+  .sign_in, .log_in {
     margin: 25px;
+    padding: 20px;
   }
 
   .signin_button, .login_button{
@@ -111,6 +115,9 @@ a {
       @media screen and (max-width: 800px) {
         font-size: 40px;
       }
+      a {
+        color: white;
+      }
     }
     .logo_img {
       vertical-align: middle;
@@ -141,6 +148,8 @@ a {
 }
 
 .nav_2 {
+  padding: 20em 2em 5em 2em;
+
   text-align: center;
   .user_options {
     display: inline;
