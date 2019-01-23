@@ -14,10 +14,15 @@
  *= require_self
  */
 
+ .flash_message {
+   padding: 2%
+ }
+
  .flash-notice, .flash-alert, .flash-warning, .flash-info {
    display: block;
    margin: 0.5rem;
    font-size: 3em;
+   padding: 2%;
  }
 
  .flash-alert {

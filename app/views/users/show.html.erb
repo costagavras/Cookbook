@@ -11,12 +11,12 @@
     </div>
 </div>
 
-  <%if @user.recipes.length > 0 %>
-  <h2>Recipes:</h2>
-    <% @user.recipes.each do |recipe| %>
-        <div class="recipe">
-          <li> <%=link_to("#{recipe.name}", recipe_path(recipe))%> </li>
-          <p> Category: <%= recipe.category %> </p>
-        </div>
-    <% end  %>
+<%if @user.recipes.length > 0 %>
+<h2>Recipes:</h2>
+  <% @user.recipes.each do |recipe| %>
+      <div class="recipe">
+        <li> <%=link_to("#{recipe.name}", recipe_path(recipe))%> </li>
+        <p> Category: <%= recipe.category.name %> </p>
+      </div>
   <% end  %>
+<% end  %>
