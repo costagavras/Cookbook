@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.save
-      redirect_to user_path(current_user)
+      redirect_to user_path(current_user), notice: "Profile successfully updated!"
     else
       render :edit
     end
