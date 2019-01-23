@@ -13,17 +13,17 @@
 <% end %>
 
 <div class = "index_recipe_show">
-  <h3>Category: <span><%= link_to("#{@recipe.category.name}", category_path(@recipe.category)) %></span></h3>
-  <h3>Prep time: <span><%=@recipe.prep_time%></h3>
-  <h3>Complexity:
+  <h3>Category: &nbsp;&nbsp;<span><%= link_to(("#{@recipe.category.name}").capitalize, category_path(@recipe.category)) %></span></h3>
+  <h3>Prep time: &nbsp;&nbsp;<span><%=@recipe.prep_time%></h3>
+  <h3>Complexity: &nbsp;&nbsp;
     <span><%@recipe.complexity.times do %>
               <%= image_tag 'cookbook_no_bg.png', :class => "logo_img_diff", :width => "30", :length => "30" %>
           <%end%>
     </span>
   </h3>
-  <h3>Servings: <span><%=@recipe.servings%></h3>
-  <h3>Ingredients: <span><%=@recipe.ingredients%></span></h3>
-  <h3>Directions: <span><%=@recipe.directions%></span></h3>
+  <h3>Servings: &nbsp;&nbsp;<span><%=@recipe.servings%></h3>
+  <h3>Ingredients: &nbsp;&nbsp;<span><%=@recipe.ingredients%></span></h3>
+  <h3>Directions: &nbsp;&nbsp;<span><%=@recipe.directions%></span></h3>
 </div>
 
 <%= render(partial: 'comments/form', locals: { recipe: @recipe, comment: @comment }) %>

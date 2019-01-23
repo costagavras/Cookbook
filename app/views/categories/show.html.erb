@@ -8,16 +8,16 @@
       <% @category.recipes.each do |recipe|%>
         <div class="index_recipe">
               <h3><%=link_to(recipe.name, recipe_path(recipe)) %></h3>
-              <h3>Prep time: <span><%=@recipe.prep_time%></h3>
+              <h3>Prep time: <span><%=recipe.prep_time%></h3>
               <h3>Complexity:
-                <span><%@recipe.complexity.times do %>
+                <span><%recipe.complexity.times do %>
                           <%= image_tag 'cookbook_no_bg.png', :class => "logo_img_diff", :width => "30", :length => "30" %>
                       <%end%>
                 </span>
               </h3>
-              <h3>Servings: <span><%=@recipe.servings%></h3>
-              <h3>Ingredients: <span><%=@recipe.ingredients%></span></h3>
-              <h3>Directions: <span><%=@recipe.directions%></span></h3>
+              <h3>Servings: <span><%=recipe.servings%></h3>
+              <h3>Ingredients: <span><%=recipe.ingredients%></span></h3>
+              <h3>Directions: <span><%=recipe.directions%></span></h3>
         </div>
         <%end%>
 </div>
