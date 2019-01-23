@@ -2,16 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.index_recipe > h3 > .recipe_name > a {
-  color: rgb(155, 81, 21);
-  font-size: 35px;
-}
+
 
 //styling for index_recipe page
-
-.index_recipe > h3 > span > a:hover {
-  color: red;
-}
 
 .block {
   display: grid;
@@ -51,6 +44,10 @@
 
 .all-recipes {
   font-size: 70px;
+  color: rgb(60, 68, 79);
+  h2 {
+    text-align: center;
+  }
 }
 
 .create_recipe {
@@ -60,42 +57,29 @@
 }
 
 .categories_recipes > h2 > span {
-  color: white;
   font-size: 50px;
   font-weight: bold;
+  a:hover {
+    color: red;
+  }
 }
 
-.categories_recipes > h2 > span > a:hover {
-  color: red;
-}
-
-
-
-.block > .categories_recipes > .index_recipe > h3 > a {
-  color: rgb(155, 81, 21);
-  font-size: 35px;
-  // text-decoration: underline;
-}
-
-.block > .categories_recipes > .index_recipe > h3 > span {
-  color: white;
-  font-size: 25px;
-}
-
-.all-recipes, h2 {
-  text-align: center;
-}
-
-.index_recipe > h3 > span > a {
-  // text-decoration: underline;
-}
-
-.block > .categories_recipes > .index_recipe > h3 > a:hover {
-  color: red;
-}
-
-.index_recipe > h3 > span > a:hover {
-  color: red;
+.block > .categories_recipes > .index_recipe > h3 {
+  a {
+    color: rgb(155, 81, 21);
+    font-size: 35px;
+  }
+  a:hover {
+    color: red;
+  }
+  span {
+    color: rgb(60, 68, 79);
+    font-size: 25px;
+  }
+  .recipe_name {
+    font-size: 70px;
+    color: rgb(60, 68, 79);
+  }
 }
 
 //styling for show_recipe page
@@ -112,27 +96,18 @@
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.recipe_name {
-  font-size: 70px;
-}
-
-.index_recipe_show > h3 > a {
+.index_recipe_show > h3 {
+  a {
   color: rgb(155, 81, 21);
-  font-size: 35px;
-  // text-decoration: underline;
-}
-
-.index_recipe_show > h3 > span {
-  color: white;
-  font-size: 25px;
-}
-
-.index_recipe_show > h3 > span > a {
-  // text-decoration: underline;
-}
-
-.index_recipe_show > h3 > span > a:hover {
-  color: red;
+  font-size: 30px;
+  }
+  span {
+    color: rgb(60, 68, 79);
+    font-size: 25px;
+    a:hover {
+      color: red;
+    }
+  }
 }
 
 fieldset, #recipe_name {
@@ -148,15 +123,15 @@ fieldset, #recipe_name {
   outline: none;
 }
 
-legend{
+legend {
   font-weight: bold;
 }
 
-.back_link,.links_nav{
+.back_link,.links_nav {
   text-align: center;
 }
 
-.recipe{
+.recipe {
   list-style: none;
   display: inline-block;
   margin: 10px;
@@ -167,7 +142,7 @@ legend{
   box-shadow: 5px 8px;
 }
 
-.recipe_show{
+.recipe_show {
   text-align: center;
 }
 

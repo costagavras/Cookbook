@@ -10,12 +10,12 @@
   padding: 0.5em;
 }
 
-.hunts_link_back {
+.recipes_link_back {
   color: #f19f4d;
   font-size: 30px;
 }
 
-.hunts_link_back > a {
+.recipes_link_back > a {
   color: #f19f4d;
   font-size: 30px;
 }
@@ -24,20 +24,20 @@
   font-size: 70px;
   font-weight: bold;
   text-align: center;
-  color: white;
+  color: rgb(60, 68, 79);
   margin-bottom: 20px;
 }
 
-.block > .index_hunt > h3 > a {
+.block > .index_recipe > h3 > a {
   color: rgb(155, 81, 21);
   font-size: 35px;
 }
 
-.block > .index_hunt > h3 > span {
-  color: white;
+.block > .index_recipe > h3 > span {
+  color: rgb(60, 68, 79);
   font-size: 25px;
 }
 
-.block > .index_hunt > h3 > a:hover {
+.block > .index_recipe > h3 > a:hover {
   color: red;
 }

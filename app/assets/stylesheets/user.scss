@@ -2,6 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+.block > .index_recipe {
+  a {
+  color: rgb(155, 81, 21);
+  font-size: 30px;
+  }
+  span {
+    font-size: 25px;
+    a {
+      color: rgb(60, 68, 79);
+    }
+    a:hover {
+      color: red;
+    }
+  }
+}
+
 .sign_up_form {
   border: 1px solid #96dbe8;
   text-align: center;
@@ -20,7 +37,7 @@
   left: 40%;
 }
 
-.edit_user{
+.edit_user {
   display: block;
   border: 1px solid #96dbe8;
   text-align: center;
@@ -70,25 +87,21 @@ button {
     font-size: 35px;
   }
   h1 {
-    color: grey;
+    color: rgb(60, 68, 79);
     font-weight:bold;
-  }
-  h2 {
-    padding: 30px;
-    font-weight:bold;
-    font-size: 2.5em;
+    font-size: 3em;
+    padding: 2%;
   }
 
 }
 
-h1  {
-  color: grey;
-}
-
-h2  {
+h2 {
+  color: rgb(60, 68, 79);
+  padding: 2%;
   font-weight:bold;
-  font-size: 2em;
+  font-size: 2.5em;
 }
+
 .edit_profile {
   margin: 10px;
   a {
