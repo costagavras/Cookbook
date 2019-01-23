@@ -14,9 +14,10 @@
  *= require_self
  */
 
- .flash-notice, .flash-alert, .flash-warning {
-   display: inline-block;
+ .flash-notice, .flash-alert, .flash-warning, .flash-info {
+   display: block;
    margin: 0.5rem;
+   font-size: 3em;
  }
 
  .flash-alert {

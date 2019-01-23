@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
     else
       # flash[:notice] = "Login Failed"
-      redirect_to request.referer, info: "Incorrect Username/Password!"
+      redirect_to request.referer, info: "Login failed!"
     end
   end
 
