@@ -162,7 +162,7 @@ legend{
   margin: 10px;
   border: 2px solid white;
   padding: 10px;
-  width: 300px;
+  width: 400px;
   border-radius: 7px;
   box-shadow: 5px 8px;
 }
@@ -171,21 +171,23 @@ legend{
   text-align: center;
 }
 
-.join_recipe, .edit_recipe_button, .delete_recipe {
-  margin: 5px;
-  display: inline-block;
-  width: 150px;
-  padding: 10px;
-  border: 0;
-  background: #f19f4d;
-  border-radius: 3px;
+.modify_recipe {
+  #edit_recipe_button, #delete_recipe_button{
+    padding: 1%;
+    margin: 5px;
+    display: inline-block;
+    width: 150px;
+    padding: 10px;
+    border: 0;
+    background: #f19f4d;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+  	-webkit-font-smoothing: antialiased;
 
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #fff;
-	-webkit-font-smoothing: antialiased;
-
-  cursor: pointer;
+    cursor: pointer;
+  }
 
 }

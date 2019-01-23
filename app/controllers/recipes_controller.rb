@@ -1,8 +1,8 @@
 class RecipesController < ApplicationController
 
-  # before_action :select_recipe, except: [:index, :new, :create, :search]
-  # before_action :set_up_new, only: [:new, :create]
-  # before_action :categories_recipes, only: [:index, :new, :create, :edit, :update]
+  before_action :select_recipe, except: [:index, :new, :create, :search]
+  before_action :set_up_new, only: [:new, :create]
+  before_action :categories_recipes, only: [:index, :new, :create, :edit, :update]
 
   def index
     @categories = Category.all
@@ -55,7 +55,7 @@ class RecipesController < ApplicationController
     @recipe.grabbed = params[:recipe][:grabbed]
     @recipe.ingredients = params[:recipe][:ingredients]
     @recipe.directions = params[:recipe][:directions]
-    
+
     if @recipe.save
       # flash[:notice] = "Hunt updated!"
       redirect_to recipe_path(@recipe), info: "Recipe updated!"
