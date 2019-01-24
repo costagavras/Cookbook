@@ -1,4 +1,4 @@
-<h3><span class = "recipes_link_back">&#8678; <%= link_to('Back to recipes', recipes_path) %></span></h3>
+<h3><span class = "back_link">&#8678; <%= link_to('Back to recipes', recipes_path) %></span></h3>
 
 
 <h1 class = "recipe_name"><%= @recipe.name %></h1>
@@ -16,10 +16,9 @@
   <h3>Category: &nbsp;&nbsp;<span><%= link_to(("#{@recipe.category.name}").capitalize, category_path(@recipe.category)) %></span></h3>
   <h3>Prep time: &nbsp;&nbsp;<span><%=@recipe.prep_time%> min</h3>
   <h3>Complexity: &nbsp;&nbsp;
-    <span><%@recipe.complexity.times do %>
-              <%= image_tag 'cookbook_no_bg.png', :class => "logo_img_diff", :width => "30", :length => "30" %>
-          <%end%>
-    </span>
+    <%@recipe.complexity.times do %>
+      <%= image_tag 'cookbook_no_bg.png', :class => "logo_img_diff", :width => "30", :length => "30" %>
+    <%end%>
   </h3>
   <h3>Servings: &nbsp;&nbsp;<span><%=@recipe.servings%></h3>
   <h3>Ingredients: &nbsp;&nbsp;<span><%=@recipe.ingredients%></span></h3>

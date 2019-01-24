@@ -117,16 +117,20 @@
   }
 }
 
-.index_recipe_show > h3 {
-  a {
-  color: rgb(155, 81, 21);
-  font-size: 30px;
-  }
-  span {
-    color: rgb(60, 68, 79);
-    font-size: 25px;
-    a:hover {
-      color: red;
+.index_recipe_show {
+  text-align: left;
+  h3 {
+    a {
+    color: rgb(155, 81, 21);
+    font-size: 30px;
+    }
+    span {
+      color: rgb(60, 68, 79);
+      font-size: 25px;
+      white-space: pre-wrap;
+      a:hover {
+        color: red;
+      }
     }
   }
 }
@@ -161,17 +165,19 @@ input[type="radio" i] {
 }
 
 
-.back_link,.links_nav {
+.back_link, .links_nav {
   text-align: center;
+  font-size: 1.5em;
+  font-style: bold;
 }
 
 .recipe {
   list-style: none;
-  display: inline-block;
+  // display: inline-block;
   margin: 10px;
   border: 2px solid white;
   padding: 10px;
-  width: 400px;
+  width: 50%;
   border-radius: 7px;
   box-shadow: 5px 8px;
 }
