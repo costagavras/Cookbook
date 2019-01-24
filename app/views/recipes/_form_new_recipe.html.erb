@@ -3,7 +3,7 @@
 
 <div class="error_css">
     <%  if @recipe.errors.any? %>
-        <h2> Errors ! </h2>
+        <h2> Errors! </h2>
 
         <ul>
             <%  @recipe.errors.full_messages.each do |message| %>
@@ -28,7 +28,7 @@
   <p><fieldset><legend>Category</legend>
     <% categories.each do |category| %>
       <%= radio_button_tag(:category_id, "#{category.id}") %>
-      <%= label_tag(:category_id, "#{category.name}") %>
+      <%= label_tag(:category_id, "#{category.name}".capitalize) %>
     <% end %>
   </p></fieldset>
 
@@ -46,10 +46,10 @@
 </p></fieldset>
 
 <h3> <%= f.label :ingredients %> </h3>
-  <%= f.text_field :ingredients %>
+  <%= f.text_area :ingredients %>
 
 <h3> <%= f.label :directions %> </h3>
-  <%= f.text_field :directions %>
+  <%= f.text_area :directions %>
 
 <h3> <%= f.submit "ADD"%></h3>
 <%end %>

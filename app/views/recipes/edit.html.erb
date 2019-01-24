@@ -1,10 +1,10 @@
-<h1>Edit: <span><%=@recipe.name%><span></h1>
+<h1 class="recipe_name">Edit recipe: <span><%=@recipe.name%><span></h1>
   <div class="links_nav">
-    <%=  link_to("Back to recipe ", recipe_path(@recipe)) %>
+    &#8678; <%=  link_to("Back to recipe ", recipe_path(@recipe)) %>
   </div>
 
 
-<%= render 'recipe/form_new_recipe', recipe: @recipe, category: @category, categories: @categories %>
+<%= render 'recipes/form_new_recipe', recipe: @recipe, category: @category, categories: @categories %>
 
 <div class="delete_recipe">
   <%= link_to('Delete recipe', recipe_path(@recipe), method: :delete, data: {confirm: "Are you sure you want to delete this recipe?"}) %>
