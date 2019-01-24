@@ -2,17 +2,10 @@ class RecipesController < ApplicationController
 
   before_action :select_recipe, except: [:index, :new, :create, :search]
   before_action :set_up_new, only: [:new, :create]
-  before_action :categories_recipes, only: [:index, :new, :create, :edit, :update]
+  before_action :categories_recipes, only: [:index, :new, :create, :edit, :update, :search]
+  before_action :set_up_user_recipes, only: [:index, :search]
 
   def index
-    @user_recipes = Recipe.where(user_id: current_user)
-    @user_categories = []
-    @user_recipes.each do |recipe|
-      if @categories.include?(recipe.category)
-        @user_categories << recipe.category
-      end
-    end
-    @user_categories = @user_categories.uniq
   end
 
   def new
@@ -82,7 +75,7 @@ class RecipesController < ApplicationController
 
   def search
     if params[:recipe]
-      @recipes = Recipe.where("name like ?", "%#{params[:recipe]}%")
+      @recipes = @user_recipes.where("name like ?", "%#{params[:recipe]}%")
       if @recipes.count >= 0
         flash.now[:notice] = "This search returned #{@recipes.count} recipe(s)."
       elsif params[:recipe] == ""
@@ -92,6 +85,17 @@ class RecipesController < ApplicationController
   end
 
   private
+
+  def set_up_user_recipes
+    @user_recipes = Recipe.where(user_id: current_user)
+    @user_categories = []
+    @user_recipes.each do |recipe|
+      if @categories.include?(recipe.category)
+        @user_categories << recipe.category
+      end
+    end
+    @user_categories = @user_categories.uniq
+  end
 
   def set_up_new
     @recipe = Recipe.new
