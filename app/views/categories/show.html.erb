@@ -5,19 +5,21 @@
 </div>
 <hr>
 <div class="block">
-      <% @category.recipes.each do |recipe|%>
-        <div class="index_recipe">
-              <h3><%=link_to(recipe.name, recipe_path(recipe)) %></h3>
-              <h3>Prep time: &nbsp;&nbsp;<span><%=recipe.prep_time%></span> min</h3>
-              <h3>Complexity: &nbsp;&nbsp;
-                <span><%recipe.complexity.times do %>
-                          <%= image_tag 'cookbook_no_bg.png', :class => "logo_img_diff", :width => "30", :length => "30" %>
-                      <%end%>
-                </span>
-              </h3>
-              <h3>Servings: &nbsp;&nbsp;<span><%=recipe.servings%></h3>
-              <h3>Ingredients: &nbsp;&nbsp;<span><%=recipe.ingredients%></span></h3>
-              <h3>Directions: &nbsp;&nbsp;<span><%=recipe.directions%></span></h3>
-        </div>
-        <%end%>
+  <% @category.recipes.each do |recipe|%>
+    <%if @user_recipes.include?(recipe)%>
+      <div class="index_recipe">
+        <h3><%=link_to(recipe.name, recipe_path(recipe)) %></h3>
+        <h3>Prep time: &nbsp;&nbsp;<span><%=recipe.prep_time%></span> min</h3>
+        <h3>Complexity: &nbsp;&nbsp;
+          <span><%recipe.complexity.times do %>
+                    <%= image_tag 'cookbook_no_bg.png', :class => "logo_img_diff", :width => "30", :length => "30" %>
+                <%end%>
+          </span>
+        </h3>
+        <h3>Servings: &nbsp;&nbsp;<span><%=recipe.servings%></h3>
+        <h3>Ingredients: &nbsp;&nbsp;<span><%=recipe.ingredients%></span></h3>
+        <h3>Directions: &nbsp;&nbsp;<span><%=recipe.directions%></span></h3>
+      </div>
+    <%end%>
+  <%end%>
 </div>

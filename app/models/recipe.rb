@@ -22,11 +22,4 @@ class Recipe < ApplicationRecord
     end
   end
 
-
-  def self.user_recipes
-
-    self.where(user_id: current_user)
-
-  end
-
 end
