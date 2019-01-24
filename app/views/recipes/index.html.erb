@@ -3,13 +3,13 @@
 <hr>
 <div class="block">
 
-    <% @categories.each do |category|%>
+    <% @user_categories.each do |category|%>
       <div class="categories_recipes">
         <h2><span><%= link_to(category.name.upcase, category_path(category))%></span></h2>
-      <% category.recipes.each do |recipe|%>
+      <% category.recipes.user_recipes.each do |recipe|%>
         <div class = "index_recipe">
             <h3><%=link_to("#{recipe.name}", recipe_path(recipe))%></h3>
-            <h3>Prep time: &nbsp;&nbsp;<span><%=recipe.prep_time%></h3>
+            <h3>Prep time: &nbsp;&nbsp;<span><%=recipe.prep_time%> min</h3>
             <h3>Servings: &nbsp;&nbsp;<span><%=recipe.servings%></span></h3>
             <h3>Complexity: &nbsp;&nbsp;
               <span><%recipe.complexity.times do %>

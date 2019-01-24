@@ -5,12 +5,17 @@ class RecipesController < ApplicationController
   before_action :categories_recipes, only: [:index, :new, :create, :edit, :update]
 
   def index
-    @categories = Category.all
+    @user_recipes = Recipe.where(user_id: current_user)
+    @user_categories = []
+    @user_recipes.each do |recipe|
+      if @categories.include?(recipe.category)
+        @user_categories << recipe.category
+      end
+    end
+    @user_categories = @user_categories.uniq
   end
 
   def new
-    @recipe = Recipe.new
-    @categories = Category.all
   end
 
   def show
