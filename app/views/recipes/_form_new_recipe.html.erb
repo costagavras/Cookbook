@@ -39,10 +39,10 @@
       <%= f.number_field :prep_time %>
 
 <p><fieldset><legend>Manual entry or Web address?</legend>
-  <%= radio_button_tag(:entry, "Manual") %>
-  <%= label_tag(:entry, "Manual") %>
-  <%= radio_button_tag(:entry, "Web") %>
-  <%= label_tag(:entry, "Web") %>
+  <%= radio_button_tag(:grabbed, value: false) %>
+  <%= label_tag(:grabbed, "Manual") %>
+  <%= radio_button_tag(:grabbed, value: true) %>
+  <%= label_tag(:grabbed, "Web") %>
 </p></fieldset>
 
 <h3> <%= f.label :ingredients %> </h3>

@@ -22,9 +22,9 @@ class RecipesController < ApplicationController
     @recipe.name = params[:recipe][:name]
     @recipe.complexity = params[:complexity]
     @recipe.category_id = params[:category_id]
+    @recipe.grabbed = params[:grabbed]
     @recipe.prep_time = params[:recipe][:prep_time]
     @recipe.servings = params[:recipe][:servings]
-    @recipe.grabbed = params[:recipe][:grabbed]
     @recipe.ingredients = params[:recipe][:ingredients]
     @recipe.directions = params[:recipe][:directions]
 
@@ -48,9 +48,9 @@ class RecipesController < ApplicationController
     @recipe.name = params[:recipe][:name]
     @recipe.complexity = params[:complexity]
     @recipe.category_id = params[:category_id]
+    @recipe.grabbed = params[:grabbed]
     @recipe.prep_time = params[:recipe][:prep_time]
     @recipe.servings = params[:recipe][:servings]
-    @recipe.grabbed = params[:recipe][:grabbed]
     @recipe.ingredients = params[:recipe][:ingredients]
     @recipe.directions = params[:recipe][:directions]
 
@@ -58,7 +58,7 @@ class RecipesController < ApplicationController
       # flash[:notice] = "Hunt updated!"
       redirect_to recipe_path(@recipe), info: "Recipe updated!"
     else
-      # puts @hunt.errors.full_messages
+      puts @recipe.errors.full_messages
       params[:recipe] = nil
       render :edit
     end
