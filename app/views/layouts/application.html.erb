@@ -66,6 +66,11 @@
               </div>
             <% end %>
           </div>
+          <div class="user_options">
+            <% if current_user %>
+              <span><%= link_to 'All Recipes', recipes_path%></span>
+            <% end %>
+          </div>
       </div>
       <div class="flash_message">
         <% flash.each do |key, message| %>
@@ -75,6 +80,8 @@
     </div>
 
     <main>
+    <hr>
+    <br>
        <%= render 'sessions/form' %>
        <%= render 'users/form' %>
       <%= yield %>

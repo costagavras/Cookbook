@@ -1,9 +1,5 @@
 class UsersController < ApplicationController
 
-  before_action :categories_recipes, only: [:show]
-  before_action :set_up_user_recipes, only: [:show]
-
-
   def show
     @user = User.find(params[:id])
   end
@@ -46,23 +42,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     redirect_to root_url
-  end
-
-  private
-
-  def set_up_user_recipes
-    @user_recipes = Recipe.where(user_id: current_user)
-    @user_categories = []
-    @user_recipes.each do |recipe|
-      if @categories.include?(recipe.category)
-        @user_categories << recipe.category
-      end
-    end
-    @user_categories = @user_categories.uniq
-  end
-
-  def categories_recipes
-    @categories = Category.all
   end
 
 end

@@ -6,31 +6,3 @@
       <% end %>
     </div>
 </div>
-
-
-  <%if @user.recipes.length > 0 %>
-  <h2>You have <%= @user.recipes.length %> recipes.</h2>
-  <hr>
-  <div class="block">
-    <% @user_categories.each do |category|%>
-      <div class="categories_recipes">
-        <h2><span><%= link_to(category.name.upcase, category_path(category))%></span></h2>
-      <% category.recipes.each do |recipe|%>
-        <%if @user_recipes.include?(recipe)%>
-            <div class = "index_recipe">
-                <h3><%=link_to("#{recipe.name}", recipe_path(recipe))%></h3>
-                <h3>Prep time: &nbsp;&nbsp;<span><%=recipe.prep_time%> min</h3>
-                <h3>Servings: &nbsp;&nbsp;<span><%=recipe.servings%></span></h3>
-                <h3>Complexity: &nbsp;&nbsp;
-                  <span><%recipe.complexity.times do %>
-                          <%= image_tag 'cookbook_no_bg.png', :class => "logo_img_diff", :width => "30", :length => "30" %>
-                        <%end%>
-                  </span>
-                </h3>
-            </div>
-        <%end%>
-      <%end%>
-      </div>
-    <%end%>
-  </div>
-  <%end%>
