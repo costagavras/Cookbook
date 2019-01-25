@@ -1,6 +1,3 @@
-<h3><span class = "back_link">&#8678; <%= link_to('Back to recipes', recipes_path) %></span></h3>
-
-
 <h1 class = "recipe_name"><%= @recipe.name %></h1>
 
 <div class = "recipe">
@@ -25,9 +22,12 @@
   <h3>Directions: &nbsp;&nbsp;<span><%=@recipe.directions%></span></h3>
 </div>
 
-<%= render(partial: 'comments/form', locals: { recipe: @recipe, comment: @comment }) %>
+<div class = "comment_section">
+  <h3>Comments</h3>
+  <% @comments.each do |comment| %>
+    <p>on: &nbsp;&nbsp;<%= comment.created_at.strftime("%B %d, %Y") %> <%= comment.created_at.strftime("%I:%M %p ") %></p>
+    <p><%= comment.description %></p>
+  <% end %>
 
-<% @comments.each do |comment| %>
-  <p>posted on:   <%= comment.created_at.strftime("%B %d, %Y") %> <%= comment.created_at.strftime("%I:%M %p ") %></p>
-  <p><%= comment.description %></p>
-<% end %>
+<%= render(partial: 'comments/form', locals: { recipe: @recipe, comment: @comment }) %>
+</div>
