@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
   before_action :select_recipe, except: [:index, :new, :create, :search]
   before_action :set_up_new, only: [:new, :create]
   before_action :categories_recipes, only: [:index, :new, :create, :edit, :update, :search]
-  before_action :set_up_user_recipes, only: [:index, :search]
+  before_action :set_up_user_recipes, only: [:index]
 
   def index
   end
@@ -75,7 +75,15 @@ class RecipesController < ApplicationController
 
   def search
     if params[:recipe]
+      @user_recipes = Recipe.where(user_id: current_user)
       @recipes = @user_recipes.where("name like ?", "%#{params[:recipe]}%")
+      @user_categories = []
+      @recipes.each do |recipe|
+        if @categories.include?(recipe.category)
+          @user_categories << recipe.category
+        end
+      end
+      @user_categories = @user_categories.uniq
       if @recipes.count >= 0
         flash.now[:notice] = "This search returned #{@recipes.count} recipe(s)."
       elsif params[:recipe] == ""
