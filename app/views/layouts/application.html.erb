@@ -68,7 +68,8 @@
           </div>
           <div class="user_options">
             <% if current_user %>
-              <span><%= link_to 'All Recipes', recipes_path%></span>
+              <span><%= link_to 'All recipes', recipes_path%></span>
+              <span><%= link_to 'New recipe', new_recipe_path%></span>
             <% end %>
           </div>
       </div>
