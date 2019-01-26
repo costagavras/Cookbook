@@ -27,10 +27,10 @@ class RecipesController < ApplicationController
     @recipe.servings = params[:recipe][:servings]
     @recipe.ingredients = params[:recipe][:ingredients]
     @recipe.directions = params[:recipe][:directions]
-    @recipe.photos = params[:photos]
+    @recipe.photos.attach(params[:recipe][:photos])
 
     if @recipe.save
-      # flash[:notice] = "Hunt added!"
+      # flash[:notice] = "Recipe added!"
       redirect_to recipe_path(@recipe), info: "Recipe added !"
     else
       # puts @hunt.errors.full_messages
@@ -54,9 +54,11 @@ class RecipesController < ApplicationController
     @recipe.servings = params[:recipe][:servings]
     @recipe.ingredients = params[:recipe][:ingredients]
     @recipe.directions = params[:recipe][:directions]
-
+    @recipe.photos.attach(params[:recipe][:photos])
+    @recipe.remove_photos = params[:recipe][:remove_photos]
+    
     if @recipe.save
-      # flash[:notice] = "Hunt updated!"
+      # flash[:notice] = "Recipe updated!"
       redirect_to recipe_path(@recipe), info: "Recipe updated!"
     else
       puts @recipe.errors.full_messages
