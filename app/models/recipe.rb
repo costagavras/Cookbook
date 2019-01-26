@@ -5,7 +5,7 @@ class Recipe < ApplicationRecord
   belongs_to :user
 
   #active_storage attachments
-  has_many_attached :photos
+  has_one_attached :photos
 
   attr_accessor :remove_photos #for the form
 

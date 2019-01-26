@@ -54,9 +54,11 @@ class RecipesController < ApplicationController
     @recipe.servings = params[:recipe][:servings]
     @recipe.ingredients = params[:recipe][:ingredients]
     @recipe.directions = params[:recipe][:directions]
-    @recipe.photos.attach(params[:recipe][:photos])
+    if !@recipe.photos.attached?
+      @recipe.photos.attach(params[:recipe][:photos])
+    end
     @recipe.remove_photos = params[:recipe][:remove_photos]
-    
+
     if @recipe.save
       # flash[:notice] = "Recipe updated!"
       redirect_to recipe_path(@recipe), info: "Recipe updated!"

@@ -55,8 +55,9 @@
   <%=f.label :photos, "Upload photo" %>
   <%=f.file_field :photos %>
 
-  <% if recipe.photos.attached? %>
-    <% f.label :remove_photos %>
+  <% if @recipe.photos.attached? %>
+    <h3>Photo name: &nbsp;<%= @recipe.photos.filename %></h3>
+    <%=f.label :remove_photos, "Remove photo" %>
     <%= f.check_box :remove_photos %>
   <%end%>
 
