@@ -51,5 +51,16 @@
 <h3> <%= f.label :directions %> </h3>
   <%= f.text_area :directions %>
 
+<div class="load_photo">
+  <%=f.label :photos, "Upload photo" %>
+  <%=f.file_field :photos %>
+
+  <% if recipe.photos.attached? %>
+    <% f.label :remove_photos %>
+    <%= f.check_box :remove_photos %>
+  <%end%>
+
+</div>
+
 <h3> <%= f.submit "ADD"%></h3>
 <%end %>
