@@ -1,8 +1,11 @@
 class Recipe < ApplicationRecord
 
-  has_many :comments, dependent: :destroy 
+  has_many :comments, dependent: :destroy
   belongs_to :category
   belongs_to :user
+
+  #active_storage attachments
+  has_many_attached :photos
 
   # has_many_attached :images
 

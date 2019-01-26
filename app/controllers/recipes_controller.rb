@@ -27,6 +27,7 @@ class RecipesController < ApplicationController
     @recipe.servings = params[:recipe][:servings]
     @recipe.ingredients = params[:recipe][:ingredients]
     @recipe.directions = params[:recipe][:directions]
+    @recipe.photos = params[:photos]
 
     if @recipe.save
       # flash[:notice] = "Hunt added!"

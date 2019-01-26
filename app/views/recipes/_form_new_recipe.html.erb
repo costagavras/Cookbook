@@ -51,5 +51,10 @@
 <h3> <%= f.label :directions %> </h3>
   <%= f.text_area :directions %>
 
+<div class="load_photo">
+  <%=f.label :photos %>
+  <%=f.file_field :photos %>
+</div>
+
 <h3> <%= f.submit "ADD"%></h3>
 <%end %>
