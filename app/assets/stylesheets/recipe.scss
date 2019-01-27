@@ -117,8 +117,16 @@
     height: 10em;
     font-size: 20px;
   }
-  .load_photo {
+  .load_photo_menu {
     padding: 2%;
+    display: grid;
+    text-align: left;
+    .upload_photo, .show_photo, .remove_photo {
+      padding: 1%;
+      // #recipe_remove_photos {
+      //
+      // }
+    }
   }
 }
 

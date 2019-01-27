@@ -49,19 +49,22 @@
 <h3> <%= f.label :directions %> </h3>
   <%= f.text_area :directions %>
 
-<div class="load_photo">
-  <%=f.label :photos, "Upload photo", accept: "application/pdf,image/png,image/jpg,image/jpeg" %>
-  <%=f.file_field :photos, multiple: true %>
-
-<% if @recipe.photos.attached? %>
-  <%@recipe.photos.each do |photo|%>
-    <h3>Photo name: &nbsp;<%= photo.filename %></h3>
-  <%end%>
-<%end%>
-
-<%=f.label :remove_photos, "Remove photos" %>
-<%= f.check_box :remove_photos %>
-
+<div class="load_photo_menu">
+  <div class="upload_photo">
+    <%=f.label :photos, "Upload photo", accept: "application/pdf,image/png,image/jpg,image/jpeg" %>
+    <%=f.file_field :photos, multiple: true %>
+  </div>
+  <div class="show_photo">
+    <% if @recipe.photos.attached? %>
+      <%@recipe.photos.each do |photo|%>
+        <h3>Photo name: &nbsp;<%= photo.filename %></h3>
+      <%end%>
+    <%end%>
+  </div>
+  <div class="remove_photo">
+    <%=f.label :remove_photos, "Remove photos" %>
+    <%= f.check_box :remove_photos %>
+  </div>
 </div>
 
 <h3> <%= f.submit "Edit"%></h3>

@@ -57,7 +57,9 @@ class RecipesController < ApplicationController
     if params[:recipe][:photos]
       @recipe.photos.attach(params[:recipe][:photos])
     end
-    @recipe.remove_photos = params[:recipe][:remove_photos]
+    if params[:recipe][:remove_photos] == 1
+      @recipe.remove_photos = params[:recipe][:remove_photos]
+    end
 
     if @recipe.save
       # flash[:notice] = "Recipe updated!"
