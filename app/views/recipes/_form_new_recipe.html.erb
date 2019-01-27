@@ -50,16 +50,17 @@
   <%= f.text_area :directions %>
 
 <div class="load_photo">
-  <%=f.label :photos, "Upload photo" %>
+  <%=f.label :photos, "Upload photo", accept: "application/pdf,image/png,image/jpg,image/jpeg" %>
   <%=f.file_field :photos, multiple: true %>
 
-  <% if @recipe.photos.attached? %>
-    <%@recipe.photos.each do |photo|%>
-      <h3>Photo name: &nbsp;<%= photo.filename %></h3>
-      <%=f.label :remove_photos, "Remove photo" %>
-      <%= f.check_box :remove_photos %>
-    <%end%>
+<% if @recipe.photos.attached? %>
+  <%@recipe.photos.each do |photo|%>
+    <h3>Photo name: &nbsp;<%= photo.filename %></h3>
   <%end%>
+<%end%>
+
+<%=f.label :remove_photos, "Remove photos" %>
+<%= f.check_box :remove_photos %>
 
 </div>
 

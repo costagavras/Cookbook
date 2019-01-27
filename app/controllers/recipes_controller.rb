@@ -54,9 +54,9 @@ class RecipesController < ApplicationController
     @recipe.servings = params[:recipe][:servings]
     @recipe.ingredients = params[:recipe][:ingredients]
     @recipe.directions = params[:recipe][:directions]
-    # if @recipe.photos.blob
+    if params[:recipe][:photos]
       @recipe.photos.attach(params[:recipe][:photos])
-    # end
+    end
     @recipe.remove_photos = params[:recipe][:remove_photos]
 
     if @recipe.save
