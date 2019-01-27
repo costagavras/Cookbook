@@ -15,7 +15,9 @@
   <h3>Directions: &nbsp;&nbsp;<span><%=@recipe.directions%></span></h3>
   <div class="photo">
     <% if @recipe.photos.attached? %>
-      <%= image_tag @recipe.photos %>
+      <%@recipe.photos.each do |photo|%>
+        <%= image_tag photo %>
+      <% end %>
     <% end %>
   </div>
 </div>

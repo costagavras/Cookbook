@@ -1,15 +1,13 @@
 <%= form_for (recipe) do |f| %>
 
-
 <div class="error_css">
-    <%  if @recipe.errors.any? %>
-        <h2> Errors! </h2>
-
-        <ul>
-            <%  @recipe.errors.full_messages.each do |message| %>
-              <li> <%= message %> </li>
-            <% end  %>
-        </ul>
+    <% if @recipe.errors.any? %>
+      <h2> Errors! </h2>
+      <ul>
+        <%  @recipe.errors.full_messages.each do |message| %>
+          <li> <%= message %> </li>
+        <% end  %>
+      </ul>
     <% end %>
 </div>
 
@@ -53,15 +51,17 @@
 
 <div class="load_photo">
   <%=f.label :photos, "Upload photo" %>
-  <%=f.file_field :photos %>
+  <%=f.file_field :photos, multiple: true %>
 
   <% if @recipe.photos.attached? %>
-    <h3>Photo name: &nbsp;<%= @recipe.photos.filename %></h3>
-    <%=f.label :remove_photos, "Remove photo" %>
-    <%= f.check_box :remove_photos %>
+    <%@recipe.photos.each do |photo|%>
+      <h3>Photo name: &nbsp;<%= photo.filename %></h3>
+      <%=f.label :remove_photos, "Remove photo" %>
+      <%= f.check_box :remove_photos %>
+    <%end%>
   <%end%>
 
 </div>
 
-<h3> <%= f.submit "ADD"%></h3>
+<h3> <%= f.submit "Edit"%></h3>
 <%end %>
