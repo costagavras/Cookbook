@@ -1,35 +1,42 @@
 <h1 class = "recipe_name"><%= @recipe.name %></h1>
 
-<div class = "recipe">
+<div class="recipe_photos">
+  <div class = "recipe">
 
-<div class = "index_recipe_show">
-  <h3>Category: &nbsp;&nbsp;<span><%= link_to(("#{@recipe.category.name}").capitalize, category_path(@recipe.category)) %></span></h3>
-  <h3>Prep time: &nbsp;&nbsp;<span><%=@recipe.prep_time%> min</h3>
-  <h3>Complexity: &nbsp;&nbsp;
-    <%@recipe.complexity.times do %>
-      <%= image_tag 'cookbook_no_bg.png', :class => "logo_img_diff", :width => "30", :length => "30" %>
-    <%end%>
-  </h3>
-  <h3>Servings: &nbsp;&nbsp;<span><%=@recipe.servings%></h3>
-  <h3>Ingredients: &nbsp;&nbsp;<span><%=@recipe.ingredients%></span></h3>
-  <h3>Directions: &nbsp;&nbsp;<span><%=@recipe.directions%></span></h3>
+    <div class = "index_recipe_show">
+      <h3>Category: &nbsp;&nbsp;<span><%= link_to(("#{@recipe.category.name}").capitalize, category_path(@recipe.category)) %></span></h3>
+      <h3>Prep time: &nbsp;&nbsp;<span><%=@recipe.prep_time%> min</h3>
+      <h3>Complexity: &nbsp;&nbsp;
+        <%@recipe.complexity.times do %>
+          <%= image_tag 'cookbook_no_bg.png', :class => "logo_img_diff", :width => "30", :length => "30" %>
+        <%end%>
+      </h3>
+      <h3>Servings: &nbsp;&nbsp;<span><%=@recipe.servings%></h3>
+      <h3>Ingredients: &nbsp;&nbsp;<span><%=@recipe.ingredients%></span></h3>
+      <h3>Directions: &nbsp;&nbsp;<span><%=@recipe.directions%></span></h3>
+    </div>
+
+    <div class = "comment_section">
+      <h3>Comments</h3>
+      <% @comments.each do |comment| %>
+        <p>on: &nbsp;&nbsp;<%= comment.created_at.strftime("%B %d, %Y") %> <%= comment.created_at.strftime("%I:%M %p ") %></p>
+        <p><%= comment.description %></p>
+      <% end %>
+
+    <%= render(partial: 'comments/form', locals: { recipe: @recipe, comment: @comment }) %>
+    </div>
+
+  </div>
+
   <div class="photo">
     <% if @recipe.photos.attached? %>
     <%i = 0%>
       <%@recipe.photos.each do |photo|%>
         <%i += 1%>
-        <h3 class="photo_n"><%=i%> &nbsp;&nbsp; <%= image_tag photo %>
+        <%name = photo.filename.base%>
+        <div class="photo_w_desc"><h2 class="photo_n"><%=i%>. &nbsp;&nbsp; <%=name%></h2> <%= image_tag photo %></h1></div>
       <% end %>
     <% end %>
   </div>
-</div>
 
-<div class = "comment_section">
-  <h3>Comments</h3>
-  <% @comments.each do |comment| %>
-    <p>on: &nbsp;&nbsp;<%= comment.created_at.strftime("%B %d, %Y") %> <%= comment.created_at.strftime("%I:%M %p ") %></p>
-    <p><%= comment.description %></p>
-  <% end %>
-
-<%= render(partial: 'comments/form', locals: { recipe: @recipe, comment: @comment }) %>
 </div>

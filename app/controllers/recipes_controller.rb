@@ -58,9 +58,8 @@ class RecipesController < ApplicationController
       @recipe.photos.attach(params[:recipe][:photos])
     end
     if params[:recipe][:remove_photos] == 1
-      @recipe.remove_photos = params[:recipe][:remove_photos]
+      @recipe.photos.purge_later
     end
-
     if @recipe.save
       # flash[:notice] = "Recipe updated!"
       redirect_to recipe_path(@recipe), info: "Recipe updated!"

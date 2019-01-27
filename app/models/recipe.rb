@@ -9,10 +9,10 @@ class Recipe < ApplicationRecord
 
   attr_accessor :remove_photos #for the form
 
-after_save :purge_photos, if: :remove_photos
-  private def purge_photos
-  photos.purge_later
-end
+# after_save :purge_photos, if: :remove_photos
+#   private def purge_photos
+#   photos.purge_later
+# end
 
 
 
