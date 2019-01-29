@@ -8,6 +8,8 @@ class Recipe < ApplicationRecord
 
   #active_storage attachments
   has_many_attached :photos
+  has_one_attached :screencapture
+  has_one_attached :screencapture_name
 
   attr_accessor :remove_photos #for the form
 

@@ -21,14 +21,14 @@
     <%= label_tag(:complexity, "Average") %>
     <%= radio_button_tag(:complexity, "3") %>
     <%= label_tag(:complexity, "Hard") %>
-  </p></fieldset>
+  </fieldset>
 
   <p><fieldset><legend>Category</legend>
     <% categories.each do |category| %>
       <%= radio_button_tag(:category_id, "#{category.id}") %>
       <%= label_tag(:category_id, "#{category.name}".capitalize) %>
     <% end %>
-  </p></fieldset>
+  </fieldset></p>
 
 <h3>  <%= f.label(:servings)%></h3>
       <%= f.number_field :servings, value: 20, min: 1, max: 20 %>
@@ -36,12 +36,12 @@
 <h3>  <%= f.label(:prep_time)%></h3>
       <%= f.number_field :prep_time %>
 
-<p><fieldset><legend>Manual entry or Web address?</legend>
-  <%= radio_button_tag(:grabbed, value: false) %>
-  <%= label_tag(:grabbed, "Manual") %>
-  <%= radio_button_tag(:grabbed, value: true) %>
-  <%= label_tag(:grabbed, "Web") %>
-</p></fieldset>
+<!-- <p><fieldset><legend>Manual entry or Web address?</legend> -->
+  <%#= radio_button_tag(:grabbed, value: false) %>
+  <%#== label_tag(:grabbed, "Manual") %>
+  <%#== radio_button_tag(:grabbed, value: true, disabled: false, onclick: "window.alert('I work!');") %>
+  <%#== label_tag(:grabbed, "Web") %>
+<!-- </fieldset></p> -->
 
 <h3> <%= f.label :ingredients %> </h3>
   <%= f.text_area :ingredients %>
@@ -49,23 +49,38 @@
 <h3> <%= f.label :directions %> </h3>
   <%= f.text_area :directions %>
 
-<div class="load_photo_menu">
-  <div class="upload_photo">
-    <%=f.label :photos, "Upload photo", accept: "application/pdf,image/png,image/jpg,image/jpeg" %>
-    <%=f.file_field :photos, multiple: true %>
-  </div>
-  <div class="show_photo">
-    <% if @recipe.photos.attached? %>
-      <%@recipe.photos.each do |photo|%>
-        <h3>Photo name: &nbsp;<%= photo.filename %></h3>
+<p><fieldset><legend>Photo upload</legend>
+  <div class="load_photo_menu">
+    <div class="upload_photo">
+      <%=f.label :photos, "Upload photo", accept: "application/pdf,image/png,image/jpg,image/jpeg" %>
+      <%=f.file_field :photos, multiple: true %>
+    </div>
+    <div class="show_photo">
+      <% if @recipe.photos.attached? %>
+        <%@recipe.photos.each do |photo|%>
+          <h3>Photo name: &nbsp;<%= photo.filename %></h3>
+        <%end%>
       <%end%>
-    <%end%>
+    </div>
+    <div class="remove_photo">
+      <%=f.label :remove_photos, "Remove photos" %>
+      <%= f.check_box :remove_photos %>
+    </div>
   </div>
-  <div class="remove_photo">
-    <%=f.label :remove_photos, "Remove photos" %>
-    <%= f.check_box :remove_photos %>
+</fieldset></p>
+
+<p><fieldset><legend>Web grabbed</legend>
+  <div class="load_photo_menu">
+    <div class="upload_photo">
+      <%=f.label :screencapture, "Input URL" %>
+      <%=f.url_field_tag :screencapture, nil, class="url_input" %>
+    </div>
+    <div class="screencapture_name">
+      <%=f.label :screencapture_name, "Name the screencapture" %>
+      <%= f.text_field_tag :screencapture_name, size: 75, maxlength: 100 %>
+    </div>
   </div>
-</div>
+</fieldset></p>
 
 <h3> <%= f.submit "Edit"%></h3>
 <%end %>

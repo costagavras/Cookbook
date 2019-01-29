@@ -1,4 +1,4 @@
-var page = require("webpage").create();
+var page = require('webpage').create();
 var system = require('system');
 
 page.onError = function(msg, trace) {
