@@ -55,10 +55,14 @@ class RecipesController < ApplicationController
     @recipe.ingredients = params[:recipe][:ingredients]
     @recipe.directions = params[:recipe][:directions]
     if params[:recipe][:photos]
+      # puts "Hello, I'm before attach!"
       @recipe.photos.attach(params[:recipe][:photos])
+      # puts "Hello, I'm after attach!"
     end
-    if params[:recipe][:remove_photos] == 1
+    # puts "Hello, I'm before purge!"
+    if params[:recipe][:remove_photos] == "1"
       @recipe.photos.purge_later
+      # puts "Hello, I'm after purge!"
     end
     if @recipe.save
       # flash[:notice] = "Recipe updated!"
