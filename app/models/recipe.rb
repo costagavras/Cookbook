@@ -1,3 +1,5 @@
+# require 'screencap'
+
 class Recipe < ApplicationRecord
 
   has_many :comments, dependent: :destroy
@@ -33,5 +35,11 @@ class Recipe < ApplicationRecord
       return "Hard"
     end
   end
+
+  # screenshot = Screencap::Fetcher.new("http://wikipedia.org")
+  # image = screenshot.fetch(output: '~/images/screencap.png',
+  #                                    width: 300,
+  #                                   height: 500)
+
 
 end

@@ -35,6 +35,10 @@ gem "aws-sdk-s3", require: false
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.9.2'
 
+# Use phantomjs to take screenshots of webpages
+gem 'phantomjs'
+gem 'screencap'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

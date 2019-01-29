@@ -5,6 +5,8 @@ class RecipesController < ApplicationController
   before_action :categories_recipes, only: [:index, :new, :create, :edit, :update, :search]
   before_action :set_up_user_recipes, only: [:index]
 
+  PATH_TO_PHANTOM_SCRIPT = Rails.root.join('app', 'assets', 'javascripts', 'screencapture.js')
+
   def index
   end
 
@@ -125,6 +127,11 @@ class RecipesController < ApplicationController
 
   def categories_recipes
     @categories = Category.all
+  end
+
+  def take_screencapture
+    Dir.chdir(Rails.root.join('public', 'images'))
+    system "phantomjs #{PATH_TO_PHANTOM_SCRIPT} #{params["screencapture_url"]} #{params["screencapture_name"]}.png"
   end
 
 end
