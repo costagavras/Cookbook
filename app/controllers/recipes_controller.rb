@@ -1,5 +1,6 @@
-require 'webshot'
-require 'phantomjs'
+# require 'webshot'
+# require 'phantomjs'
+# require 'screencap'
 
 class RecipesController < ApplicationController
 
@@ -73,9 +74,19 @@ class RecipesController < ApplicationController
     if params[:recipe][:screencapture_name] != ""
       puts "Hello, I'm before screencapture!"
       Dir.chdir(Rails.root.join("#{Rails.root}","app","assets", "images"))
-      # system "phantomjs #{PATH_TO_PHANTOM_SCRIPT} #{params["recipe"]["screencapture"]} #{params["recipe"]["screencapture_name"]}.png"
-      @ws = Webshot::Screenshot.instance
-      @ws.capture "#{params["recipe"]["screencapture"]}", "#{params["recipe"]["screencapture_name"]}.png", width: 1024, height: 30000
+      system "phantomjs #{PATH_TO_PHANTOM_SCRIPT} #{params["recipe"]["screencapture"]} #{params["recipe"]["screencapture_name"]}.png"
+      # @ws = Webshot::Screenshot.instance
+      # @ws.capture "#{params["recipe"]["screencapture"]}", "#{params["recipe"]["screencapture_name"]}.png", width: 1024, height: 30000
+      # f = Screencap::Fetcher.new("#{params["recipe"]["screencapture"]}")
+      # screenshot = f.fetch(
+      	# :output => "~/#{params["recipe"]["screencapture_name"]}.png", # don't forget the extension!
+      	# optional:
+      	# :div => '.header', # selector for a specific element to take screenshot of
+      	# :width => 1024,
+        # :height => 768,
+      	# :top => 0, :left => 0, :width => 100, :height => 100 # dimensions for a specific area
+      # )
+
       puts "Hello, I'm after screencapture!"
     end
     if @recipe.save
