@@ -73,11 +73,11 @@
   <div class="load_photo_menu">
     <div class="upload_photo">
       <%=f.label :screencapture, "Input URL" %>
-      <%=f.url_field_tag :screencapture, nil, class="url_input" %>
+      <%=f.url_field :screencapture, value: nil %>
     </div>
     <div class="screencapture_name">
       <%=f.label :screencapture_name, "Name the screencapture" %>
-      <%= f.text_field_tag :screencapture_name, size: 75, maxlength: 100 %>
+      <%= f.text_field :screencapture_name, value: nil, size: 30, maxlength: 100 %>
     </div>
   </div>
 </fieldset></p>

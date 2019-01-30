@@ -1,5 +1,3 @@
-# require 'screencap'
-
 class Recipe < ApplicationRecord
 
   has_many :comments, dependent: :destroy
@@ -9,9 +7,9 @@ class Recipe < ApplicationRecord
   #active_storage attachments
   has_many_attached :photos
   has_one_attached :screencapture
-  has_one_attached :screencapture_name
+  # has_one_attached :screencapture_name
 
-  attr_accessor :remove_photos #for the form
+  attr_accessor :remove_photos, :screencapture_name #for the form
 
   # after_save :purge_photos, if: :remove_photos
   # private def purge_photos
@@ -22,7 +20,7 @@ class Recipe < ApplicationRecord
 
 
 
-  validates :name, :complexity, :category, :prep_time,:servings, :grabbed, presence: true
+  validates :name, :complexity, :category, :prep_time,:servings, presence: true
   # validates :hunt_date, inclusion:{ in: (Date.today-6.months..Date.today+6.months)}
   # validates :hunt_time, inclusion:{ in: (8.hours..20.hours)}
   validates :servings, inclusion: { in: (1..20)}

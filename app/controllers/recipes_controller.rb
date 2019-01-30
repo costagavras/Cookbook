@@ -1,4 +1,8 @@
+require 'webshot'
+require 'phantomjs'
+
 class RecipesController < ApplicationController
+
 
   before_action :select_recipe, except: [:index, :new, :create, :search]
   before_action :set_up_new, only: [:new, :create]
@@ -66,6 +70,14 @@ class RecipesController < ApplicationController
       @recipe.photos.purge_later
       # puts "Hello, I'm after purge!"
     end
+    if params[:recipe][:screencapture_name] != ""
+      puts "Hello, I'm before screencapture!"
+      Dir.chdir(Rails.root.join("#{Rails.root}","app","assets", "images"))
+      # system "phantomjs #{PATH_TO_PHANTOM_SCRIPT} #{params["recipe"]["screencapture"]} #{params["recipe"]["screencapture_name"]}.png"
+      @ws = Webshot::Screenshot.instance
+      @ws.capture "#{params["recipe"]["screencapture"]}", "#{params["recipe"]["screencapture_name"]}.png", width: 1024, height: 30000
+      puts "Hello, I'm after screencapture!"
+    end
     if @recipe.save
       # flash[:notice] = "Recipe updated!"
       redirect_to recipe_path(@recipe), info: "Recipe updated!"
@@ -104,6 +116,7 @@ class RecipesController < ApplicationController
     end
   end
 
+
   private
 
   def set_up_user_recipes
@@ -127,11 +140,6 @@ class RecipesController < ApplicationController
 
   def categories_recipes
     @categories = Category.all
-  end
-
-  def take_screencapture
-    Dir.chdir(Rails.root.join('public', 'images'))
-    system "phantomjs #{PATH_TO_PHANTOM_SCRIPT} #{params["screencapture_url"]} #{params["screencapture_name"]}.png"
   end
 
 end

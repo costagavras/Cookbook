@@ -33,11 +33,12 @@ gem 'bcrypt', '~> 3.1.7'
 gem "aws-sdk-s3", require: false
 
 # Use ActiveStorage variant
-gem 'mini_magick', '~> 4.9.2'
+gem 'mini_magick', '~> 4.3.3'
 
 # Use phantomjs to take screenshots of webpages
 gem 'phantomjs'
 gem 'screencap'
+gem 'webshot'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
