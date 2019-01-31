@@ -39,6 +39,8 @@
     <% elsif @recipe.screencapture.attached? %>
       <%name = @recipe.screencapture.filename.base%>
       <div class="photo_w_desc"><h2 class="photo_n">&nbsp;&nbsp;<%=name%></h2> <%= image_tag @recipe.screencapture %></div>
+    <% else %>
+      <div class="photo_w_desc"> <%= image_tag 'camera_icon.png', :class => "photo_n" %></div>
     <% end %>
   </div>
 

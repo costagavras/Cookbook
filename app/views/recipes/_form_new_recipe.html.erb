@@ -30,11 +30,11 @@
     <%= label_tag(:complexity, "Hard") %>
   </fieldset>
 
-  <h3><%= f.label(:servings) %></h3>
-      <%= f.number_field :servings, value: 20, min: 1, max: 20 %>
+  <div class="servings_field"><h3><%= f.label(:servings) %></h3>
+      <%= f.number_field :servings, value: 20, min: 1, max: 20 %></div>
 
-  <h3><%= f.label(:prep_time) %></h3>
-      <%= f.number_field :prep_time %>
+  <div class="prep_time_field"><h3><%= f.label(:prep_time) %></h3>
+      <%= f.number_field :prep_time %></div>
 
 <!-- <fieldset><legend>Manual entry or Web address?</legend> -->
   <%#= radio_button_tag(:grabbed, value: false) %>

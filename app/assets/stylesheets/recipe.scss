@@ -103,6 +103,11 @@
     label {
       font-size: 2rem;
     }
+    input[type="submit"] {
+      height: 5rem;
+      width: 50%;
+      font-size: 3rem;
+    }
   }
   input {
     font-size: 1.5rem;
@@ -121,17 +126,24 @@
       font-size: 2rem;
     }
     label {
-      padding-right: 1rem; 
+      padding-right: 1rem;
     }
   }
-  #recipe_servings, #recipe_prep_time {
-    text-align: center;
-    width: 3em;
+  .servings_field, .prep_time_field{
+    display: inline-block;
+    margin: 1rem 2rem 2rem;
+    h3 {
+      margin: 1rem;
+    }
+    #recipe_servings, #recipe_prep_time {
+      text-align: center;
+      width: 5rem;
+    }
   }
   #recipe_ingredients, #recipe_directions {
     width: inherit;
     overflow: scroll;
-    height: 10em;
+    height: 15rem;
     font-size: 20px;
   }
   .load_image_menu {
@@ -141,11 +153,11 @@
     .upload_image, .show_image, .remove_image, .image_name {
       padding: 1%;
       label {
-        font-size: 1em;
+        font-size: 1.5rem;
       }
       #recipe_remove_photos, #recipe_remove_screencapture{
-        height: 1em;
-        width: 1em;
+        height: 1.5rem;
+        width: 1.5rem;
       }
     }
   }
@@ -228,12 +240,17 @@ input[type="radio" i] {
     font-size: 18px;
     outline: none;
   }
-  .photo_w_desc
-  img {
-    width: 100%;
-  }
-  h2 {
-    text-align: left;
+  .photo_w_desc{
+    img {
+      width: 100%;
+    }
+    .photo_n{
+      margin-top: 20rem;
+      width: 30%;
+    }
+    h2 {
+      text-align: left;
+    }
   }
 }
 
