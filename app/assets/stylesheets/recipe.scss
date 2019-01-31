@@ -92,7 +92,7 @@
 .new_recipe, .edit_recipe {
   border: 1px solid #96dbe8;
   text-align: center;
-  width: 750px;
+  width: 850px;
   margin: 50px auto 50px auto;
   padding: 20px;
   background: rgba(255, 255, 255, 0.5);
@@ -101,11 +101,28 @@
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   h3 {
     label {
-      font-size: 30px;
+      font-size: 2rem;
     }
   }
   input {
-    font-size: 24px;
+    font-size: 1.5rem;
+  }
+  #recipe_name {
+    font-size: 1.5rem;
+    width: 80%;
+  }
+  fieldset {
+    margin: 2% 1% 2%;
+    padding: 1% 0.5% 1%;
+    border: 2.5px solid #96dbe8;
+    border-radius: 3px;
+    box-sizing: border-box;
+    legend {
+      font-size: 2rem;
+    }
+    label {
+      padding-right: 1rem; 
+    }
   }
   #recipe_servings, #recipe_prep_time {
     text-align: center;
@@ -117,12 +134,19 @@
     height: 10em;
     font-size: 20px;
   }
-  .load_photo_menu {
+  .load_image_menu {
     padding: 2%;
     display: grid;
     text-align: left;
-    .upload_photo, .show_photo, .remove_photo {
+    .upload_image, .show_image, .remove_image, .image_name {
       padding: 1%;
+      label {
+        font-size: 1em;
+      }
+      #recipe_remove_photos, #recipe_remove_screencapture{
+        height: 1em;
+        width: 1em;
+      }
     }
   }
 }
@@ -144,16 +168,6 @@
       }
     }
   }
-}
-
-fieldset, #recipe_name {
-  width: 100%;
-  padding: 10px;
-  border: 2.5px solid #96dbe8;
-  border-radius: 3px;
-  box-sizing: border-box;
-  font-size: 26px;
-  outline: none;
 }
 
 legend {

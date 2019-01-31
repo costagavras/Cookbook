@@ -14,7 +14,14 @@
 <h3> <%= f.label :name %> </h3>
   <%= f.text_field :name %>
 
-  <p><fieldset><legend>Complexity</legend>
+  <fieldset><legend>Category</legend>
+    <% categories.each do |category| %>
+      <%= radio_button_tag(:category_id, "#{category.id}") %>
+      <%= label_tag(:category_id, "#{category.name}".capitalize) %>
+    <% end %>
+  </fieldset>
+
+  <fieldset><legend>Complexity</legend>
     <%= radio_button_tag(:complexity, "1") %>
     <%= label_tag(:complexity, "Easy") %>
     <%= radio_button_tag(:complexity, "2") %>
@@ -23,25 +30,18 @@
     <%= label_tag(:complexity, "Hard") %>
   </fieldset>
 
-  <p><fieldset><legend>Category</legend>
-    <% categories.each do |category| %>
-      <%= radio_button_tag(:category_id, "#{category.id}") %>
-      <%= label_tag(:category_id, "#{category.name}".capitalize) %>
-    <% end %>
-  </fieldset></p>
-
-<h3>  <%= f.label(:servings)%></h3>
+  <h3><%= f.label(:servings) %></h3>
       <%= f.number_field :servings, value: 20, min: 1, max: 20 %>
 
-<h3>  <%= f.label(:prep_time)%></h3>
+  <h3><%= f.label(:prep_time) %></h3>
       <%= f.number_field :prep_time %>
 
-<!-- <p><fieldset><legend>Manual entry or Web address?</legend> -->
+<!-- <fieldset><legend>Manual entry or Web address?</legend> -->
   <%#= radio_button_tag(:grabbed, value: false) %>
   <%#== label_tag(:grabbed, "Manual") %>
   <%#== radio_button_tag(:grabbed, value: true, disabled: false, onclick: "window.alert('I work!');") %>
   <%#== label_tag(:grabbed, "Web") %>
-<!-- </fieldset></p> -->
+<!-- </fieldset> -->
 
 <h3> <%= f.label :ingredients %> </h3>
   <%= f.text_area :ingredients %>
@@ -49,47 +49,47 @@
 <h3> <%= f.label :directions %> </h3>
   <%= f.text_area :directions %>
 
-<p><fieldset><legend>Photo upload</legend>
-  <div class="load_photo_menu">
-    <div class="upload_photo">
+<fieldset><legend>Photo upload</legend>
+  <div class="load_image_menu">
+    <div class="upload_image">
       <%=f.label :photos, "Upload photo", accept: "application/pdf,image/png,image/jpg,image/jpeg" %>
       <%=f.file_field :photos, multiple: true %>
     </div>
-    <div class="show_photo">
+    <div class="show_image">
       <% if @recipe.photos.attached? %>
         <%@recipe.photos.each do |photo|%>
           <h3>Photo name: &nbsp;<%= photo.filename %></h3>
         <%end%>
       <%end%>
     </div>
-    <div class="remove_photo">
+    <div class="remove_image">
       <%=f.label :remove_photos, "Remove photos" %>
       <%= f.check_box :remove_photos %>
     </div>
   </div>
-</fieldset></p>
+</fieldset>
 
-<p><fieldset><legend>Web grabbed</legend>
-  <div class="load_photo_menu">
-    <div class="upload_photo">
+<fieldset><legend>Web grabbed</legend>
+  <div class="load_image_menu">
+    <div class="upload_image">
       <%=f.label :screencapture, "Input URL" %>
       <%=f.url_field :screencapture, value: nil %>
     </div>
-    <div class="screencapture_name">
-      <%=f.label :screencapture_name, "Name the screencapture" %>
+    <div class="image_name">
+      <%=f.label :screencapture_name, "Screencapture name" %>
       <%= f.text_field :screencapture_name, value: nil, size: 30, maxlength: 100 %>
     </div>
-    <div class="show_photo">
+    <div class="show_image">
       <% if @recipe.screencapture.attached? %>
           <h3>Screencapture name: &nbsp;<%= @recipe.screencapture_name %></h3>
       <%end%>
     </div>
-    <div class="remove_photo">
+    <div class="remove_image">
       <%=f.label :remove_screencapture, "Remove screencapture" %>
       <%= f.check_box :remove_screencapture %>
     </div>
   </div>
-</fieldset></p>
+</fieldset>
 
 <h3> <%= f.submit "Edit"%></h3>
 <%end %>
