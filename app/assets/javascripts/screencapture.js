@@ -1,7 +1,8 @@
   var page = require('webpage').create();
   var system = require('system');
-  //viewportSize being the actual size of the headless browser
-  page.viewportSize = { width: 650, height: 1000};
+  //viewportSize being the actual size of the headless browser, width is variable (400 by default), height is automatically the
+  //the full length of the page
+  page.viewportSize = { width: 600, height: 1000};
   //the clipRect is the portion of the page you are taking a screenshot of
   // page.clipRect = { top: 0, left: 0, width: 1024};
   page.onError = function(msg, trace) {

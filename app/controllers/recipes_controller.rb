@@ -73,20 +73,13 @@ class RecipesController < ApplicationController
     end
     if params[:recipe][:screencapture_name] != ""
       puts "Hello, I'm before screencapture!"
+      #Set up path to save the captured image
       Dir.chdir(Rails.root.join("#{Rails.root}","app","assets", "images"))
+      #run phantomjs
       system "phantomjs #{PATH_TO_PHANTOM_SCRIPT} #{params["recipe"]["screencapture"]} #{params["recipe"]["screencapture_name"]}.png"
+      #webshot alternative, much slower and height needs to be set explicitly
       # @ws = Webshot::Screenshot.instance
       # @ws.capture "#{params["recipe"]["screencapture"]}", "#{params["recipe"]["screencapture_name"]}.png", width: 1024, height: 30000
-      # f = Screencap::Fetcher.new("#{params["recipe"]["screencapture"]}")
-      # screenshot = f.fetch(
-      	# :output => "~/#{params["recipe"]["screencapture_name"]}.png", # don't forget the extension!
-      	# optional:
-      	# :div => '.header', # selector for a specific element to take screenshot of
-      	# :width => 1024,
-        # :height => 768,
-      	# :top => 0, :left => 0, :width => 100, :height => 100 # dimensions for a specific area
-      # )
-
       puts "Hello, I'm after screencapture!"
     end
     if @recipe.save
