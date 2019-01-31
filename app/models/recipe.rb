@@ -9,7 +9,7 @@ class Recipe < ApplicationRecord
   has_one_attached :screencapture
   # has_one_attached :screencapture_name
 
-  attr_accessor :remove_photos, :screencapture_name #for the form
+  attr_accessor :remove_photos, :remove_screencapture, :screencapture_name #for the form
 
   # after_save :purge_photos, if: :remove_photos
   # private def purge_photos
@@ -35,11 +35,5 @@ class Recipe < ApplicationRecord
       return "Hard"
     end
   end
-
-  # screenshot = Screencap::Fetcher.new("http://wikipedia.org")
-  # image = screenshot.fetch(output: '~/images/screencap.png',
-  #                                    width: 300,
-  #                                   height: 500)
-
 
 end

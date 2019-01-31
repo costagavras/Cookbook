@@ -79,6 +79,15 @@
       <%=f.label :screencapture_name, "Name the screencapture" %>
       <%= f.text_field :screencapture_name, value: nil, size: 30, maxlength: 100 %>
     </div>
+    <div class="show_photo">
+      <% if @recipe.screencapture.attached? %>
+          <h3>Screencapture name: &nbsp;<%= @recipe.screencapture_name %></h3>
+      <%end%>
+    </div>
+    <div class="remove_photo">
+      <%=f.label :remove_screencapture, "Remove screencapture" %>
+      <%= f.check_box :remove_screencapture %>
+    </div>
   </div>
 </fieldset></p>
 
