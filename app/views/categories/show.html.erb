@@ -3,7 +3,7 @@
 </div>
 <hr>
 <div class="block">
-  <% @category.recipes.each do |recipe|%>
+  <% @category.recipes.most_viewed.each do |recipe|%>
     <%if @user_recipes.include?(recipe)%>
       <div class="index_recipe">
         <h3><%=link_to(recipe.name, recipe_path(recipe)) %></h3>

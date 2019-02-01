@@ -34,7 +34,7 @@ end
     ingredients: "a lot",
     directions: "do this, then that",
     servings: rand(1..8),
-    grabbed: false
+    visits: 0
   )
   puts recipe.inspect
   recipe.save!

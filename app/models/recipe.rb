@@ -17,8 +17,6 @@ class Recipe < ApplicationRecord
   # puts "Hello, I'm after aftersave purge!"
   # end
 
-
-
   validates :name, :complexity, :category, :prep_time,:servings, presence: true
   validates :servings, inclusion: { in: (1..20)}
 
@@ -31,6 +29,10 @@ class Recipe < ApplicationRecord
     when 3
       return "Hard"
     end
+  end
+
+  def self.most_viewed
+    self.order(visits: :desc)
   end
 
 end
