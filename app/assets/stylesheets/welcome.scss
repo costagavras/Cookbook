@@ -207,10 +207,6 @@
 
 }
 
-.stock_pic1 {
-  background-size: auto;
-}
-
 .search_form {
   width: 15%;
 }
@@ -237,24 +233,43 @@ h1{
 
 /*about me formatting */
 
-.about_cf {
-  text-align: left;
-}
-
-.about h2 {
-  margin-top: 50px;
-  font-size: 30px;
-  color: white;
-}
-
-.pic_text p {
-  font-size: 30px;
-  margin-right: 50px;
-  padding-right: 100px;
-}
-
-.pic_img {
-  float: left;
-  margin-right: 20px;
-  margin-bottom: 10px;
+.about {
+  h1 {
+    color: rgb(60, 68, 79);
+    font-size: 2rem;
+    text-align: left;
+  }
+  .about_me {
+    text-align: left;
+    padding: 0 5% 5%;
+    p {
+      font-size: 2rem;
+    }
+    .pic_text p {
+      font-size: 2rem;
+      margin-right: 3%;
+      padding-right: 5%;
+    }
+    .pic_img {
+      float: left;
+      margin-right: 20px;
+      margin-bottom: 10px;
+      width: 15%;
+    }
+  }
+  .about_project {
+    padding: 0 5% 5%;
+    p {
+      font-size: 2rem;
+      text-align: left;
+    }
+    h2 {
+    margin-top: 50px;
+    font-size: 2rem;
+    color: rgb(60, 68, 79);
+    }
+    .model_pic img {
+      width: 70%;
+    }
+  }
 }
