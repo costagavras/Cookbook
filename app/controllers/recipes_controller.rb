@@ -17,6 +17,8 @@ class RecipesController < ApplicationController
   def show
     @comments = @recipe.comments
     @comment = Comment.new
+    new_views = @recipe.visits +=1
+    @recipe.update_attribute "visits", new_views
   end
 
   def create
@@ -25,7 +27,7 @@ class RecipesController < ApplicationController
     @recipe.name = params[:recipe][:name]
     @recipe.complexity = params[:complexity]
     @recipe.category_id = params[:category_id]
-    @recipe.grabbed = params[:grabbed]
+    @recipe.visits = params[:visits]
     @recipe.prep_time = params[:recipe][:prep_time]
     @recipe.servings = params[:recipe][:servings]
     @recipe.ingredients = params[:recipe][:ingredients]
@@ -69,7 +71,7 @@ class RecipesController < ApplicationController
     @recipe.name = params[:recipe][:name]
     @recipe.complexity = params[:complexity]
     @recipe.category_id = params[:category_id]
-    @recipe.grabbed = params[:grabbed]
+    @recipe.visits = params[:visits]
     @recipe.prep_time = params[:recipe][:prep_time]
     @recipe.servings = params[:recipe][:servings]
     @recipe.ingredients = params[:recipe][:ingredients]
@@ -104,7 +106,7 @@ class RecipesController < ApplicationController
     if params[:recipe][:remove_screencapture] == "1"
       @recipe.screencapture.purge_later
     end
-    
+
     if @recipe.save
       # flash[:notice] = "Recipe updated!"
       redirect_to recipe_path(@recipe), info: "Recipe updated!"

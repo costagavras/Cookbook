@@ -135,6 +135,9 @@
     h3 {
       margin: 1rem;
     }
+    label{
+      width: fit-content;
+    }
     #recipe_servings, #recipe_prep_time {
       text-align: center;
       width: 5rem;
