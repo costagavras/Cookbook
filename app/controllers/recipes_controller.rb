@@ -17,7 +17,11 @@ class RecipesController < ApplicationController
   def show
     @comments = @recipe.comments
     @comment = Comment.new
-    new_views = @recipe.visits +=1
+    if @recipe.visits.nil?
+      new_views = 0
+    else
+      new_views = @recipe.visits +=1
+    end
     @recipe.update_attribute "visits", new_views
   end
 
@@ -27,7 +31,6 @@ class RecipesController < ApplicationController
     @recipe.name = params[:recipe][:name]
     @recipe.complexity = params[:complexity]
     @recipe.category_id = params[:category_id]
-    @recipe.visits = params[:visits]
     @recipe.prep_time = params[:recipe][:prep_time]
     @recipe.servings = params[:recipe][:servings]
     @recipe.ingredients = params[:recipe][:ingredients]
@@ -71,7 +74,6 @@ class RecipesController < ApplicationController
     @recipe.name = params[:recipe][:name]
     @recipe.complexity = params[:complexity]
     @recipe.category_id = params[:category_id]
-    @recipe.visits = params[:visits]
     @recipe.prep_time = params[:recipe][:prep_time]
     @recipe.servings = params[:recipe][:servings]
     @recipe.ingredients = params[:recipe][:ingredients]

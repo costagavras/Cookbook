@@ -74,7 +74,7 @@
       </div>
       <div class="show_image">
         <% if @recipe.screencapture.attached? %>
-            <h3>Screencapture name: &nbsp;<%= @recipe.screencapture_name %></h3>
+            <h3>Screencapture name: &nbsp;<%= @recipe.screencapture.filename.base %></h3>
         <%end%>
       </div>
       <div class="remove_image">
