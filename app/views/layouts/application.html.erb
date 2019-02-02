@@ -92,22 +92,24 @@
      <%= yield %>
     <hr>
     <div class="most_popular">
-      <h2 class="most_viewed">Most popular</h2>
-      <div class="most_viewed_block">
-        <% most_viewed_recipes.each do |recipe|%>
-          <div class = "index_recipe">
-              <h3><%=link_to("#{recipe.name}", recipe_path(recipe))%></h3>
-              <h3><span><%=recipe.visits%>&nbsp;&nbsp;views</span></h3>
-          </div>
-        <%end%>
-      </div>
+      <% if current_user %>
+        <h2 class="most_viewed">Most popular</h2>
+        <div class="most_viewed_block">
+          <% most_viewed_recipes.each do |recipe|%>
+            <div class = "index_recipe">
+                <h3><%=link_to("#{recipe.name}", recipe_path(recipe))%></h3>
+                <h3><span><%=recipe.visits%>&nbsp;&nbsp;views</span></h3>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
     </main>
     <footer>
       <div class="info_nav">
         <ul class="info_list">
           <p><%="Made by Constantine"%></p>
-          <li><%= link_to("About me", about_path) %></li>
+          <li><%= link_to("About this project & me", about_path) %></li>
         </ul>
       </div>
     </footer>
