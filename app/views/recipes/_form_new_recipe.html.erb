@@ -88,5 +88,8 @@
     </div>
   </fieldset>
 
-  <h3> <%= f.submit "Edit"%></h3>
+  <h3> <%= f.submit "Edit", onclick: "show_loader();" %></h3>
+
+  <div class="loader"></div>
+
 <%end %>

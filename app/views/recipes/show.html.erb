@@ -35,7 +35,7 @@
         <%i += 1%>
         <%name = photo.filename.base%>
         <div class="photo_w_desc"><h2><%=i%>. &nbsp;&nbsp; <%=name%></h2> <%= image_tag photo %></div>
-      <% end %>
+      <% end %>@recipe.screencapture_name
     <% elsif @recipe.screencapture.attached? %>
       <%name = @recipe.screencapture.filename.base%>
       <div class="photo_w_desc"><h2>&nbsp;&nbsp;<%=name%></h2> <%= image_tag @recipe.screencapture %></div>

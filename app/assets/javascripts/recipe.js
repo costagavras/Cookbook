@@ -3,3 +3,8 @@ document.addEventListener("DOMContentLoaded", function(){
   // console.log(temp);
   document.querySelector(".photo").setAttribute("style","height:"+temp+"px");
 });
+
+function show_loader(){
+  var loader = document.querySelector(".loader");
+  loader.style.visibility = "visible";
+}
