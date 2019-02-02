@@ -105,6 +105,10 @@ class RecipesController < ApplicationController
         content_type: "image/png")
     end
 
+    if params[:recipe][:remove_screencapture_saved_locally] == "1"
+      File.delete(Rails.root.join("#{Rails.root}","app","assets", "images", "#{@recipe.screencapture.filename.base}.png"))
+    end
+
     if params[:recipe][:remove_screencapture] == "1"
       @recipe.screencapture.purge_later
     end

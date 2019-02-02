@@ -8,7 +8,7 @@ class Recipe < ApplicationRecord
   has_many_attached :photos
   has_one_attached :screencapture
 
-  attr_accessor :remove_photos, :remove_screencapture, :screencapture_name #attributes for the form
+  attr_accessor :remove_photos, :remove_screencapture, :remove_screencapture_saved_locally, :screencapture_name #attributes for the form
 
   # after_save :purge_photos, if: :remove_photos
   # private def purge_photos
