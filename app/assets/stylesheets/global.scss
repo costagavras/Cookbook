@@ -222,3 +222,39 @@ footer {
     }
   }
 }
+
+//styling for most popular recipes
+
+.most_popular {
+  margin: 0 10% 0;
+  .most_viewed_block {
+    display: grid;
+    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    grid-template-rows: auto;
+    padding: 0.5em;
+    @media screen and (max-width: 1000px) {
+     display: block;
+    }
+  }
+}
+
+//styling for error messages
+.flash_message {
+  padding: 1%;
+}
+
+.flash-notice, .flash-alert, .flash-warning, .flash-info {
+  display: block;
+  margin: 0.5rem;
+  font-size: 1.5em;
+  padding: 1%;
+}
+
+.flash-alert {
+  background-color: red;
+}
+
+.error_message {
+ font-size: 1.5em;
+ color: red;
+}

@@ -80,17 +80,28 @@
       </div>
       <div class="flash_message">
         <% flash.each do |key, message| %>
-        <div class="flash-<%= key %>"><span class="error_message"><%= message %><span></div>
+        <div class="flash-<%= key %>"><span class="error_message"><%= message %></span></div>
         <% end %>
       </div>
     </div>
 
     <main>
     <hr>
-    <br>
-       <%= render 'sessions/form' %>
-       <%= render 'users/form' %>
-      <%= yield %>
+     <%= render 'sessions/form' %>
+     <%= render 'users/form' %>
+     <%= yield %>
+    <hr>
+    <div class="most_popular">
+      <h2 class="most_viewed">Most popular</h2>
+      <div class="most_viewed_block">
+        <% most_viewed_recipes.each do |recipe|%>
+          <div class = "index_recipe">
+              <h3><%=link_to("#{recipe.name}", recipe_path(recipe))%></h3>
+              <h3><span><%=recipe.visits%>&nbsp;&nbsp;views</span></h3>
+          </div>
+        <%end%>
+      </div>
+    </div>
     </main>
     <footer>
       <div class="info_nav">
