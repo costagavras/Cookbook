@@ -19,7 +19,7 @@ class Recipe < ApplicationRecord
 
   validates :name, :complexity, :category, :prep_time, :servings, presence: true
   validates :servings, inclusion: { in: (1..20)}
-  validates :screencapture_name,  format: { with: /\A[\S]+\Z/, message: " should be without whitespaces."}, allow_blank: true
+
 
   def difflevel_int_to_text
     case self.complexity

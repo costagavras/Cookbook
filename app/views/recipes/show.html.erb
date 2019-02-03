@@ -29,10 +29,10 @@
   </div>
 
   <div class="photo" onscroll="horizontal_bar()">
-    <div class="progress-container">
-      <div class="progress-bar" id="myBar"></div>
-    </div>
     <% if @recipe.photos.attached? %>
+      <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+      </div>
     <%i = 0%>
       <%@recipe.photos.each do |photo|%>
         <%i += 1%>
@@ -40,6 +40,9 @@
         <div class="photo_w_desc"><h2><%=i%>. &nbsp;&nbsp; <%=name%></h2> <%= image_tag photo %></div>
       <% end %>
     <% elsif @recipe.screencapture.attached? %>
+      <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+      </div>
       <%name = @recipe.screencapture.filename.base%>
       <div class="photo_w_desc"><h2>&nbsp;&nbsp;<%=name%></h2> <%= image_tag @recipe.screencapture %></div>
     <% else %>
