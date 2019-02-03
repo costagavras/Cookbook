@@ -30,19 +30,28 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  search_button: "🔎 Search Hunts"
-  hello: Hello
-  sign_up: "Sign up"
-  log_in: "Log In"
-  sign_out: "Sign Out"
-  make_hunt: "Make a hunt!"
-  menu: "☰ Menu"
-  made_by: "Made by Constantine"
-  contact_us: "Contact Us"
-  about_us: "About Us"
-  happy_hunting: "Happy Hunting!"
-  next_5_hunts: "Next 5 hunts"
-  hunt_starts: "hunt starts in:"
-  no_hunts: "No hunts present"
-  all_hunts: "All Hunts"
-  careers: "Careers"
+  homepage:
+    search_button: "🔎 Search"
+    search_text: "Search for recipes..."
+    your: "Your"
+    sign_up: "Sign up"
+    log_in: "Log In"
+    sign_out: "Sign Out"
+    new_recipe: "New recipe!"
+    my_recipes: "My recipes"
+    headliner: "The place where your recipes are at home"
+    made_by: "Made by Constantine"
+    about: "About this project & me"
+    most_popular: "Most popular"
+
+  pop_up_forms:
+    name: "Name"
+    password: "Password"
+
+  messages:
+    logged_in_as: "Logged in as"
+
+  recipe:
+    prep_time: "Prep time"
+    servings: "Servings"
+    complexity: "Complexity"
