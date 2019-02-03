@@ -260,3 +260,16 @@ footer {
  font-size: 1.5em;
  color: red;
 }
+
+.error_css {
+  h2 {
+    color: red;
+    margin: 0;
+  }
+  ul {
+    text-align: left;
+    margin: 0 5rem;
+    font-size: 1.5rem;
+    color: red;
+  }
+}
