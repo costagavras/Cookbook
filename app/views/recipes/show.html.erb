@@ -28,7 +28,10 @@
 
   </div>
 
-  <div class="photo">
+  <div class="photo" onscroll="horizontal_bar()">
+    <div class="progress-container">
+      <div class="progress-bar" id="myBar"></div>
+    </div>
     <% if @recipe.photos.attached? %>
     <%i = 0%>
       <%@recipe.photos.each do |photo|%>
