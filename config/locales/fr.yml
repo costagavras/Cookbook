@@ -29,7 +29,7 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
+fr:
   search_button: "🔎 Search Hunts"
   hello: Hello
   sign_up: "Sign up"
@@ -37,7 +37,7 @@ en:
   sign_out: "Sign Out"
   make_hunt: "Make a hunt!"
   menu: "☰ Menu"
-  made_by: "Made by Constantine"
+  made_by: "Fait par Constantine"
   contact_us: "Contact Us"
   about_us: "About Us"
   happy_hunting: "Happy Hunting!"

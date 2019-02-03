@@ -24,6 +24,13 @@
 
   <body>
 
+    <div class="lang_switch">
+      <%if !request.path_info.include?("search") %>
+          <span id="switch_lang"><%=link_to("🇨🇦", {:locale=>"en"}, :id => "en")%>  <%=link_to("🇮🇹", {:locale=>"it"}, :id => "it")%>   <%=link_to("🇫🇷", {:locale=>"fr"}, :id => "fr")%>  <%=link_to("🇷🇺", {:locale=>"ru"}, :id => "ru") %>
+          </span>
+      <%end%>
+    </div>
+
     <div class="navigation_bar">
       <div class="nav_1">
         <div class="top_top">
@@ -108,7 +115,7 @@
     <footer>
       <div class="info_nav">
         <ul class="info_list">
-          <p><%="Made by Constantine"%></p>
+          <p><%=t("made_by")%></p>
           <li><%= link_to("About this project & me", about_path) %></li>
         </ul>
       </div>
