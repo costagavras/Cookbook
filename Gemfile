@@ -5,6 +5,9 @@ ruby '2.5.1'
 
 gem 'pry'
 gem 'pry-rails'
+
+#I18n gem
+gem 'rails-i18n'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
 # Use postgresql as the database for Active Record
