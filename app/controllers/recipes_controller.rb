@@ -61,7 +61,7 @@ class RecipesController < ApplicationController
       # flash[:notice] = "Recipe added!"
       redirect_to recipe_path(@recipe), info: "Recipe added !"
     else
-      # puts @hunt.errors.full_messages
+      # puts @recipe.errors.full_messages
       params[:recipe] = nil
       render :new
     end
