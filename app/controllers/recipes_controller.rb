@@ -124,7 +124,7 @@ class RecipesController < ApplicationController
       # flash[:notice] = "Recipe updated!"
       redirect_to recipe_path(@recipe), info: "Recipe updated!"
     else
-      puts @recipe.errors.full_messages
+      @recipe.errors.full_messages
       params[:recipe] = nil
       render :edit
     end
@@ -133,7 +133,7 @@ class RecipesController < ApplicationController
   def destroy
     @recipe.destroy
     if @recipe.destroy
-      # flash[:notice] = "Hunt deleted!"
+      # flash[:notice] = "Recipe deleted!"
       redirect_to recipes_path, info: "Recipe deleted!"
     end
 
