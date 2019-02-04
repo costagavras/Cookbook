@@ -74,7 +74,7 @@
             <% end %>
           </div>
           <div class="user_options">
-            <% if current_user && request.path_info.include?("recipes/") && !request.path_info.include?("new")  %>
+            <% if current_user && request.path_info.include?("recipes/") && !request.path_info.include?("new") && !request.path_info.include?("search") %>
               <span><%= link_to 'My recipes', recipes_path%></span>
               <span><%= link_to 'New recipe', new_recipe_path%></span>
               <span><%= link_to('Edit recipe', edit_recipe_path, :id => "edit_recipe_button") %></span>

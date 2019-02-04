@@ -44,7 +44,7 @@ en:
     about: "About this project & me"
     most_popular: "Most popular"
 
-  pop_up_forms:
+  pop_up_form:
     name: "Name"
     password: "Password"
 
@@ -52,6 +52,21 @@ en:
     logged_in_as: "Logged in as"
 
   recipe:
+    name: "Name"
+    category: "Category"
     prep_time: "Prep time"
     servings: "Servings"
-    complexity: "Complexity"
+    difficulty: "Difficulty"
+    indgredients: "Ingredients"
+    directions: "Directions"
+    photo_upload: "Photo upload"
+    upload_photo: "Upload photo"
+    remove_photo: "Remove photos"
+    web_grabbed: "Web grabbed"
+    input_URL: "Input URL"
+    screencapture_name: "Screencapture_name"
+    remove_screencapture: "Remove screencapture"
+    remove_screencapture_from_drive: "Remove screencapture from drive"
+    edit: "Edit"
+
+  form:

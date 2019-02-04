@@ -5,6 +5,7 @@ class RecipesController < ApplicationController
   before_action :set_up_new, only: [:new, :create]
   before_action :categories_recipes, only: [:index, :new, :create, :edit, :update, :search]
   before_action :set_up_user_recipes, only: [:index]
+  before_action :redirect_cancel, only: [:create, :update]
 
   PATH_TO_PHANTOM_SCRIPT = Rails.root.join('app', 'assets', 'javascripts', 'screencapture.js')
 
@@ -149,8 +150,10 @@ class RecipesController < ApplicationController
         end
       end
       @user_categories = @user_categories.uniq
-      if @recipes.count >= 0
-        flash.now[:notice] = "This search returned #{@recipes.count} recipe(s)."
+      if @recipes.count == 1
+        flash.now[:notice] = "This search returned #{@recipes.count} recipe."
+      elsif @recipes.count != 1
+        flash.now[:notice] = "This search returned #{@recipes.count} recipes."
       elsif params[:recipe] == ""
         flash.now[:notice] = "This search returned all recipes!"
       end
@@ -181,6 +184,10 @@ class RecipesController < ApplicationController
 
   def categories_recipes
     @categories = Category.all
+  end
+
+  def redirect_cancel
+    redirect_to recipe_path(@recipe) if params[:cancel]
   end
 
 end
