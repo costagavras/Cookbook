@@ -50,7 +50,7 @@
             <% if current_user%>
               <div class="logged_in">
                 <% if !request.path_info.include?("search") %>
-                  <li><%= link_to t("homepage.sign_out"), session_path("supercazzola"), :method => :delete %></li>
+                  <li><%= link_to t("homepage.log_out"), session_path("supercazzola"), :method => :delete %></li>
                 <% end %>
               </div>
             <% else %>

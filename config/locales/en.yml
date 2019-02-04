@@ -36,7 +36,7 @@ en:
     your: "Your"
     sign_up: "Sign up"
     log_in: "Log in"
-    sign_out: "Sign out"
+    log_out: "Log out"
     new_recipe: "New recipe"
     my_recipes: "My recipes"
     edit_recipe: "Edit recipe"
@@ -88,3 +88,4 @@ en:
 
   comment:
     not_saved: "Comment not saved!"
+    post: "Post your comment"

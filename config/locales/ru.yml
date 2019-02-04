@@ -1,0 +1,91 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+ru:
+  homepage:
+    search_button: "🔎 Поиск"
+    search_text: "Искать рецепты..."
+    your: "Твоя"
+    sign_up: "Регистрация"
+    log_in: "Логин"
+    log_out: "Выход"
+    new_recipe: "Новый рецепт"
+    my_recipes: "Мои рецепты"
+    edit_recipe: "Править рецепт"
+    delete_recipe: "Удалить рецепт"
+    headliner: "Место, где ваши рецепты дома"
+    made_by: "Сделано Костей"
+    about: "О проекте & мне"
+    most_popular: "Наиболее популярные"
+    views: "просмотров"
+
+  pop_up_form:
+    user: "Имя"
+    password: "Пароль"
+
+  messages:
+    pls_log_in: "Пожалуйста, залогиньтесь"
+    logged_in_as: "Залогинен(а) как"
+    login_failed: "Логин не удался"
+    logged_out: "Выход"
+    sign_up_failed: "Регистрация не удалась"
+    profile_updated: "Профиль успешно изменён"
+    sure_to_delete: "Вы уверены, что хотите удалить этот рецепт?"
+
+  recipe:
+    name: "Имя"
+    category: "Категория"
+    prep_time: "Время приготовления"
+    servings: "Порции"
+    difficulty: "Сложность"
+    indgredients: "Ингредиенты"
+    directions: "Методика"
+    recipe_added: "Рецепт добавлен!"
+    recipe_updated: "Рецепт изменён!"
+    recipe_deleted: "Рецепт удалён!"
+    search_found: "Найдено рецептов:"
+    search_not_found: "Увы! Ничего не найдено!"
+    search_all: "Поиск вернул все рецепты в базе!"
+
+  form:
+    photo_upload: "Загрузка фото"
+    upload_photo: "Загрузить фото"
+    remove_photo: "Удалить фото"
+    web_grabbed: "Снимок с сайта"
+    input_URL: "URL сайта"
+    screencapture_name: "Название снимка"
+    remove_screencapture: "Удалить снимок"
+    remove_screencapture_from_drive: "Удалить снимок из памяти"
+    edit: "Править"
+
+  comment:
+    not_saved: "Комментарий не сохранён!"
+    post: "Оставьте комментарий"
