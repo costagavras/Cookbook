@@ -38,26 +38,26 @@
           <% if current_user%>
             <h2 class = "logo_text"><%= link_to "#{current_user.name}'s", user_path(current_user) %></h2>
           <% else %>
-            <h2 class = "logo_text"><%= "Your" %></h2>
+            <h2 class = "logo_text"><%= t("homepage.your") %></h2>
           <% end %>
           <%= link_to (image_tag 'android-chrome-384x384.png', :class => "logo_img", :width => "250", :length =>"100"), root_path %>
         </div>
         <div class="top_centre">
-          <p><%="The place where your recipes are at home"%></p>
+          <p><%= t("homepage.headliner") %></p>
         </div>
         <div class="top_bottom">
           <ul class="user_options">
             <% if current_user%>
               <div class="logged_in">
                 <% if !request.path_info.include?("search") %>
-                  <li><%= link_to "Sign out", session_path("supercazzola"), :method => :delete %></li>
+                  <li><%= link_to t("homepage.sign_out"), session_path("supercazzola"), :method => :delete %></li>
                 <% end %>
               </div>
             <% else %>
               <div class="logged_out">
                 <% if !request.path_info.include?("search") %>
-                  <li class="sign_in"><%= link_to "Sign up", new_user_path, :class => "signin_button" %></li>
-                  <li class="log_in"><%= link_to "Log in", new_session_path, :class => "login_button" %></li>
+                  <li class="sign_in"><%= link_to t("homepage.sign_up"), new_user_path, :class => "signin_button" %></li>
+                  <li class="log_in"><%= link_to t("homepage.log_in"), new_session_path, :class => "login_button" %></li>
                 <% end %>
               </div>
             <% end %>
@@ -69,7 +69,7 @@
             <% if current_user %>
               <div class="search_bar">
                 <%= form_tag(recipe_search_path, {:id => 'search_form'}) do %>
-                <%= text_field_tag :recipe, params[:recipe], :class => "search_field", :placeholder => "Search for recipes..." %><%= submit_tag "🔎 Search", name: nil, :class => "search_button" %>
+                <%= text_field_tag :recipe, params[:recipe], :class => "search_field", :placeholder => t("homepage.search_text") %><%= submit_tag t("homepage.search_button"), name: nil, :class => "search_button" %>
                 <% end %>
               </div>
             <% end %>
@@ -117,7 +117,7 @@
       <div class="info_nav">
         <ul class="info_list">
           <p><%=t("homepage.made_by")%></p>
-          <li><%= link_to("About this project & me", about_path) %></li>
+          <li><%= link_to(t("homepage.about"), about_path) %></li>
         </ul>
       </div>
     </footer>

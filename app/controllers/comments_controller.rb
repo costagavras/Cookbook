@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to recipe_url(@comment.recipe)
     else
-      flash[:notice] = "Comment not saved!"
+      flash[:notice] = I18n.t("not_saved")
       redirect_to recipe_url(@comment.recipe)
     end
   end

@@ -9,7 +9,7 @@ add_flash_types :info #holds flash[:info] messages
 
   def require_login
     unless current_user
-        flash[:alert] = "Please log in"
+        flash[:alert] = I18n.t("messages.pls_log_in")
         redirect_to login_url
     end
   end

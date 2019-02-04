@@ -35,8 +35,8 @@ en:
     search_text: "Search for recipes..."
     your: "Your"
     sign_up: "Sign up"
-    log_in: "Log In"
-    sign_out: "Sign Out"
+    log_in: "Log in"
+    sign_out: "Sign out"
     new_recipe: "New recipe!"
     my_recipes: "My recipes"
     headliner: "The place where your recipes are at home"
@@ -49,7 +49,12 @@ en:
     password: "Password"
 
   messages:
+    pls_log_in: "Please log in"
     logged_in_as: "Logged in as"
+    login_failed: "Login failed"
+    logged_out: "Logged out"
+    sign_up_failed: "Sign up failed"
+    profile_updated: "Profile successfully updated"
 
   recipe:
     name: "Name"
@@ -59,6 +64,14 @@ en:
     difficulty: "Difficulty"
     indgredients: "Ingredients"
     directions: "Directions"
+    recipe_added: "Recipe added!"
+    recipe_updated: "Recipe updated!"
+    recipe_deleted: "Recipe deleted!"
+    search_found: "Recipes found:"
+    search_not_found: "Oops! Couldn't find anything!"
+    search_all: "This search returned all recipes!"
+
+  form:
     photo_upload: "Photo upload"
     upload_photo: "Upload photo"
     remove_photo: "Remove photos"
@@ -69,4 +82,5 @@ en:
     remove_screencapture_from_drive: "Remove screencapture from drive"
     edit: "Edit"
 
-  form:
+  comment:
+    not_saved: "Comment not saved!"

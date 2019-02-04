@@ -150,12 +150,12 @@ class RecipesController < ApplicationController
         end
       end
       @user_categories = @user_categories.uniq
-      if @recipes.count == 1
-        flash.now[:notice] = "This search returned #{@recipes.count} recipe."
-      elsif @recipes.count != 1
-        flash.now[:notice] = "This search returned #{@recipes.count} recipes."
+      if @recipes.count > 0
+        flash.now[:notice] = I18n.t("recipe.search_found") + " #{@recipes.count}"
+      elsif @recipes.count == 0
+        flash.now[:notice] = I18n.t("recipe.search_not_found")
       elsif params[:recipe] == ""
-        flash.now[:notice] = "This search returned all recipes!"
+        flash.now[:notice] = I18n.t("recipe.search_all")
       end
     end
   end

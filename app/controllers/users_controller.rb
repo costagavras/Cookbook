@@ -16,9 +16,9 @@ class UsersController < ApplicationController
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.save
       session[:user_id] = @user.id
-      redirect_to request.referer, notice: "Logged in as #{@user.name}!"
+      redirect_to request.referer, notice: I18n.t("messages.logged_in_as") + " #{@user.name}!"
     else
-      redirect_to request.referer, notice: "Signup failed!"
+      redirect_to request.referer, notice: I18n.t("messages.signup_failed")
     end
   end
 
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.save
-      redirect_to user_path(current_user), notice: "Profile successfully updated!"
+      redirect_to user_path(current_user), notice: I18n.t("messages.profile_updated")
     else
       render :edit
     end
