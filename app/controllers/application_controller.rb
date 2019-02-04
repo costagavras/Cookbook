@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
 before_action :set_locale
-add_flash_types :info
+add_flash_types :info #holds flash[:info] messages
 
   def current_user
     User.find_by(id: session[:user_id])
