@@ -76,13 +76,13 @@
           </div>
           <div class="user_options">
             <% if current_user && request.path_info.include?("recipes/") && !request.path_info.include?("new") && !request.path_info.include?("search") %>
-              <span><%= link_to 'My recipes', recipes_path%></span>
-              <span><%= link_to 'New recipe', new_recipe_path%></span>
-              <span><%= link_to('Edit recipe', edit_recipe_path, :id => "edit_recipe_button") %></span>
-              <span><%= link_to('Delete recipe', recipe_path(@recipe), method: :delete, data: {confirm: "Are you sure you want to delete this recipe?"}, :id => "delete_recipe_button") %></span>
+              <span><%= link_to t("homepage.my_recipes"), recipes_path%></span>
+              <span><%= link_to t("homepage.new_recipe"), new_recipe_path%></span>
+              <span><%= link_to(t("homepage.edit_recipe"), edit_recipe_path, :id => "edit_recipe_button") %></span>
+              <span><%= link_to(t("homepage.delete_recipe"), recipe_path(@recipe), method: :delete, data: {confirm: t("messages.sure_to_delete")}, :id => "delete_recipe_button") %></span>
             <% elsif current_user %>
-              <span><%= link_to 'My recipes', recipes_path%></span>
-              <span><%= link_to 'New recipe', new_recipe_path%></span>
+              <span><%= link_to t("homepage.my_recipes"), recipes_path%></span>
+              <span><%= link_to t("homepage.new_recipe"), new_recipe_path%></span>
             <% end %>
           </div>
       </div>
@@ -101,12 +101,12 @@
     <hr>
     <div class="most_popular">
       <% if current_user %>
-        <h2 class="most_viewed">Most popular</h2>
+        <h2 class="most_viewed"><%=t("homepage.most_popular")%></h2>
         <div class="most_viewed_block">
           <% most_viewed_recipes.each do |recipe|%>
             <div class = "index_recipe">
                 <h3><%=link_to("#{recipe.name}", recipe_path(recipe))%></h3>
-                <h3><span><%=recipe.visits%>&nbsp;&nbsp;views</span></h3>
+                <h3><span><%=recipe.visits%>&nbsp;&nbsp;<%=t("homepage.views")%></span></h3>
             </div>
           <% end %>
         </div>

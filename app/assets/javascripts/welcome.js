@@ -29,8 +29,8 @@ function eraseCookie(name) {
 
 document.addEventListener("DOMContentLoaded", function(){
   var lang = readCookie("lang_locale")
+	// debugger;
   translateCategories(lang);
-
 });
 
 function translateCategories(lang) {
@@ -38,7 +38,7 @@ function translateCategories(lang) {
     var arItLang = ["ANTIPASTI", "ZUPPE", "PIATTO PRINCIPALE", "CONTORNI", "DOLCI"];
     var arFrLang = ["ANTIPASTI", "SOUPES", "PLAT PRINCIPAL", "ACCOMPAGNEMENT", "DESSERTS"];
     var arRuLang = ["ЗАКУСКИ", "СУПЫ", "ОСНОВНЫЕ БЛЮДА", "ГАРНИР", "ДЕСЕРТЫ"];
-    // console.log(lang);
+    console.log(lang);
     switch(lang) {
       case "en":
         var arNewCat = arEnLang;
