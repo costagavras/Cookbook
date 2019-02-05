@@ -1,0 +1,107 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  homepage:
+    search_button: "🔎 Cerca"
+    search_text: "Cercare ricette..."
+    your: "Tuo"
+    sign_up: "Registrarsi"
+    log_in: "Connettersi"
+    log_out: "Disconnettersi"
+    new_recipe: "Nuova ricetta"
+    my_recipes: "Mie ricette"
+    edit_recipe: "Modificare ricetta"
+    delete_recipe: "Eliminare ricetta"
+    headliner: "Il posto dove le tue ricette sono a casa"
+    made_by: "Fatto da Constantine"
+    about: "Di questo progetto & di me"
+    most_popular: "Le piu' popolari"
+    views: "visualizzazioni"
+
+  user:
+    edit_profile: "Rivedere profilo"
+    delete_profile: "Delete profile"
+    sure_to_delete_profile: "E' sicuro di voler sopprimere il profilo?"
+    errors: "Errori"
+    save_user: "Salvare"
+    user: "Nome"
+    password: "Password"
+    password_confirmation: "Confirmazion password"
+
+  messages:
+    pls_log_in: "Connettersi per favore"
+    logged_in_as: "Connesso come"
+    login_failed: "Connessoine fallita"
+    logged_out: "Disconnesso"
+    sign_up_failed: "Registrazione fallita"
+    profile_updated: "Profilo aggiornato"
+    sure_to_delete_recipe: "E' sicuro di voler sopprimere la ricetta?"
+
+  recipe:
+    my_recipes: "Mie ricette"
+    create_recipe: "Aggiungere ricetta"
+    back_to: "Ritornare alla ricetta"
+    min: "min"
+    recipes: "ricette"
+    name: "Nome"
+    category: "Categoria"
+    prep_time: "Tempo di preparazione"
+    servings: "Porzioni"
+    difficulty: "Difficolta'"
+    indgredients: "Ingredienti"
+    directions: "Istruzioni"
+    recipe_added: "Ricetta aggiunta!"
+    recipe_updated: "Ricetta aggiornata!"
+    recipe_deleted: "Ricetta eliminata!"
+    search_found: "Ricette trovate:"
+    search_not_found: "Caspiterina! Non ho trovato niente!"
+    search_all: "Questa ricerca ha ritornato tutte le ricette!"
+
+  form:
+    easy: "Bassa"
+    average: "Media"
+    hard: "Alta"
+    photo_name: "Nome della foto"
+    photo_upload: "Caricamento foto"
+    upload_photo: "Caricare foto"
+    remove_photos: "Eliminare foto"
+    web_grabbed: "Prendere dal Web"
+    input_URL: "Input URL"
+    screencapture_name: "Nome cattura schermo"
+    remove_screencapture: "Eliminare cattura schermo"
+    remove_screencapture_from_drive: "Eliminare cattura schermo dalla memoria"
+    edit: "Inviare"
+
+  comment:
+    comments: "Commenti"
+    not_saved: "Commento non salvato!"
+    post: "Inviare commento"
