@@ -4,22 +4,22 @@
   <div class = "recipe">
 
     <div class = "index_recipe_show">
-      <h3>Category: &nbsp;&nbsp;<span><%= link_to(("#{@recipe.category.name}").capitalize, category_path(@recipe.category)) %></span></h3>
-      <h3>Prep time: &nbsp;&nbsp;<span><%=@recipe.prep_time%> min</h3>
-      <h3>Difficulty: &nbsp;&nbsp;
+      <h3><%= t("recipe.category")%>: &nbsp;&nbsp;<span><%= link_to(("#{@recipe.category.name}").capitalize, category_path(@recipe.category)) %></span></h3>
+      <h3><%= t("recipe.prep_time")%>: &nbsp;&nbsp;<span><%=@recipe.prep_time%> <%= t("recipe.min")%></h3>
+      <h3><%= t("recipe.difficulty")%>: &nbsp;&nbsp;
         <%@recipe.complexity.times do %>
           <%= image_tag 'cookbook_no_bg.png', :class => "logo_img_diff", :width => "30", :length => "30" %>
         <%end%>
       </h3>
-      <h3>Servings: &nbsp;&nbsp;<span><%=@recipe.servings%></h3>
-      <h3>Ingredients: &nbsp;&nbsp;<span><%=@recipe.ingredients%></span></h3>
-      <h3>Directions: &nbsp;&nbsp;<span><%=@recipe.directions%></span></h3>
+      <h3><%= t("recipe.servings")%>: &nbsp;&nbsp;<span><%=@recipe.servings%></h3>
+      <h3><%= t("recipe.ingredients")%>: &nbsp;&nbsp;<span><%=@recipe.ingredients%></span></h3>
+      <h3><%= t("recipe.directions")%>: &nbsp;&nbsp;<span><%=@recipe.directions%></span></h3>
     </div>
 
     <div class = "comment_section">
-      <h3>Comments</h3>
+      <h3><%= t("comment.comments")%></h3>
       <% @comments.each do |comment| %>
-        <p>on: &nbsp;&nbsp;<%= comment.created_at.strftime("%B %d, %Y") %> <%= comment.created_at.strftime("%I:%M %p ") %></p>
+        <p><%= comment.created_at.strftime("%B %d, %Y") %> <%= comment.created_at.strftime("%I:%M %p ") %></p>
         <p><%= comment.description %></p>
       <% end %>
 

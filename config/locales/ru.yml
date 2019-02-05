@@ -67,6 +67,9 @@ ru:
     sure_to_delete_recipe: "Вы уверены, что хотите удалить этот рецепт?"
 
   recipe:
+    my_recipes: "Мои рецепты"
+    create_recipe: "Добавить рецепт"
+    back_to: "Вернуться к рецепту"
     min: "мин"
     recipes: "рецепты"
     name: "Имя"
@@ -99,5 +102,6 @@ ru:
     edit: "Править"
 
   comment:
+    comments: "Комментарии"
     not_saved: "Комментарий не сохранён"
     post: "Оставьте комментарий"

@@ -1,4 +1,4 @@
-<h1 class="all-recipes">MY RECIPES</h1>
+<h1 class="all-recipes"><%= t("recipe.my_recipes")%></h1>
 
 <hr>
 
@@ -10,9 +10,9 @@
       <%if @user_recipes.include?(recipe)%>
           <div class = "index_recipe">
               <h3><%=link_to("#{recipe.name}", recipe_path(recipe))%></h3>
-              <h3>Prep time: &nbsp;&nbsp;<span><%=recipe.prep_time%> min</h3>
-              <h3>Servings: &nbsp;&nbsp;<span><%=recipe.servings%></span></h3>
-              <h3>Difficulty: &nbsp;&nbsp;
+              <h3><%= t("recipe.prep_time")%>: &nbsp;&nbsp;<span><%=recipe.prep_time%> <%= t("recipe.min")%></h3>
+              <h3><%= t("recipe.servings")%>: &nbsp;&nbsp;<span><%=recipe.servings%></span></h3>
+              <h3><%= t("recipe.difficulty")%>: &nbsp;&nbsp;
                 <span><%recipe.complexity.times do %>
                           <%= image_tag 'cookbook_no_bg.png', :class => "logo_img_diff", :width => "30", :length => "30" %>
                       <%end%>
