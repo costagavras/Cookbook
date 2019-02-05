@@ -6,15 +6,15 @@
 
   <%= form_for sign_up do |f| %>
     <div class="name_field">
-      <h3><%= f.label :name, t("pop_up_form.user") %></h3>
+      <h3><%= f.label :name, t("user.user") %></h3>
       <%= f.text_field :name %>
     </div>
     <div class="password_field">
-      <h3><%= f.label :password, t("pop_up_form.password") %></h3>
+      <h3><%= f.label :password, t("user.password") %></h3>
       <%= f.password_field :password %>
     </div>
     <div class="password_field">
-      <h3><%= f.label :password_confirmation, t("pop_up_form.password_confirmation") %></h3>
+      <h3><%= f.label :password_confirmation, t("user.password_confirmation") %></h3>
       <%= f.password_field :password_confirmation %>
     </div>
       <h3><%= f.submit t("homepage.sign_up") %></h3>

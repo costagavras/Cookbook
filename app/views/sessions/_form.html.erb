@@ -7,11 +7,11 @@
   <%= form_tag sessions_path, :method => :post do %>
 
   <div class="name_field">
-    <h3><%= label_tag :name, t("pop_up_form.user") %></h3>
+    <h3><%= label_tag :name, t("user.user") %></h3>
     <%= text_field_tag :name %>
   </div>
   <div class="password_field">
-    <h3><%= label_tag :password, t("pop_up_form.password") %></h3>
+    <h3><%= label_tag :password, t("user.password") %></h3>
     <%= password_field_tag :password %>
   </div>
     <h3><%= submit_tag t("homepage.log_in") %></h3>

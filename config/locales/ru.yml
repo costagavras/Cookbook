@@ -47,21 +47,24 @@ ru:
     most_popular: "Наиболее популярные"
     views: "просмотров"
 
-  pop_up_form:
+  user:
     edit_profile: "Править профиль"
+    delete_profile: "Удалить профиль"
+    sure_to_delete_profile: "Вы уверены, что хотите удалить этот профиль?"
     errors: "Ошибки"
+    save_user: "Сохранить"
     user: "Имя"
     password: "Пароль"
-    password_confirmation: "Подверждение пароля"
+    password_confirmation: "Подтверждение пароля"
 
   messages:
     pls_log_in: "Пожалуйста, залогиньтесь"
-    logged_in_as: "Залогинен(а) как"
+    logged_in_as: "Вы залогинены как"
     login_failed: "Логин не удался"
-    logged_out: "Выход"
+    logged_out: "Вы вышли"
     sign_up_failed: "Регистрация не удалась"
     profile_updated: "Профиль успешно изменён"
-    sure_to_delete: "Вы уверены, что хотите удалить этот рецепт?"
+    sure_to_delete_recipe: "Вы уверены, что хотите удалить этот рецепт?"
 
   recipe:
     min: "мин"
@@ -73,14 +76,18 @@ ru:
     difficulty: "Сложность"
     ingredients: "Ингредиенты"
     directions: "Инструкция"
-    recipe_added: "Рецепт добавлен"
-    recipe_updated: "Рецепт изменён"
-    recipe_deleted: "Рецепт удалён"
-    search_found: "Найдено рецептов"
-    search_not_found: "Увы! Ничего не найдено"
-    search_all: "Поиск вернул все рецепты в базе"
+    recipe_added: "Рецепт добавлен!"
+    recipe_updated: "Рецепт изменён!"
+    recipe_deleted: "Рецепт удалён!"
+    search_found: "Найдено рецептов:"
+    search_not_found: "Увы! Ничего не найдено!"
+    search_all: "Поиск вернул все рецепты в базе!"
 
   form:
+    easy: "Легкий"
+    average: "Средний"
+    hard: "Сложный"
+    photo_name: "Название фото"
     photo_upload: "Загрузка фото"
     upload_photo: "Загрузить фото"
     remove_photo: "Удалить фото"

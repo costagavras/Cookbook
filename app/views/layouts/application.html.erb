@@ -79,7 +79,7 @@
               <span><%= link_to t("homepage.my_recipes"), recipes_path%></span>
               <span><%= link_to t("homepage.new_recipe"), new_recipe_path%></span>
               <span><%= link_to(t("homepage.edit_recipe"), edit_recipe_path, :id => "edit_recipe_button") %></span>
-              <span><%= link_to(t("homepage.delete_recipe"), recipe_path(@recipe), method: :delete, data: {confirm: t("messages.sure_to_delete")}, :id => "delete_recipe_button") %></span>
+              <span><%= link_to(t("homepage.delete_recipe"), recipe_path(@recipe), method: :delete, data: {confirm: t("messages.sure_to_delete_recipe")}, :id => "delete_recipe_button") %></span>
             <% elsif current_user %>
               <span><%= link_to t("homepage.my_recipes"), recipes_path%></span>
               <span><%= link_to t("homepage.new_recipe"), new_recipe_path%></span>
