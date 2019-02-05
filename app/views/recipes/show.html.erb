@@ -4,7 +4,7 @@
   <div class = "recipe">
 
     <div class = "index_recipe_show">
-      <h3><%= t("recipe.category")%>: &nbsp;&nbsp;<span><%= link_to(("#{@recipe.category.name}").capitalize, category_path(@recipe.category)) %></span></h3>
+      <h3><%= t("recipe.category")%>: &nbsp;&nbsp;<span><%= link_to(("#{@recipe.category.name}"), category_path(@recipe.category), :class => "category_names") %></span></h3>
       <h3><%= t("recipe.prep_time")%>: &nbsp;&nbsp;<span><%=@recipe.prep_time%> <%= t("recipe.min")%></h3>
       <h3><%= t("recipe.difficulty")%>: &nbsp;&nbsp;
         <%@recipe.complexity.times do %>

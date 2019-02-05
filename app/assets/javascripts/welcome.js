@@ -34,11 +34,11 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 function translateCategories(lang) {
-    var arEnLang = ["ANTIPASTI", "SOUPS", "MAIN COURSE", "SIDES", "DESSERTS"];
-    var arItLang = ["ANTIPASTI", "ZUPPE", "PIATTO PRINCIPALE", "CONTORNI", "DOLCI"];
-    var arFrLang = ["ANTIPASTI", "SOUPES", "PLAT PRINCIPAL", "ACCOMPAGNEMENT", "DESSERTS"];
-    var arRuLang = ["ЗАКУСКИ", "СУПЫ", "ОСНОВНЫЕ БЛЮДА", "ГАРНИР", "ДЕСЕРТЫ"];
-    console.log(lang);
+    var arEnLang = ["antipasti", "soups", "main course", "sides", "desserts"];
+    var arItLang = ["antipasti", "zuppe", "piatto principale", "contorni", "dolci"];
+    var arFrLang = ["antipasti", "soupes", "plat principal", "accompagnement", "desserts"];
+    var arRuLang = ["закуски", "супы", "основные блюда", "гарнир", "десерты"];
+    // console.log(lang);
     switch(lang) {
       case "en":
         var arNewCat = arEnLang;
@@ -57,9 +57,18 @@ function translateCategories(lang) {
     }
 
     var arCategories = document.querySelectorAll('.category_names');
-    // console.log(arCategories[0].innerHTML);
-    var iCatLength = arNewCat.length;
-    for (var i = 0; i < iCatLength; i++){
-      arCategories[i].innerText = arNewCat[i];
+    // console.log(arCategories.count);
+    // var iCatLength = arNewCat.length;
+    for (var i = 0; i < arCategories.length; i++){
+			var itemPos = arEnLang.indexOf(arCategories[i].innerText);
+			if (itemPos == -1) {
+				var itemPos = arItLang.indexOf(arCategories[i].innerText);
+			} if (itemPos == -1) {
+				var itemPos = arFrLang.indexOf(arCategories[i].innerText);
+				} if (itemPos == -1) {
+					var itemPos = arRuLang.indexOf(arCategories[i].innerText);
+					}
+
+      arCategories[i].innerText = arNewCat[itemPos].toUpperCase();
     }
 }
