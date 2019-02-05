@@ -44,7 +44,7 @@ ru:
     headliner: "Место, где ваши рецепты дома"
     made_by: "Сделано Костей"
     about: "О проекте & мне"
-    most_popular: "Наиболее популярные"
+    most_popular: "Наиболее популярные рецепты"
     views: "просмотров"
 
   user:
@@ -87,19 +87,19 @@ ru:
     search_all: "Поиск вернул все рецепты в базе!"
 
   form:
-    easy: "Легкий"
-    average: "Средний"
-    hard: "Сложный"
+    easy: "Низкая"
+    average: "Средняя"
+    hard: "Высокая"
     photo_name: "Название фото"
     photo_upload: "Загрузка фото"
     upload_photo: "Загрузить фото"
-    remove_photo: "Удалить фото"
+    remove_photos: "Удалить фото"
     web_grabbed: "Снимок с сайта"
     input_URL: "URL сайта"
     screencapture_name: "Название снимка"
     remove_screencapture: "Удалить снимок"
     remove_screencapture_from_drive: "Удалить снимок из памяти"
-    edit: "Править"
+    edit: "Отправить"
 
   comment:
     comments: "Комментарии"

@@ -16,16 +16,16 @@
   <h3> <%= f.label :name, t("recipe.name") %> </h3>
     <%= f.text_field :name %>
 
-  <fieldset><legend>Category</legend>
+  <fieldset><legend><%= t("recipe.category") %></legend>
     <% categories.each do |category| %>
       <%= radio_button_tag(:category_id, "#{category.id}", value: :category_id) %>
       <%= label_tag(:category_id, "#{category.name}".capitalize) %>
     <% end %>
   </fieldset>
 
-  <fieldset><legend>Difficulty</legend>
+  <fieldset><legend><%= t("recipe.difficulty") %></legend>
     <%= radio_button_tag(:complexity, "1", value: :complexity) %>
-    <%= label_tag(:complexity, t("form.easy") %>
+    <%= label_tag(:complexity, t("form.easy")) %>
     <%= radio_button_tag(:complexity, "2", value: :complexity) %>
     <%= label_tag(:complexity, t("form.average")) %>
     <%= radio_button_tag(:complexity, "3", value: :complexity) %>
