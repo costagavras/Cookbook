@@ -48,8 +48,11 @@ en:
     views: "views"
 
   pop_up_form:
-    name: "Name"
+    edit_profile: "Edit your profile"
+    errors: "Errors"
+    user: "Name"
     password: "Password"
+    password_confirmation: "Password confirmation"
 
   messages:
     pls_log_in: "Please log in"
@@ -61,6 +64,7 @@ en:
     sure_to_delete: "Are you sure you want to delete this recipe?"
 
   recipe:
+    recipes: "recipes"
     name: "Name"
     category: "Category"
     prep_time: "Prep time"
@@ -76,12 +80,16 @@ en:
     search_all: "This search returned all recipes!"
 
   form:
+    easy: "Easy"
+    average: "Average"
+    hard: "Hard"
+    photo_name: "Photo name"
     photo_upload: "Photo upload"
     upload_photo: "Upload photo"
-    remove_photo: "Remove photos"
+    remove_photos: "Remove photos"
     web_grabbed: "Web grabbed"
     input_URL: "Input URL"
-    screencapture_name: "Screencapture_name"
+    screencapture_name: "Screencapture name"
     remove_screencapture: "Remove screencapture"
     remove_screencapture_from_drive: "Remove screencapture from drive"
     edit: "Edit"

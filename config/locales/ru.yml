@@ -48,8 +48,11 @@ ru:
     views: "просмотров"
 
   pop_up_form:
+    edit_profile: "Править профиль"
+    errors: "Ошибки"
     user: "Имя"
     password: "Пароль"
+    password_confirmation: "Подверждение пароля"
 
   messages:
     pls_log_in: "Пожалуйста, залогиньтесь"
@@ -61,19 +64,21 @@ ru:
     sure_to_delete: "Вы уверены, что хотите удалить этот рецепт?"
 
   recipe:
+    min: "мин"
+    recipes: "рецепты"
     name: "Имя"
     category: "Категория"
     prep_time: "Время приготовления"
     servings: "Порции"
     difficulty: "Сложность"
-    indgredients: "Ингредиенты"
-    directions: "Методика"
-    recipe_added: "Рецепт добавлен!"
-    recipe_updated: "Рецепт изменён!"
-    recipe_deleted: "Рецепт удалён!"
-    search_found: "Найдено рецептов:"
-    search_not_found: "Увы! Ничего не найдено!"
-    search_all: "Поиск вернул все рецепты в базе!"
+    ingredients: "Ингредиенты"
+    directions: "Инструкция"
+    recipe_added: "Рецепт добавлен"
+    recipe_updated: "Рецепт изменён"
+    recipe_deleted: "Рецепт удалён"
+    search_found: "Найдено рецептов"
+    search_not_found: "Увы! Ничего не найдено"
+    search_all: "Поиск вернул все рецепты в базе"
 
   form:
     photo_upload: "Загрузка фото"
@@ -87,5 +92,5 @@ ru:
     edit: "Править"
 
   comment:
-    not_saved: "Комментарий не сохранён!"
+    not_saved: "Комментарий не сохранён"
     post: "Оставьте комментарий"
