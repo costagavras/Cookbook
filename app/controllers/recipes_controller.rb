@@ -175,7 +175,7 @@ class RecipesController < ApplicationController
   end
 
   def set_up_new
-    @recipe = Recipe.new
+    @recipe = Recipe.new(name: "my new recipe", prep_time: 30, servings: 6, complexity: 1, ingredients: "love", directions: "hard work")
   end
 
   def select_recipe
@@ -187,7 +187,11 @@ class RecipesController < ApplicationController
   end
 
   def redirect_cancel
-    redirect_to recipe_path(@recipe) if params[:cancel]
+    begin
+      raise redirect_to recipe_path(@recipe) if params[:cancel] #if cancelled on a form not saved
+    rescue
+      redirect_to recipes_path
+    end
   end
 
 end
