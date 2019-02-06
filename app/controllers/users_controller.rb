@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :redirect_cancel, only: [:create, :update]
+
   def show
     @user = User.find(params[:id])
   end
@@ -42,6 +44,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     redirect_to root_url
+  end
+
+  private
+
+  def redirect_cancel
+    @user = User.find(params[:id])
+    redirect_to user_path(@user) if params[:cancel]
   end
 
 end
