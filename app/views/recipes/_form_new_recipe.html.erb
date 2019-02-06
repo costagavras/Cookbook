@@ -1,10 +1,10 @@
 <%= form_for (recipe) do |f| %>
 
   <div class="error_css">
-      <% if @recipe.errors.any? %>
+      <% if recipe.errors.any? %>
         <h2> Errors! </h2>
         <ul>
-          <%  @recipe.errors.full_messages.each do |message| %>
+          <%  recipe.errors.full_messages.each do |message| %>
             <li> <%= message %> </li>
           <% end  %>
         </ul>
@@ -18,8 +18,8 @@
 
   <fieldset><legend><%= t("recipe.category") %></legend>
     <% categories.each do |category| %>
-      <%= radio_button_tag(:category_id, "#{category.id}", value: :category_id) %>
-      <%= label_tag(:category_id, "#{category.name}".capitalize) %>
+      <%= radio_button_tag(:category_id, category.id, value: :category_id) %>
+      <%= label_tag(:category_id, category.name, :class => "category_names") %>
     <% end %>
   </fieldset>
 
@@ -51,8 +51,8 @@
         <%=f.file_field :photos, multiple: true %>
       </div>
       <div class="show_image">
-        <% if @recipe.photos.attached? %>
-          <%@recipe.photos.each do |photo|%>
+        <% if recipe.photos.attached? %>
+          <%recipe.photos.each do |photo|%>
             <h3><%= t("form.photo_name") %> &nbsp;<%= photo.filename %></h3>
           <%end%>
         <%end%>
@@ -75,8 +75,8 @@
         <%= f.text_field :screencapture_name, value: nil, size: 30, maxlength: 100 %>
       </div>
       <div class="show_image">
-        <% if @recipe.screencapture.attached? %>
-            <h3><%= t("form.screencapture_name") %> &nbsp;<%= @recipe.screencapture.filename.base %></h3>
+        <% if recipe.screencapture.attached? %>
+            <h3><%= t("form.screencapture_name") %> &nbsp;<%= recipe.screencapture.filename.base %></h3>
         <%end%>
       </div>
       <div class="remove_image">
