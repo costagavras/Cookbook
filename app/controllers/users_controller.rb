@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :redirect_cancel, only: [:create, :update]
+before_action :redirect_cancel, only: [:update]
 
   def show
     @user = User.find(params[:id])
@@ -12,11 +12,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new
-    @user.name = params[:user][:name]
-    @user.password = params[:user][:password]
-    @user.password_confirmation = params[:user][:password_confirmation]
-    if @user.save
+    @user = User.create!(create_params)
+    if @user
       session[:user_id] = @user.id
       redirect_to request.referer, notice: I18n.t("messages.logged_in_as") + " #{@user.name}!"
     else
@@ -30,9 +27,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.name = params[:user][:name]
-    @user.password = params[:user][:password]
-    @user.password_confirmation = params[:user][:password_confirmation]
+    @user.update!(update_params)
     if @user.save
       redirect_to user_path(current_user), notice: I18n.t("messages.profile_updated")
     else
@@ -48,9 +43,21 @@ class UsersController < ApplicationController
 
   private
 
-  def redirect_cancel
-    @user = User.find(params[:id])
-    redirect_to user_path(@user) if params[:cancel]
+  def create_params
+    params.require(:user).permit(:name, :password, :password_confirmation)
+  end
+
+  def update_params
+    params.require(:user).permit(:name, :password, :password_confirmation)
+  end
+
+  def redirect_cancel #only for the update form (new form closes via js)
+    begin
+      raise redirect_to user_path(@user) if params[:cancel] #if cancelled on a form not saved
+    rescue
+      redirect_to user_path
+      # redirect_back(fallback_location: recipes_path)
+    end
   end
 
 end
