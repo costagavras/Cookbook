@@ -1,14 +1,14 @@
 /*cookie code from https://www.quirksmode.org/js/cookies.html*/
 
-function createCookie(name,value,days) {
-	if (days) {
-		var date = new Date();
-		date.setTime(date.getTime()+(days*24*60*60*1000));
-		var expires = "; expires="+date.toGMTString();
-	}
-	else var expires = "";
-	document.cookie = name+"="+value+expires+"; path=/";
-}
+// function createCookie(name,value,days) {
+// 	if (days) {
+// 		var date = new Date();
+// 		date.setTime(date.getTime()+(days*24*60*60*1000));
+// 		var expires = "; expires="+date.toGMTString();
+// 	}
+// 	else var expires = "";
+// 	document.cookie = name+"="+value+expires+"; path=/";
+// }
 
 function readCookie(name) {
 	var nameEQ = name + "=";
@@ -20,15 +20,15 @@ function readCookie(name) {
 	}
 	return null;
 }
-
-function eraseCookie(name) {
-	createCookie(name,"",-1);
-}
+//
+// function eraseCookie(name) {
+// 	createCookie(name,"",-1);
+// }
 
 /*read lang cookie and translate categories labels on link click*/
 
 document.addEventListener("DOMContentLoaded", function(){
-  var lang = readCookie("lang_locale")
+  var lang = readCookie("lang_locale");
 	// debugger;
   translateCategories(lang);
 });

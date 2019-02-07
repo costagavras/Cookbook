@@ -4,7 +4,11 @@ before_action :set_locale
 add_flash_types :info #holds flash[:info] messages
 
   def current_user
-    User.find_by(id: session[:user_id])
+    if session[:user_id]
+      @current_user ||= User.find(session[:user_id])
+    else
+      @current_user = nil
+    end
   end
 
   def require_login
@@ -26,6 +30,7 @@ add_flash_types :info #holds flash[:info] messages
     locale = params[:locale].to_s.strip.to_sym
     I18n.locale = I18n.available_locales.include?(locale) ? locale : I18n.default_locale
     cookies.permanent[:lang_locale] = locale
+    @cookie_lang = locale
     # redirect_to request.referer || root_url
   end
 
