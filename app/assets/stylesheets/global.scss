@@ -270,14 +270,15 @@ footer {
 }
 
 .flash-notice, .flash-alert, .flash-warning, .flash-info {
-  display: block;
+  display: inline-block;
   margin: 0.5rem;
   font-size: 1.5em;
   padding: 1%;
 }
 
 .flash-alert {
-  background-color: red;
+  border: red;
+  border-style: dashed;
 }
 
 .error_message {

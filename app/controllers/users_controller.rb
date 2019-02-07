@@ -12,12 +12,15 @@ before_action :redirect_cancel, only: [:update]
   end
 
   def create
+    if User.exists?
+      redirect_to request.referer, alert: (I18n.t("messages.sign_up_failed") + ". " + I18n.t("messages.user_exists")) and return
+    end
     @user = User.create!(create_params)
     if @user
       session[:user_id] = @user.id
       redirect_to request.referer, notice: I18n.t("messages.logged_in_as") + " #{@user.name}!"
     else
-      redirect_to request.referer, notice: I18n.t("messages.signup_failed")
+      redirect_to request.referer, alert: I18n.t("messages.sign_up_failed")
     end
   end
 

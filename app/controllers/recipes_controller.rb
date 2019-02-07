@@ -59,12 +59,12 @@ class RecipesController < ApplicationController
     end
 
     if @recipe.save
-      # flash[:notice] = "Recipe added!"
-      redirect_to recipe_path(@recipe), info: "Recipe added !"
+      redirect_to recipe_path(@recipe), info: I18n.t("recipe.added")
     else
       # puts @recipe.errors.full_messages
       params[:recipe] = nil
       render :new
+      alert: info: I18n.t("recipe.not_added")
     end
   end
 
@@ -121,20 +121,20 @@ class RecipesController < ApplicationController
     end
 
     if @recipe.save
-      # flash[:notice] = "Recipe updated!"
-      redirect_to recipe_path(@recipe), info: "Recipe updated!"
+      redirect_to recipe_path(@recipe), info: info: I18n.t("recipe.updated")
     else
       @recipe.errors.full_messages
       params[:recipe] = nil
       render :edit
+      alert: info: I18n.t("recipe.not_updated")
     end
   end
 
   def destroy
-    @recipe.destroy
     if @recipe.destroy
-      # flash[:notice] = "Recipe deleted!"
-      redirect_to recipes_path, info: "Recipe deleted!"
+      redirect_to recipes_path, info: I18n.t("recipe.deleted")
+    else
+      redirect_to recipes_path, info: I18n.t("recipe.not_deleted")
     end
 
   end

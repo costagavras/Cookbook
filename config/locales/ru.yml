@@ -65,6 +65,7 @@ ru:
     sign_up_failed: "Регистрация не удалась"
     profile_updated: "Профиль успешно изменён"
     sure_to_delete_recipe: "Вы уверены, что хотите удалить этот рецепт?"
+    user_exists: "Это имя пользователя уже занято!"
 
   recipe:
     my_recipes: "Мои рецепты"
@@ -79,9 +80,12 @@ ru:
     difficulty: "Сложность"
     ingredients: "Ингредиенты"
     directions: "Инструкция"
-    recipe_added: "Рецепт добавлен!"
-    recipe_updated: "Рецепт изменён!"
-    recipe_deleted: "Рецепт удалён!"
+    added: "Рецепт добавлен!"
+    not_added: "Рецепт не добавлен!"
+    updated: "Рецепт изменён!"
+    not_updated: "Рецепт не изменён!"
+    deleted: "Рецепт удалён!"
+    not_deleted: "Рецепт не удалён!"
     search_found: "Найдено рецептов:"
     search_not_found: "Увы! Ничего не найдено!"
     search_all: "Поиск вернул все рецепты в базе!"
