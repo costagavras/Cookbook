@@ -192,7 +192,7 @@
   h3 {
     a {
     color: rgb(155, 81, 21);
-    font-size: 30px;
+    font-size: 2rem;
     }
     span {
       color: rgb(60, 68, 79);
@@ -203,6 +203,15 @@
         color: red;
       }
     }
+  }
+  .comments_status {
+    display: flex;
+  }
+  #comments_show, #comments_hide {
+    text-decoration: underline;
+    font-size: 1.5rem;
+    color: rgb(155, 81, 21);
+    padding: 0 1rem;
   }
 }
 

@@ -14,6 +14,12 @@
       <h3><%= t("recipe.servings")%>: &nbsp;&nbsp;<span><%=@recipe.servings%></h3>
       <h3><%= t("recipe.ingredients")%>: &nbsp;&nbsp;<span><%=@recipe.ingredients%></span></h3>
       <h3><%= t("recipe.directions")%>: &nbsp;&nbsp;<span><%=@recipe.directions%></span></h3>
+      <br>
+      <div class="comments_status">
+        <h3>Comments:</h3>
+        <h3><span><%= link_to("hide", "#comments_show", id: "comments_show", :class => "comments_show", :onclick => "show_comments();")%></span></h3>
+        <h3><span class="comments_show" onclick="show_comments();">Hide</span></h3>
+      </div>
     </div>
 
     <div class = "comment_section">
@@ -23,7 +29,7 @@
         <p><%= comment.description %></p>
       <% end %>
 
-    <%= render(partial: 'comments/form', locals: { recipe: @recipe, comment: @comment }) %>
+      <%= render(partial: 'comments/form', locals: { recipe: @recipe, comment: @comment }) %>
     </div>
 
   </div>
