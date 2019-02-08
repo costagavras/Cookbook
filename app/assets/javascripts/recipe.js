@@ -21,9 +21,7 @@ function horizontal_bar() {
 function show_comments() {
   var comments = document.querySelector(".comment_section");
   var show_link = document.querySelector(".comments_show");
-  // var text_link = document.show_link.firstChild;
   show_link.innerText = show_link.innerText == "hide" ? "unhide" : "hide";
-  show_link.value = "Hello";
   if (show_link.innerText == "unhide") {
     comments.style.visibility = "hidden";
   }

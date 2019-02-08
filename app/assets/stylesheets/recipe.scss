@@ -207,11 +207,12 @@
   .comments_status {
     display: flex;
   }
-  #comments_show, #comments_hide {
+  #comments_show {
     text-decoration: underline;
     font-size: 1.5rem;
     color: rgb(155, 81, 21);
     padding: 0 1rem;
+    cursor: pointer;
   }
 }
 
