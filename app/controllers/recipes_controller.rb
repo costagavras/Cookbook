@@ -64,7 +64,7 @@ class RecipesController < ApplicationController
       # puts @recipe.errors.full_messages
       params[:recipe] = nil
       render :new
-      alert: info: I18n.t("recipe.not_added")
+      flash[:alert] = I18n.t("recipe.not_added")
     end
   end
 
@@ -121,12 +121,12 @@ class RecipesController < ApplicationController
     end
 
     if @recipe.save
-      redirect_to recipe_path(@recipe), info: info: I18n.t("recipe.updated")
+      redirect_to recipe_path(@recipe), info: I18n.t("recipe.updated")
     else
       @recipe.errors.full_messages
       params[:recipe] = nil
       render :edit
-      alert: info: I18n.t("recipe.not_updated")
+      flash[:alert] = I18n.t("recipe.not_updated")
     end
   end
 
