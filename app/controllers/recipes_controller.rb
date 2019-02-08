@@ -187,11 +187,12 @@ class RecipesController < ApplicationController
   end
 
   def redirect_cancel
-    begin
-      raise redirect_to recipe_path(@recipe) if params[:cancel] #if cancelled on a form not saved
-    rescue
-      redirect_to recipes_path
-      # redirect_back(fallback_location: recipes_path)
+    if params[:cancel]
+      if @recipe.valid?
+        redirect_to recipe_path(@recipe) and return
+      else
+        redirect_to recipes_path and return
+      end
     end
   end
 
