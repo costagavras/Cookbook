@@ -31,6 +31,12 @@ class Recipe < ApplicationRecord
       return "Hard"
     end
   end
+  # 
+  # def complexity_icons
+  #   output = ""
+  #   self.complexity.times { output += ActionController::Base.helpers.image_tag('assets/images/cookbook_no_bg.png', :class => "logo_img_diff", :width => "30", :length => "30") }
+  #   output
+  # end
 
   def self.most_viewed
     self.order(visits: :desc)
