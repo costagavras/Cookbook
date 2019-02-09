@@ -3,9 +3,9 @@
     <div class="categories_recipes">
       <h2><span><%= link_to(category.name, category_path(category), :class => "category_names")%></span></h2>
     <% category.recipes.most_viewed.each do |recipe|%>
-      <%if @recipes.include?(recipe)%>
+      <%if @user_recipes.include?(recipe)%>
           <div class = "index_recipe">
-              <h3><%=link_to("#{recipe.name}", recipe_path(recipe))%></h3>
+              <h3><%=link_to(recipe.name, recipe_path(recipe))%></h3>
               <h3><%= t("recipe.prep_time")%>: &nbsp;&nbsp;<span><%=recipe.prep_time%> <%= t("recipe.min")%></h3>
               <h3><%= t("recipe.servings")%>: &nbsp;&nbsp;<span><%=recipe.servings%></span></h3>
               <h3><%= t("recipe.difficulty")%>: &nbsp;&nbsp;

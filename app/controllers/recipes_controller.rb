@@ -141,18 +141,18 @@ class RecipesController < ApplicationController
 
   def search
     if params[:recipe]
-      @user_recipes = Recipe.where(user_id: current_user)
-      @recipes = @user_recipes.where("name like ?", "%#{params[:recipe]}%")
+      @recipes = Recipe.where(user_id: current_user)
+      @user_recipes = @recipes.where("name like ?", "%#{params[:recipe]}%")
       @user_categories = []
-      @recipes.each do |recipe|
+      @user_recipes.each do |recipe|
         if @categories.include?(recipe.category)
           @user_categories << recipe.category
         end
       end
       @user_categories = @user_categories.uniq
-      if @recipes.count > 0
-        flash.now[:notice] = I18n.t("recipe.search_found") + " #{@recipes.count}"
-      elsif @recipes.count == 0
+      if @user_recipes.count > 0
+        flash.now[:notice] = I18n.t("recipe.search_found") + " #{@user_recipes.count}"
+      elsif @user_recipes.count == 0
         flash.now[:notice] = I18n.t("recipe.search_not_found")
       elsif params[:recipe] == ""
         flash.now[:notice] = I18n.t("recipe.search_all")
