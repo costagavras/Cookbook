@@ -5,17 +5,17 @@
 <div class="block">
   <% @category.recipes.most_viewed.each do |recipe|%>
     <%if @user_recipes.include?(recipe)%>
-    <div class = "index_recipe">
-        <h3><%=link_to(recipe.name, recipe_path(recipe))%></h3>
-        <h3><%= t("recipe.prep_time")%>: &nbsp;&nbsp;<span><%=recipe.prep_time%> <%= t("recipe.min")%></h3>
-        <h3><%= t("recipe.servings")%>: &nbsp;&nbsp;<span><%=recipe.servings%></span></h3>
-        <h3><%= t("recipe.difficulty")%>: &nbsp;&nbsp;
+      <div class = "index_recipe">
+          <h3><%=link_to(recipe.name, recipe_path(recipe))%></h3>
+          <h3><%= t("recipe.prep_time")%>: &nbsp;&nbsp;<span><%=recipe.prep_time%> <%= t("recipe.min")%></h3>
+          <h3><%= t("recipe.servings")%>: &nbsp;&nbsp;<span><%=recipe.servings%></span></h3>
+          <h3><%= t("recipe.difficulty")%>: &nbsp;&nbsp;
           <span><%recipe.complexity.times do %>
                     <%= image_tag 'cookbook_no_bg.png', :class => "logo_img_diff", :width => "30", :length => "30" %>
                 <%end%>
           </span>
-        </h3>
-    </div>
+          </h3>
+      </div>
     <%end%>
   <%end%>
 </div>
