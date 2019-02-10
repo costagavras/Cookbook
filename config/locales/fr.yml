@@ -35,7 +35,7 @@ fr:
     search_text: "Chercher les recettes..."
     your: "Votre"
     sign_up: "S'inscrire"
-    log_in: "Connéxion"
+    log_in: "Se connecter"
     log_out: "Deconnéxion"
     new_recipe: "Nouvelle recette"
     my_recipes: "Mes recettes"
@@ -58,17 +58,17 @@ fr:
     password_confirmation: "Confirmation mot de passe"
 
   messages:
-    pls_log_in: "Please log in"
-    logged_in_as: "Logged in as"
-    login_failed: "Login failed"
-    logged_out: "Logged out"
-    sign_up_failed: "Sign up failed"
-    profile_updated: "Profile successfully updated"
+    pls_log_in: "Svp, connectez-vous"
+    logged_in_as: "Connecté comme"
+    login_failed: "Connéxion faillie"
+    logged_out: "Déconnecté"
+    sign_up_failed: "Inscription faillie"
+    profile_updated: "Profil mis-a-jour"
     sure_to_delete_recipe: "Are you sure you want to delete this recipe?"
     user_exists: "The username already exists!"
 
   recipe:
-    my_recipes: "My recipes"
+    my_recipes: "Mes recettes"
     create_recipe: "Create your recipe"
     back_to: "Back to recipe"
     min: "min"
