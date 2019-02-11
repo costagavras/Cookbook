@@ -24,6 +24,7 @@ add_flash_types :info #holds flash[:info] messages
 
   def most_viewed_recipes
       current_user.recipes.most_viewed[0..9]
+      # current_user.recipes.order(:visits).reverse_order[0..9]
   end
 
   def set_locale

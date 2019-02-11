@@ -18,11 +18,7 @@ class RecipesController < ApplicationController
   def show
     @comments = @recipe.comments
     @comment = Comment.new
-    if @recipe.visits.nil?
-      new_views = 0
-    else
-      new_views = @recipe.visits +=1
-    end
+    @recipe.visits.nil? ? new_views = 0 : new_views = @recipe.visits +=1
     @recipe.update_attribute "visits", new_views
   end
 

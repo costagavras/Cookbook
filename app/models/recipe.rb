@@ -21,7 +21,7 @@ class Recipe < ApplicationRecord
   validates :servings, inclusion: { in: (1..20)}
   validates :screencapture_name, format: {without: /\s/ }
 
-  def difflevel_int_to_text
+  def self.difflevel_int_to_text
     case self.complexity
     when 1
       return "Easy"
@@ -31,7 +31,7 @@ class Recipe < ApplicationRecord
       return "Hard"
     end
   end
-  # 
+  #
   # def complexity_icons
   #   output = ""
   #   self.complexity.times { output += ActionController::Base.helpers.image_tag('assets/images/cookbook_no_bg.png', :class => "logo_img_diff", :width => "30", :length => "30") }
@@ -40,6 +40,7 @@ class Recipe < ApplicationRecord
 
   def self.most_viewed
     self.order(visits: :desc)
+    # self.order(:visits).reverse_order
   end
 
 end
