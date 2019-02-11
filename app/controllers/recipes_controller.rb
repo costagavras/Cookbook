@@ -10,7 +10,7 @@ class RecipesController < ApplicationController
   PATH_TO_PHANTOM_SCRIPT = Rails.root.join('app', 'assets', 'javascripts', 'screencapture.js')
 
   def index
-    @filtered_recipes = Recipe.where(nil)
+    @filtered_recipes = Recipe.where(user_id: current_user)
     filtering_params(params).each do |key, value|
       @filtered_recipes = @filtered_recipes.public_send(key, value) if value.present?
     end
