@@ -10,6 +10,10 @@ class RecipesController < ApplicationController
   PATH_TO_PHANTOM_SCRIPT = Rails.root.join('app', 'assets', 'javascripts', 'screencapture.js')
 
   def index
+    @filtered_recipes = Recipe.where(nil)
+    filtering_params(params).each do |key, value|
+      @filtered_recipes = @filtered_recipes.public_send(key, value) if value.present?
+    end
   end
 
   def new
@@ -190,6 +194,12 @@ class RecipesController < ApplicationController
         redirect_to recipes_path and return
       end
     end
+  end
+
+  # A list of the param names that can be used for filtering the recipe list
+  def filtering_params(params)
+    params.slice(:prep_time_longer_than, :prep_time_shorter_than, :prep_time_equal_to, :servings_more_than,
+    :servings_less_than, :servings_equal_to, :difficulty_more_than, :difficulty_less_than, :difficulty_equal_to)
   end
 
 end

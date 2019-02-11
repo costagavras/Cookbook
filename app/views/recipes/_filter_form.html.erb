@@ -1,0 +1,14 @@
+<%= form_tag(recipes_path, method: "get") do |f| %>
+
+  <fieldset><legend><%= t("recipe.difficulty") %></legend>
+    <%= label_tag(:prep_time_shorter_than, "shorter than") %>
+    <%= radio_button_tag(:prep_time_shorter_than, :prep_time) %>
+    <%= label_tag(:prep_time_equal_to, "equal to") %>
+    <%= radio_button_tag(:prep_time_equal_to, :prep_time) %>
+    <%= label_tag(:prep_time_longer_than, "longer than") %>
+    <%= radio_button_tag(:prep_time_longer_than, :prep_time) %>
+    <%= number_field_tag(:prep_time, nil, in: 0..1000) %>
+  </fieldset>
+
+  <%= submit_tag("Filter") %>
+<% end %>

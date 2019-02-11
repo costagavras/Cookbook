@@ -69,7 +69,8 @@
             <% if current_user %>
               <div class="search_bar">
                 <%= form_tag(recipe_search_path, {:id => 'search_form'}) do %>
-                <%= text_field_tag :recipe, params[:recipe], :class => "search_field", :placeholder => t("homepage.search_text") %><%= submit_tag t("homepage.search_button"), name: nil, :class => "search_button" %>
+                  <%= text_field_tag :recipe, params[:recipe], :class => "search_field", :placeholder => t("homepage.search_text") %>
+                  <%= submit_tag t("homepage.search_button"), name: nil, :class => "search_button" %>
                 <% end %>
               </div>
             <% end %>

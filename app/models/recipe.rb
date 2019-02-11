@@ -29,9 +29,9 @@ class Recipe < ApplicationRecord
   scope :servings_less_than, ->(servings) {where("servings < ?", servings)}
   scope :servings_equal_to, ->(servings) {where("servings = ?", servings)}
 
-  scope :difficulty_more_than, ->(difficulty) {where("difficulty > ?", difficulty)}
-  scope :difficulty_less_than, ->(difficulty) {where("difficulty < ?", difficulty)}
-  scope :difficulty_equal_to, ->(difficulty) {where("difficulty = ?", difficulty)}
+  scope :difficulty_more_than, ->(complexity) {where("complexity > ?", complexity)}
+  scope :difficulty_less_than, ->(complexity) {where("complexity < ?", complexity)}
+  scope :difficulty_equal_to, ->(complexity) {where("complexity = ?", complexity)}
 
 
   def self.difflevel_int_to_text
