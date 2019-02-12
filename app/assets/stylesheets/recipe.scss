@@ -45,6 +45,7 @@
 .all-recipes {
   font-size: 70px;
   color: rgb(60, 68, 79);
+  margin: 2rem;
   h2 {
     text-align: center;
   }
@@ -309,4 +310,25 @@ input[type="radio" i] {
   background: rgb(155, 81, 21);
   width: 0%;
   z-index: 1;
+}
+
+/*styling Filter */
+.filter {
+  margin: 1rem;
+  padding: 0;
+}
+.filter_form {
+  margin-left: 5%;
+  width: 30%;
+  padding: 1rem;
+  border: 2.5px solid rgb(155, 81, 21);
+  border-radius: 2rem;
+  input[type="number"]{
+    height: 2rem;
+    width: 3rem;
+    font-size: 1.5rem;
+  }
+  input[type="submit"]{
+    margin: 1rem 2rem;
+  }
 }
