@@ -25,10 +25,6 @@ class Recipe < ApplicationRecord
   scope :prep_time_shorter_than, ->(prep_time) {where("prep_time < ?", prep_time)}
   scope :prep_time_equal_to, ->(prep_time) {where("prep_time = ?", prep_time)}
 
-  scope :servings_more_than, ->(servings) {where("servings > ?", servings)}
-  scope :servings_less_than, ->(servings) {where("servings < ?", servings)}
-  scope :servings_equal_to, ->(servings) {where("servings = ?", servings)}
-
   scope :difficulty_more_than, ->(complexity) {where("complexity > ?", complexity)}
   scope :difficulty_less_than, ->(complexity) {where("complexity < ?", complexity)}
   scope :difficulty_equal_to, ->(complexity) {where("complexity = ?", complexity)}
