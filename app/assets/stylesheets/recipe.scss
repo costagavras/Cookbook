@@ -8,7 +8,7 @@
 
 .block {
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: auto;
   padding: 0.5em;
   @media screen and (max-width: 1000px) {
@@ -313,22 +313,35 @@ input[type="radio" i] {
 }
 
 /*styling Filter */
-.filter {
-  margin: 1rem;
-  padding: 0;
-}
-.filter_form {
-  margin-left: 5%;
-  width: 30%;
-  padding: 1rem;
-  border: 2.5px solid rgb(155, 81, 21);
-  border-radius: 2rem;
-  input[type="number"]{
-    height: 2rem;
-    width: 3rem;
-    font-size: 1.5rem;
+
+.filter_section {
+  padding-left: 1%;
+  margin: 1%;
+  border: 1rem solid rgb(155, 81, 21);
+  border-radius: 3rem;
+  .block {
+    width: 75%;
   }
-  input[type="submit"]{
-    margin: 1rem 2rem;
+  .filter {
+    margin: 1rem;
+    padding: 0;
+    color: #9b5115;
+  }
+  .filter_form {
+    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 30%;
+    padding: 1rem;
+    border: 2.5px solid rgb(155, 81, 21);
+    border-radius: 2rem;
+    input[type="number"]{
+      height: 2rem;
+      width: 3rem;
+      font-size: 1.5rem;
+    }
+    input[type="submit"]{
+      margin: 1rem 2rem;
+    }
   }
 }

@@ -22,10 +22,17 @@ class RecipesController < ApplicationController
     @filtered_recipes = @user_recipes.to_a
     @user_recipes = @user_recipes_temp
 
-    if @filtered_recipes.empty?
+    if @filtered_recipes.empty? && @filtered_recipes.count == @user_recipes.count
+      @filtered_result = false
+      @filter_result_message = "Filter returns all recipes!"
+    elsif @filtered_recipes.empty?
+      @filtered_result = false
+      @filter_result_message = "Filter did not return any recipes!"
+    elsif !@filtered_recipes.empty? && @filtered_recipes.count == @user_recipes.count
       @filtered_result = false
     else
       @filtered_result = true
+      @filter_result_message = I18n.t("recipe.search_found") + " #{@filtered_recipes.count}"
       #needs to be flattened if not it remains a double array (after .to_a)
       @filtered_recipes.flatten!
       @filtered_categories = []
