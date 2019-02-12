@@ -1,6 +1,5 @@
 class RecipesController < ApplicationController
 
-
   before_action :select_recipe, except: [:index, :new, :create, :search]
   before_action :set_up_new, only: [:new, :create]
   before_action :categories_recipes, only: [:index, :new, :create, :edit, :update, :search]
@@ -10,18 +9,34 @@ class RecipesController < ApplicationController
   PATH_TO_PHANTOM_SCRIPT = Rails.root.join('app', 'assets', 'javascripts', 'screencapture.js')
 
   def index
-    @filtered_recipes = []
+    # filtering_params(params).each do |key, value|
+    #   #needs to be transofrmed to an array if not it's an ActiveRecord::Relation instance)
+    #   @filtered_recipes << @user_recipes.public_send(key, value).to_a if value.present?
+    # end
+    @user_recipes_temp = @user_recipes
     filtering_params(params).each do |key, value|
-      @filtered_recipes << @user_recipes.public_send(key, value).to_a if value.present?
+      @filtered_recipes = @user_recipes.public_send(key, value) if value.present?
+      @user_recipes = @filtered_recipes if @filtered_recipes != nil
+      #check necessary to avoir @filtered_recipes becoming nil if first (key,value) return nil result
     end
+    @filtered_recipes = @user_recipes.to_a
+    @user_recipes = @user_recipes_temp
+
     if @filtered_recipes.empty?
       @filtered_result = false
     else
       @filtered_result = true
+      #needs to be flattened if not it remains a double array (after .to_a)
       @filtered_recipes.flatten!
+      @filtered_categories = []
+      @filtered_recipes.each do |recipe|
+        if @categories.include?(recipe.category)
+          @filtered_categories << recipe.category
+        end
+      end
+      @filtered_categories = @filtered_categories.uniq
     end
     puts @filtered_recipes.inspect
-    puts @filtered_result
   end
 
   def new
