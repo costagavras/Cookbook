@@ -13,23 +13,27 @@
   <%= submit_tag("Filter", name: nil) %>
 <% end %>
 
-<div class="block">
-  <%# @user_categories.each do |category|%>
-    <div class="categories_recipes">
-      <h2><span><%#= link_to(category.name, category_path(category), :class => "category_names")%></span></h2>
-      <% @filtered_recipes.most_viewed.each do |recipe|%>
-        <div class = "index_recipe">
-          <h3><%=link_to(recipe.name, recipe_path(recipe))%></h3>
-          <h3><%= t("recipe.prep_time")%>: &nbsp;&nbsp;<span><%=recipe.prep_time%> <%= t("recipe.min")%></h3>
-          <h3><%= t("recipe.servings")%>: &nbsp;&nbsp;<span><%=recipe.servings%></span></h3>
-          <h3><%= t("recipe.difficulty")%>: &nbsp;&nbsp;
-          <span><%recipe.complexity.times do %>
-                    <%= image_tag 'cookbook_no_bg.png', :class => "logo_img_diff", :width => "30", :length => "30" %>
-                <%end%>
-          </span>
-          </h3>
-        </div>
-      <%end%>
-    </div>
-  <%#end%>
-</div>
+<%if @filtered_recipes == true %>
+  <div class="block">
+    <% @user_categories.each do |category|%>
+      <div class="categories_recipes">
+        <h2><span><%= link_to(category.name, category_path(category), :class => "category_names")%></span></h2>
+        <% category.recipes.most_viewed.each do |recipe|%>
+          <%if @filtered_recipes.include?(recipe)%>
+            <div class = "index_recipe">
+              <h3><%=link_to(recipe.name, recipe_path(recipe))%></h3>
+              <h3><%= t("recipe.prep_time")%>: &nbsp;&nbsp;<span><%=recipe.prep_time%> <%= t("recipe.min")%></h3>
+              <h3><%= t("recipe.servings")%>: &nbsp;&nbsp;<span><%=recipe.servings%></span></h3>
+              <h3><%= t("recipe.difficulty")%>: &nbsp;&nbsp;
+              <span><%recipe.complexity.times do %>
+                        <%= image_tag 'cookbook_no_bg.png', :class => "logo_img_diff", :width => "30", :length => "30" %>
+                    <%end%>
+              </span>
+              </h3>
+            </div>
+          <%end%>
+        <%end%>
+      </div>
+    <%end%>
+  </div>
+<%end%>
