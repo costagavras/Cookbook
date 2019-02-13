@@ -9,46 +9,50 @@ class RecipesController < ApplicationController
   PATH_TO_PHANTOM_SCRIPT = Rails.root.join('app', 'assets', 'javascripts', 'screencapture.js')
 
   def index
-
-    if params[:condition] == "or" || params[:condition] == nil
-      @filtered_recipes = []
-      filtering_params(params).each do |key, value|
-        #needs to be transofrmed to an array if not it's an ActiveRecord::Relation instance)
-        @filtered_recipes << @user_recipes.public_send(key, value).to_a if value.present?
-      end
-    elsif params[:condition] == "and"
-      @user_recipes_temp = @user_recipes
-      filtering_params(params).each do |key, value|
-        @filtered_recipes = @user_recipes.public_send(key, value) if value.present?
-        @user_recipes = @filtered_recipes if @filtered_recipes != nil
-        #check necessary to avoir @filtered_recipes becoming nil if first (key,value) return nil result
-      end
-      @filtered_recipes = @user_recipes.to_a
-      @user_recipes = @user_recipes_temp
-    end
-
-    if @filtered_recipes.empty? && @filtered_recipes.count == @user_recipes.count
-      @filtered_result = false
-      @filter_result_message = "Filter returns all recipes!"
-    elsif @filtered_recipes.empty?
-      @filtered_result = false
-      @filter_result_message = "Filter did not return any recipes!"
-    elsif !@filtered_recipes.empty? && @filtered_recipes.count == @user_recipes.count
-      @filtered_result = false
-    else
-      @filtered_result = true
-      @filter_result_message = I18n.t("recipe.search_found") + " #{@filtered_recipes.count}"
-      #needs to be flattened if not it remains a double array (after .to_a)
-      @filtered_recipes.flatten!
-      @filtered_categories = []
-      @filtered_recipes.each do |recipe|
-        if @categories.include?(recipe.category)
-          @filtered_categories << recipe.category
+    if filtering_params_exist?
+      if params[:condition] != nil
+        if params[:condition] == "or"
+          @filtered_recipes = []
+          filtering_params(params).each do |key, value|
+            #needs to be transofrmed to an array if not it's an ActiveRecord::Relation instance)
+            @filtered_recipes << @user_recipes.public_send(key, value).to_a if value.present?
+          end
+        elsif params[:condition] == "and"
+          @user_recipes_temp = @user_recipes
+          filtering_params(params).each do |key, value|
+            @filtered_recipes = @user_recipes.public_send(key, value) if value.present?
+            @user_recipes = @filtered_recipes if @filtered_recipes != nil
+            #check necessary to avoir @filtered_recipes becoming nil if first (key,value) return nil result
+          end
+          @filtered_recipes = @user_recipes.to_a
+          @user_recipes = @user_recipes_temp
         end
+        #needs to be flattened if not it remains a double array (after .to_a)
+        @filtered_recipes.flatten!
+        @filtered_recipes = @filtered_recipes.uniq
+        puts @filtered_recipes.count
+        puts @filtered_recipes.inspect
+        if @filtered_recipes.empty?
+          @filtered_result = false
+          @filter_result_message = "This filter returns 0 recipes"
+        elsif !@filtered_recipes.empty? && @filtered_recipes.count == @user_recipes.count
+          @filtered_result = false
+          @filter_result_message = "This filter returns all recipes"
+        else
+          @filtered_result = true
+          @filter_result_message = I18n.t("recipe.search_found") + " #{@filtered_recipes.count}"
+          @filtered_categories = []
+          @filtered_recipes.each do |recipe|
+            if @categories.include?(recipe.category)
+              @filtered_categories << recipe.category
+            end
+          end
+          @filtered_categories = @filtered_categories.uniq
+        end
+      else
+        @filter_result_message = "Please set filter condition!"
       end
-      @filtered_categories = @filtered_categories.uniq
     end
-    # puts @filtered_recipes.inspect
   end
 
   def new
@@ -235,6 +239,15 @@ class RecipesController < ApplicationController
   def filtering_params(params)
     params.slice(:prep_time_longer_than, :prep_time_shorter_than, :prep_time_equal_to,
       :difficulty_more_than, :difficulty_less_than, :difficulty_equal_to)
+  end
+
+  def filtering_params_exist?
+    filtering_params(params).each do |key, value|
+       if value.present?
+         return true
+       end
+    end
+    return false
   end
 
 end

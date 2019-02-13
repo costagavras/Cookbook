@@ -12,11 +12,11 @@
     </fieldset>
 
     <div class="filter_condition">
-      <%= radio_button_tag(:condition, "and") %>
+      <%= radio_button_tag(:condition, "and", value: :condition) %>
       <%= label_tag(:condition, "and") %>
        &nbsp; | &nbsp;
       <%= label_tag(:condition, "or") %>
-      <%= radio_button_tag(:condition, "or") %>
+      <%= radio_button_tag(:condition, "or", value: :condition) %>
     </div>
 
     <fieldset><legend><%= t("recipe.difficulty") %></legend>
