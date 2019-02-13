@@ -4,24 +4,24 @@
 
     <fieldset><legend><%= t("recipe.prep_time") %></legend>
       <%= label_tag(:prep_time_shorter_than, "shorter than") %>
-      <%= number_field_tag(:prep_time_shorter_than, params[:prep_time_shorter_than], in: 0..1000) %>
+      <%= number_field_tag(:prep_time_shorter_than, params[:prep_time_shorter_than], in: 0..1000, class: "filter_number_field") %>
       <%= label_tag(:prep_time_equal_to, "equal to") %>
-      <%= number_field_tag(:prep_time_equal_to, params[:prep_time_equal_to], in: 0..1000) %>
+      <%= number_field_tag(:prep_time_equal_to, params[:prep_time_equal_to], in: 0..1000, class: "filter_number_field") %>
       <%= label_tag(:prep_time_longer_than, "longer than") %>
-      <%= number_field_tag(:prep_time_longer_than, params[:prep_time_longer_than], in: 0..1000) %>
+      <%= number_field_tag(:prep_time_longer_than, params[:prep_time_longer_than], in: 0..1000, class: "filter_number_field") %>
     </fieldset>
 
     <fieldset><legend><%= t("recipe.difficulty") %></legend>
       <%= label_tag(:difficulty_less_than, "less than") %>
-      <%= number_field_tag(:difficulty_less_than, params[:difficulty_less_than], in: 1..3) %>
+      <%= number_field_tag(:difficulty_less_than, params[:difficulty_less_than], in: 1..3, class: "filter_number_field") %>
       <%= label_tag(:difficulty_equal_to, "equal to") %>
-      <%= number_field_tag(:difficulty_equal_to, params[:difficulty_equal_to], in: 1..3) %>
+      <%= number_field_tag(:difficulty_equal_to, params[:difficulty_equal_to], in: 1..3, class: "filter_number_field") %>
       <%= label_tag(:difficulty_more_than, "more than") %>
-      <%= number_field_tag(:difficulty_more_than, params[:difficulty_more_than], in: 1..3) %>
+      <%= number_field_tag(:difficulty_more_than, params[:difficulty_more_than], in: 1..3, class: "filter_number_field") %>
     </fieldset>
 
     <%= submit_tag("Filter", name: nil, class: "filter_button", id: "filter_button", onclick: "return_to_filter();") %>
-    <%= submit_tag("Reset", name: nil, class: "reset_button", onclick: "reset_filter();") %>
+    <%= button_tag("Reset", name: nil, class: "reset_button", onclick: "reset_filter();") %>
   <% end %>
 
   <%if @filtered_result == true %>

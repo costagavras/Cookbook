@@ -9,6 +9,18 @@ function show_loader(){
   loader.style.visibility = "visible";
 }
 
+function reset_filter(){
+  var filter_number_fields = document.querySelectorAll(".filter_number_field");
+  for (var i = 0; i < filter_number_fields.length; i++){
+    filter_number_fields[i].value = "";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function return_to_filter(){
+  var filter_button = document.querySelector(".filter_button");
+  filter_button.scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
+});
+
 // When the user scrolls the photo window, execute myFunction
 function horizontal_bar() {
   var photoScroll = document.querySelector(".photo");
