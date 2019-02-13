@@ -91,8 +91,8 @@ en:
     search_all: "This search returned all recipes!"
 
   filter:
-    filter_returns_0: "This filter returns 0 recipes"
-    filter_returns_all: "This filter returns all recipes"
+    returns_0: "This filter returns 0 recipes"
+    returns_all: "This filter returns all recipes"
     shorter_than: "shorter than"
     equal_to: "equal to"
     longer_than: "longer than"

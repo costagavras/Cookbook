@@ -90,6 +90,19 @@ fr:
     search_not_found: "Oops! Rien n'a été trouvé!"
     search_all: "Cette recherche a retourné toutes les recettes!"
 
+  filter:
+    returns_0: "Ce filtre retourne 0 recettes"
+    returns_all: "Ce filtre retourne toutes les recettes"
+    shorter_than: "plus court que"
+    equal_to: "égal à"
+    longer_than: "plus long que"
+    and: "et"
+    or: "ou"
+    less_than: "moins que"
+    more_than: "plus que"
+    filter: "Filtrer"
+    reset: "Resetter"
+
   form:
     easy: "Facile"
     average: "Moyenne"

@@ -90,6 +90,19 @@ ru:
     search_not_found: "Увы! Ничего не найдено!"
     search_all: "Поиск вернул все рецепты в базе!"
 
+  filter:
+    returns_0: "Фильтр не вернул ни одного рецепта"
+    returns_all: "Фильтр вернул все рецепты"
+    shorter_than: "короче чем"
+    equal_to: "равно"
+    longer_than: "длиннее чем"
+    and: "и"
+    or: "или"
+    less_than: "меньше чем"
+    more_than: "больше чем"
+    filter: "Фильтр"
+    reset: "Очистить"
+
   form:
     easy: "Низкая"
     average: "Средняя"

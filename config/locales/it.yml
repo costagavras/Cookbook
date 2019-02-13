@@ -90,6 +90,19 @@ it:
     search_not_found: "Caspiterina! Non ho trovato niente!"
     search_all: "Questa ricerca ha ritornato tutte le ricette!"
 
+  filter:
+    returns_0: "Il filtro ha trovato 0 ricette"
+    returns_all: "Il filtro ha trovato tutte le ricette"
+    shorter_than: "più corto di"
+    equal_to: "uguale a"
+    longer_than: "più lungo di"
+    and: "e"
+    or: "o"
+    less_than: "meno di"
+    more_than: "più di"
+    filter: "Filtrare"
+    reset: "Resettare"
+
   form:
     easy: "Bassa"
     average: "Media"

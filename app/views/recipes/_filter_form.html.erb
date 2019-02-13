@@ -3,33 +3,33 @@
   <%= form_tag(recipes_path, method: "get", class: "filter_form") do |f| %>
 
     <fieldset><legend><%= t("recipe.prep_time") %></legend>
-      <%= label_tag(:prep_time_shorter_than, "shorter than") %>
+      <%= label_tag(:prep_time_shorter_than, t("filter.shorter_than")) %>
       <%= number_field_tag(:prep_time_shorter_than, params[:prep_time_shorter_than], in: 0..1000, class: "filter_number_field") %>
-      <%= label_tag(:prep_time_equal_to, "equal to") %>
+      <%= label_tag(:prep_time_equal_to, t("filter.equal_to")) %>
       <%= number_field_tag(:prep_time_equal_to, params[:prep_time_equal_to], in: 0..1000, class: "filter_number_field") %>
-      <%= label_tag(:prep_time_longer_than, "longer than") %>
+      <%= label_tag(:prep_time_longer_than, t("filter.longer_than")) %>
       <%= number_field_tag(:prep_time_longer_than, params[:prep_time_longer_than], in: 0..1000, class: "filter_number_field") %>
     </fieldset>
 
     <div class="filter_condition">
-      <%= radio_button_tag(:condition, "and", value: :condition) %>
-      <%= label_tag(:condition, "and") %>
+      <%= radio_button_tag(:condition, "and", params[:condition]) %>
+      <%= label_tag(:condition, t("filter.and")) %>
        &nbsp; | &nbsp;
-      <%= label_tag(:condition, "or") %>
-      <%= radio_button_tag(:condition, "or", value: :condition) %>
+      <%= label_tag(:condition, t("filter.or")) %>
+      <%= radio_button_tag(:condition, "or") %>
     </div>
 
     <fieldset><legend><%= t("recipe.difficulty") %></legend>
-      <%= label_tag(:difficulty_less_than, "less than") %>
+      <%= label_tag(:difficulty_less_than, t("filter.less_than")) %>
       <%= number_field_tag(:difficulty_less_than, params[:difficulty_less_than], in: 1..3, class: "filter_number_field") %>
-      <%= label_tag(:difficulty_equal_to, "equal to") %>
+      <%= label_tag(:difficulty_equal_to, t("filter.equal_to")) %>
       <%= number_field_tag(:difficulty_equal_to, params[:difficulty_equal_to], in: 1..3, class: "filter_number_field") %>
-      <%= label_tag(:difficulty_more_than, "more than") %>
+      <%= label_tag(:difficulty_more_than, t("filter.more_than")) %>
       <%= number_field_tag(:difficulty_more_than, params[:difficulty_more_than], in: 1..3, class: "filter_number_field") %>
     </fieldset>
 
-    <%= submit_tag("Filter", name: nil, class: "filter_button", id: "filter_button", onclick: "return_to_filter();") %>
-    <%= button_tag("Reset", name: nil, class: "reset_button", onclick: "reset_filter();") %>
+    <%= submit_tag(t("filter.filter"), name: nil, class: "filter_button", id: "filter_button", onclick: "return_to_filter();") %>
+    <%= button_tag(t("filter.reset"), name: nil, class: "reset_button", onclick: "reset_filter();") %>
   <% end %>
 
   <%if @filtered_result == true %>

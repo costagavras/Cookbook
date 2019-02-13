@@ -30,14 +30,12 @@ class RecipesController < ApplicationController
       @filtered_recipes.flatten!
       #for some reason it doubles some values in the array
       @filtered_recipes = @filtered_recipes.uniq
-      # puts @filtered_recipes.count
-      # puts @filtered_recipes.inspect
       if @filtered_recipes.empty?
         @filtered_result = false
-        @filter_result_message = "This filter returns 0 recipes"
+        @filter_result_message = I18n.t("filter.returns_0")
       elsif !@filtered_recipes.empty? && @filtered_recipes.count == @user_recipes.count
         @filtered_result = false
-        @filter_result_message = "This filter returns all recipes"
+        @filter_result_message = I18n.t("filter.returns_all")
       else
         @filtered_result = true
         @filter_result_message = I18n.t("recipe.search_found") + " #{@filtered_recipes.count}"
@@ -49,6 +47,8 @@ class RecipesController < ApplicationController
         end
         @filtered_categories = @filtered_categories.uniq
       end
+    # else
+    #   @filter_result_message = "I did not run!!!!"
     end
   end
 
