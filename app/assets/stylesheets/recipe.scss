@@ -327,6 +327,19 @@ input[type="radio" i] {
     padding: 0;
     color: #9b5115;
   }
+  .filter_condition{
+    margin: 2%;
+    padding: 2%;
+    label {
+      font-size: 2rem;
+      vertical-align: middle;
+    }
+    input[type="radio"]{
+      height: 2rem;
+      width: 2rem;
+      vertical-align: middle;
+    }
+  }
   .filter_form {
     margin-left: 5%;
     margin-top: 2%;

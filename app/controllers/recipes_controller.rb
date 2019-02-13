@@ -9,18 +9,23 @@ class RecipesController < ApplicationController
   PATH_TO_PHANTOM_SCRIPT = Rails.root.join('app', 'assets', 'javascripts', 'screencapture.js')
 
   def index
-    # filtering_params(params).each do |key, value|
-    #   #needs to be transofrmed to an array if not it's an ActiveRecord::Relation instance)
-    #   @filtered_recipes << @user_recipes.public_send(key, value).to_a if value.present?
-    # end
-    @user_recipes_temp = @user_recipes
-    filtering_params(params).each do |key, value|
-      @filtered_recipes = @user_recipes.public_send(key, value) if value.present?
-      @user_recipes = @filtered_recipes if @filtered_recipes != nil
-      #check necessary to avoir @filtered_recipes becoming nil if first (key,value) return nil result
+
+    if params[:condition] == "or" || params[:condition] == nil
+      @filtered_recipes = []
+      filtering_params(params).each do |key, value|
+        #needs to be transofrmed to an array if not it's an ActiveRecord::Relation instance)
+        @filtered_recipes << @user_recipes.public_send(key, value).to_a if value.present?
+      end
+    elsif params[:condition] == "and"
+      @user_recipes_temp = @user_recipes
+      filtering_params(params).each do |key, value|
+        @filtered_recipes = @user_recipes.public_send(key, value) if value.present?
+        @user_recipes = @filtered_recipes if @filtered_recipes != nil
+        #check necessary to avoir @filtered_recipes becoming nil if first (key,value) return nil result
+      end
+      @filtered_recipes = @user_recipes.to_a
+      @user_recipes = @user_recipes_temp
     end
-    @filtered_recipes = @user_recipes.to_a
-    @user_recipes = @user_recipes_temp
 
     if @filtered_recipes.empty? && @filtered_recipes.count == @user_recipes.count
       @filtered_result = false
@@ -43,7 +48,7 @@ class RecipesController < ApplicationController
       end
       @filtered_categories = @filtered_categories.uniq
     end
-    puts @filtered_recipes.inspect
+    # puts @filtered_recipes.inspect
   end
 
   def new
