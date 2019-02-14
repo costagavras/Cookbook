@@ -50,7 +50,7 @@ class RecipesController < ApplicationController
           filter_conditions_message(params[:condition])
         end
       else
-        @filter_result_message = "Please choose condition AND/OR!"
+        @filter_result_message = I18n.t("filter.choose_condition")
       end
     # else
     #   @filter_result_message = "I did not run!!!!"

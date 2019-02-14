@@ -102,6 +102,8 @@ en:
     more_than: "more than"
     filter: "Filter"
     reset: "Reset"
+    for: "Filtered for:"
+    choose_condition: "Please choose condition AND/OR!"
 
   form:
     easy: "Easy"

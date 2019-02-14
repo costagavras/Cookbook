@@ -102,6 +102,8 @@ it:
     more_than: "più di"
     filter: "Filtrare"
     reset: "Resettare"
+    for: "Filtrato per:"
+    choose_condition: "Per favore scegliere condizione E/O!"    
 
   form:
     easy: "Bassa"
