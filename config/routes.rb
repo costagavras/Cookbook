@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   root "welcome#index"
 
   get '/welcome/about', :as => 'about'
-
   post '/recipes/search', :as => 'recipe_search'
 
   resources :recipes do

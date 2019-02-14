@@ -33,6 +33,10 @@
   <% end %>
 
   <%if @filtered_result == true %>
+    <div class="filtered_conditions">
+      <h2 class="filter_conditions_header">Filtered for:</h2>
+      <h2 class="filter_conditions_message"><%=@filter_conditions_message%></h2>
+    </div>
     <h2 class="filter"><%=@filter_result_message%></h2>
     <div class="block">
       <% @filtered_categories.each do |category|%>
