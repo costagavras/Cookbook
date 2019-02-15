@@ -28,7 +28,7 @@
       <%= number_field_tag(:difficulty_more_than, params[:difficulty_more_than], in: 1..3, class: "filter_number_field") %>
     </fieldset>
 
-    <%=  hidden_field :locale, I18n.locale %>
+    <%=  hidden_field :locale, value: I18n.locale %>
 
     <%= submit_tag(t("filter.filter"), name: nil, class: "filter_button", id: "filter_button", onclick: "return_to_filter();") %>
     <%= button_tag(t("filter.reset"), name: nil, class: "reset_button", onclick: "reset_filter();") %>
