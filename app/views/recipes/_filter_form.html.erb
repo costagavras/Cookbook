@@ -1,6 +1,6 @@
 <div class="filter_section">
 
-  <%= form_tag(recipe_filter_path, method: "get", class: "filter_form") do |f| %>
+  <%= form_tag(recipe_filter_path, class: "filter_form") do |f| %>
 
     <fieldset><legend><%= t("recipe.prep_time") %></legend>
       <%= label_tag(:prep_time_shorter_than, t("filter.shorter_than")) %>

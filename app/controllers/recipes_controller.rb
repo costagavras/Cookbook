@@ -1,9 +1,9 @@
 class RecipesController < ApplicationController
 
-  before_action :select_recipe, except: [:index, :new, :create, :search]
+  before_action :select_recipe, except: [:index, :new, :create, :filter, :search]
   before_action :set_up_new, only: [:new, :create]
-  before_action :categories_recipes, only: [:index, :new, :create, :edit, :update, :search]
-  before_action :set_up_user_recipes, only: [:index]
+  before_action :categories_recipes, only: [:index, :new, :create, :edit, :update, :filter, :search]
+  before_action :set_up_user_recipes, only: [:index, :filter]
   before_action :redirect_cancel, only: [:create, :update]
 
   PATH_TO_PHANTOM_SCRIPT = Rails.root.join('app', 'assets', 'javascripts', 'screencapture.js')
