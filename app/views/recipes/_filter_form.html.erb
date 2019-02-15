@@ -12,7 +12,7 @@
     </fieldset>
 
     <div class="filter_condition">
-      <%= radio_button_tag(:condition, "and", params[:condition]) %>
+      <%= radio_button_tag(:condition, "and", true) %>
       <%= label_tag(:condition, t("filter.and")) %>
        &nbsp; | &nbsp;
       <%= label_tag(:condition, t("filter.or")) %>

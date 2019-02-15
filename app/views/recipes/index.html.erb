@@ -4,4 +4,6 @@
 <%= render 'recipes/filter_form' %>
 <hr>
 
-<%= render 'recipes/one_recipe_block' %>
+<%if !@filter_on %>
+  <%= render 'recipes/one_recipe_block' %>
+<%end%>

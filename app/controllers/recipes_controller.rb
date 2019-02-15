@@ -11,6 +11,7 @@ class RecipesController < ApplicationController
   def index
     if filtering_params_exist?
       if params[:condition] != nil
+        @filter_on = true
         if params[:condition] == "or"
           @filtered_recipes = []
           filtering_params(params).each do |key, value|
@@ -50,6 +51,7 @@ class RecipesController < ApplicationController
           filter_conditions_message(params[:condition])
         end
       else
+        @filter_on = false
         @filter_result_message = I18n.t("filter.choose_condition")
       end
     # else
