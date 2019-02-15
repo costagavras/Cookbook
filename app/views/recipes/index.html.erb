@@ -1,8 +1,9 @@
 <h1 class="all-recipes"><%= t("recipe.my_recipes")%></h1>
 
-<hr>
+
 <%= render 'recipes/filter_form' %>
 <hr>
+
 
 <%if !@filter_on %>
   <%= render 'recipes/one_recipe_block' %>
