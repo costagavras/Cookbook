@@ -9,54 +9,6 @@ class RecipesController < ApplicationController
   PATH_TO_PHANTOM_SCRIPT = Rails.root.join('app', 'assets', 'javascripts', 'screencapture.js')
 
   def index
-    if filtering_params_exist?
-      if params[:condition] != nil
-        @filter_on = true
-        if params[:condition] == "or"
-          @filtered_recipes = []
-          filtering_params(params).each do |key, value|
-            #needs to be transofrmed to an array if not it's an ActiveRecord::Relation instance)
-            @filtered_recipes << @user_recipes.public_send(key, value).to_a if value.present?
-          end
-        elsif params[:condition] == "and"
-          @user_recipes_temp = @user_recipes
-          filtering_params(params).each do |key, value|
-            @filtered_recipes = @user_recipes.public_send(key, value) if value.present?
-            @user_recipes = @filtered_recipes if @filtered_recipes != nil
-            #check necessary to avoir @filtered_recipes becoming nil if first (key,value) return nil result
-          end
-          @filtered_recipes = @user_recipes.to_a
-          @user_recipes = @user_recipes_temp
-        end
-        #needs to be flattened if not it remains a double array (after .to_a)
-        @filtered_recipes.flatten!
-        #for some reason it doubles some values in the array
-        @filtered_recipes = @filtered_recipes.uniq
-        if @filtered_recipes.empty?
-          @filtered_result = false
-          @filter_result_message = I18n.t("filter.returns_0")
-        elsif !@filtered_recipes.empty? && @filtered_recipes.count == @user_recipes.count
-          @filtered_result = false
-          @filter_result_message = I18n.t("filter.returns_all")
-        else
-          @filtered_result = true
-          @filter_result_message = I18n.t("recipe.search_found") + " #{@filtered_recipes.count}"
-          @filtered_categories = []
-          @filtered_recipes.each do |recipe|
-            if @categories.include?(recipe.category)
-              @filtered_categories << recipe.category
-            end
-          end
-          @filtered_categories = @filtered_categories.uniq
-          filter_conditions_message(params[:condition])
-        end
-      else
-        @filter_on = false
-        @filter_result_message = I18n.t("filter.choose_condition")
-      end
-    # else
-    #   @filter_result_message = "I did not run!!!!"
-    end
   end
 
   def new
@@ -180,6 +132,57 @@ class RecipesController < ApplicationController
       redirect_to recipes_path, info: I18n.t("recipe.not_deleted")
     end
 
+  end
+
+  def filter
+    if filtering_params_exist?
+      if params[:condition] != nil
+        @filter_on = true
+        if params[:condition] == "or"
+          @filtered_recipes = []
+          filtering_params(params).each do |key, value|
+            #needs to be transofrmed to an array if not it's an ActiveRecord::Relation instance)
+            @filtered_recipes << @user_recipes.public_send(key, value).to_a if value.present?
+          end
+        elsif params[:condition] == "and"
+          @user_recipes_temp = @user_recipes
+          filtering_params(params).each do |key, value|
+            @filtered_recipes = @user_recipes.public_send(key, value) if value.present?
+            @user_recipes = @filtered_recipes if @filtered_recipes != nil
+            #check necessary to avoir @filtered_recipes becoming nil if first (key,value) return nil result
+          end
+          @filtered_recipes = @user_recipes.to_a
+          @user_recipes = @user_recipes_temp
+        end
+        #needs to be flattened if not it remains a double array (after .to_a)
+        @filtered_recipes.flatten!
+        #for some reason it doubles some values in the array
+        @filtered_recipes = @filtered_recipes.uniq
+        if @filtered_recipes.empty?
+          @filtered_result = false
+          @filter_result_message = I18n.t("filter.returns_0")
+        elsif !@filtered_recipes.empty? && @filtered_recipes.count == @user_recipes.count
+          @filtered_result = false
+          @filter_result_message = I18n.t("filter.returns_all")
+        else
+          @filtered_result = true
+          @filter_result_message = I18n.t("recipe.search_found") + " #{@filtered_recipes.count}"
+          @filtered_categories = []
+          @filtered_recipes.each do |recipe|
+            if @categories.include?(recipe.category)
+              @filtered_categories << recipe.category
+            end
+          end
+          @filtered_categories = @filtered_categories.uniq
+          filter_conditions_message(params[:condition])
+        end
+      else
+        @filter_on = false
+        @filter_result_message = I18n.t("filter.choose_condition")
+      end
+    # else
+    #   @filter_result_message = "I did not run!!!!"
+    end
   end
 
   def search
