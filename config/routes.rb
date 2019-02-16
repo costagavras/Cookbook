@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   get 'welcome/index'
   root "welcome#index"
   get '/welcome/about', :as => 'about'
-  post '/recipes/search', :as => 'recipe_search'
-  post '/recipes/filter', :as => 'recipe_filter'
+  # get '/recipe/search', to: "recipes#search", :as => 'recipes_search'
+  post '/recipes/search', to: "recipes#search", :as => 'recipe_search'
+  post '/recipes/filter', to: "recipes#filter", :as => 'recipe_filter'
 
   resources :recipes do
     resources :comments, only: [:new, :create]
