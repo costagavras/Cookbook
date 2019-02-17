@@ -39,6 +39,26 @@ add_flash_types :info #holds flash[:info] messages
     { locale: I18n.locale }
   end
 
+  def set_visit_history
+    if session[:visit_history]
+      @trace = session[:visit_history]
+    else
+      @trace = Array.new
+    end
+
+    @trace.push(request.url)
+
+    if @trace.count > 4
+      @trace.shift
+    end
+
+    session[:visit_history] = @trace
+    
+  end
+
+
+
+
   helper_method :current_user
   helper_method :sign_up
   helper_method :most_viewed_recipes
