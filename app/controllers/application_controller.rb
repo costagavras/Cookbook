@@ -43,8 +43,8 @@ add_flash_types :info #holds flash[:info] messages
 
   def set_visit_history
 
-    if session[:cookbook]
-      @trace = session[:cookbook]
+    if session[:visit_trace]
+      @trace = session[:visit_trace]
     else
       @trace = Array.new
     end
@@ -55,7 +55,7 @@ add_flash_types :info #holds flash[:info] messages
       @trace.shift
     end
 
-    session[:cookbook] = @trace
+    session[:visit_trace] = @trace
 
   end
 
