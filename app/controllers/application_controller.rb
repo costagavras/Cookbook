@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 
 before_action :set_locale
+before_action :set_visit_history
 add_flash_types :info #holds flash[:info] messages
 
   def current_user
@@ -39,9 +40,11 @@ add_flash_types :info #holds flash[:info] messages
     { locale: I18n.locale }
   end
 
+
   def set_visit_history
-    if session[:visit_history]
-      @trace = session[:visit_history]
+
+    if session[:cookbook]
+      @trace = session[:cookbook]
     else
       @trace = Array.new
     end
@@ -52,12 +55,9 @@ add_flash_types :info #holds flash[:info] messages
       @trace.shift
     end
 
-    session[:visit_history] = @trace
-    
+    session[:cookbook] = @trace
+
   end
-
-
-
 
   helper_method :current_user
   helper_method :sign_up

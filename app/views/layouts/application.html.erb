@@ -32,13 +32,24 @@
       <%end%>
     </div>
 
+    <div class="surf_history">
+      <% if @trace && @trace.any? %>
+        <h3>Surt History</h3>
+        <ul>
+          <% @trace[0..2].each do |trace| %>
+            <li><%= link_to trace, trace %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+
     <div class="navigation_bar">
       <div class="nav_1">
         <div class="top_top">
           <% if current_user%>
-            <h2 class = "logo_text"><%= link_to "#{current_user.name}'s", user_path(current_user) %></h2>
+            <h2 class="logo_text"><%= link_to "#{current_user.name}'s", user_path(current_user) %></h2>
           <% else %>
-            <h2 class = "logo_text"><%= t("homepage.your") %></h2>
+            <h2 class="logo_text"><%= t("homepage.your") %></h2>
           <% end %>
           <%= link_to (image_tag 'android-chrome-384x384.png', :class => "logo_img", :width => "250", :length =>"100"), root_path %>
         </div>
