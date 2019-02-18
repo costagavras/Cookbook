@@ -11,7 +11,8 @@ before_action :redirect_cancel, only: [:update]
   end
 
   def create
-    if !User.exists?(['name LIKE ?', "%#{params[:user][:name]}%"])
+    if !User.find_by(name: params[:user][:name])
+    # if !User.exists?(['name LIKE ?', "%#{params[:user][:name]}%"])
       @user = User.create!(create_params)
       if @user
         session[:user_id] = @user.id

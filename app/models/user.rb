@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :comments #comments left by the user himself
 
   validates :name, presence: true, uniqueness: {message: "This username is already taken!"}
-  validates :password, confirmation: true
+  validates :password, presence: true, confirmation: true
   validates :password_confirmation, presence: true
 
 
