@@ -4,7 +4,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
 #functional tests using fixtures, tags to users.yml
 
-  setup do
+  def setup
     @user = users(:one)
   end
 
@@ -13,15 +13,15 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # test "create user" do
-  #   assert_difference("User.count") do
-  #     post users_path, params: {user: {name: @user.name,
-  #     password_digest: @user.password_digest}}
-  #   end
-  #
-  #   assert_redirected_to user_path(User.last)
-  #
-  # end
+  test "create user" do
+    assert_difference("User.count") do
+      post users_path, params: {user: {name: "Giorgio",
+      password: "123", password_confirmation: "123"}}
+    end
+
+    assert_redirected_to user_path(User.last)
+
+  end
 
 
 end

@@ -8,7 +8,7 @@ before_action :redirect_cancel, only: [:update]
 
   def new
     @user = User.new
-    flash[:previous_page] = request.referer
+    # flash[:previous_page] = request.referer
   end
 
   def create
@@ -18,9 +18,11 @@ before_action :redirect_cancel, only: [:update]
     @user = User.create!(create_params)
     if @user
       session[:user_id] = @user.id
-      redirect_to request.referer, notice: I18n.t("messages.logged_in_as") + " #{@user.name}!"
+      redirect_back(fallback_location: @user)
+      flash[:notice] = I18n.t("messages.logged_in_as") + " #{@user.name}!"
     else
-      redirect_to request.referer, alert: I18n.t("messages.sign_up_failed")
+      redirect_back(fallback_location: root_url)
+      flash[:alert] = I18n.t("messages.sign_up_failed")
     end
   end
 

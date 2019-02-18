@@ -1,8 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: Costa
-  password_digest:
+  name: Pinco
+  password_digest: "123"
 
 two:
   name: Andrea
