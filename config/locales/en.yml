@@ -51,6 +51,7 @@ en:
     edit_profile: "Edit your profile"
     delete_profile: "Delete profile"
     sure_to_delete_profile: "Are you sure you want to delete this profile?"
+    deleted: "User deleted"
     errors: "Errors"
     save_user: "Save"
     user: "Name"

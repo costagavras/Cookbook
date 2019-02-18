@@ -51,6 +51,7 @@ ru:
     edit_profile: "Править профиль"
     delete_profile: "Удалить профиль"
     sure_to_delete_profile: "Вы уверены, что хотите удалить этот профиль?"
+    deleted: "Профиль удалён"
     errors: "Ошибки"
     save_user: "Сохранить"
     user: "Имя"

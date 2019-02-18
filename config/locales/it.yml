@@ -51,6 +51,7 @@ it:
     edit_profile: "Rivedere profilo utente"
     delete_profile: "Sopprimere profilo utente"
     sure_to_delete_profile: "E' sicuro di voler sopprimere il profilo utente?"
+    deleted: "Utente cancellato"
     errors: "Errori"
     save_user: "Salvare"
     user: "Nome"
@@ -103,7 +104,7 @@ it:
     filter: "Filtrare"
     reset: "Resettare"
     for: "Filtrato per:"
-    choose_condition: "Per favore scegliere condizione E/O!"    
+    choose_condition: "Per favore scegliere condizione E/O!"
 
   form:
     easy: "Bassa"

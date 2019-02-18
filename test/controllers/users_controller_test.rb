@@ -15,12 +15,25 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "create user" do
     assert_difference("User.count") do
-      post users_path, params: {user: {name: "Giorgio",
-      password: "123", password_confirmation: "123"}}
+      post users_path, params: {user: {name: "Vanico",
+      password: "hello", password_confirmation: "hello"}}
     end
+  end
 
-    assert_redirected_to user_path(User.last)
+  test "edit user" do
+    get edit_user_path(@user)
+    assert_response :success
+  end
 
+  test "update user" do
+    patch user_url(@user), params: {user: {name: "Giorgio",
+    password: "123", password_confirmation: "123"}}
+  end
+
+  test "delete user" do
+    assert_difference("User.count", -1) do
+      delete user_url(@user)
+    end
   end
 
 
