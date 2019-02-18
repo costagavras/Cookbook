@@ -7,9 +7,9 @@ one:
   ingredients: MyText
   directions: MyText
   servings: 1
-  grabbed: false
+  visits: 0
   user_id: 1
-  categories_id: 1
+  category_id: 1
 
 two:
   name: MyString
@@ -18,6 +18,6 @@ two:
   ingredients: MyText
   directions: MyText
   servings: 1
-  grabbed: false
+  visits: 0
   user_id: 1
-  categories_id: 1
+  category_id: 1

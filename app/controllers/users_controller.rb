@@ -12,7 +12,8 @@ before_action :redirect_cancel, only: [:update]
   end
 
   def create
-    if User.exists?
+    @user_check = User.find(params[:name])
+    if @user_check
       redirect_to request.referer, alert: (I18n.t("messages.sign_up_failed") + ". " + I18n.t("messages.user_exists")) and return
     end
     @user = User.create!(create_params)
