@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: Pizza
   prep_time: 1
   complexity: 1
   ingredients: MyText
@@ -12,7 +12,7 @@ one:
   category_id: 1
 
 two:
-  name: MyString
+  name: Pasta
   prep_time: 1
   complexity: 1
   ingredients: MyText
