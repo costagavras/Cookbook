@@ -12,7 +12,9 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     patch user_path(@user), params: { user: { name: "Swincus",
                                               password: "123",
                                               password_confirmation: "123" } }
-                                     
+    assert_redirected_to @user
+    @user.reload
+    assert_equal "Swincus", @user.name
     assert_equal "Profile successfully updated", flash[:notice]
   end
 

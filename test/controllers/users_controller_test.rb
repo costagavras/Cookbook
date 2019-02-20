@@ -13,10 +13,10 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  #no view new.html.erb exists
+  # no view new.html.erb exists
   # test "should get new" do
   #   get new_user_path
-  #   assert_response :success
+  #   assert_not_response :success
   # end
 
   test "should create user" do
@@ -26,12 +26,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  # test "should not create user" do
-  #   assert_no_difference("User.count") do
-  #     post users_path, params: {user: {name: "Vanico",
-  #     password: "hello", password_confirmation: "ciao"}}
-  #   end
-  # end
+  test "should not create user" do
+    assert_no_difference("User.count") do
+      post users_path, params: {user: {name: "Vanico",
+      password: "hello", password_confirmation: "ciao"}}
+    end
+  end
 
   test "should edit user" do
     get edit_user_path(@user)
