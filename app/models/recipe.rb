@@ -5,8 +5,8 @@ class Recipe < ApplicationRecord
   belongs_to :user
 
   #active_storage attachments
-  has_many_attached :photos
-  has_one_attached :screencapture
+  has_many_attached :photos, dependent: :destroy
+  has_one_attached :screencapture, dependent: :destroy
 
   attr_accessor :remove_photos, :remove_screencapture, :remove_screencapture_saved_locally, :screencapture_name #attributes for the form
 

@@ -28,4 +28,12 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_template 'users/edit'
   end
 
+  test "should successfully delete user" do
+    get edit_user_path(@user)
+    assert_difference("User.count", -1) do
+      delete user_url(@user)
+    end
+    assert_redirected_to root_url(locale: :en)
+  end
+
 end
