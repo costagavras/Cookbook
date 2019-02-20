@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
 before_action :redirect_cancel, only: [:update]
+before_action :find_user, only: [:show, :edit, :update, :destroy ]
 
   def show
     @user = User.find(params[:id])
@@ -11,20 +12,14 @@ before_action :redirect_cancel, only: [:update]
   end
 
   def create
-    if !User.find_by(name: params[:user][:name])
-    # if !User.exists?(['name LIKE ?', "%#{params[:user][:name]}%"])
-      @user = User.create!(create_params)
-      if @user
-        session[:user_id] = @user.id
-        redirect_back(fallback_location: @user)
-        flash[:notice] = I18n.t("messages.logged_in_as") + " #{@user.name}!"
-      else
-        redirect_back(fallback_location: root_url)
-        flash[:alert] = I18n.t("messages.sign_up_failed")
-      end
+    @user = User.new(create_params)
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_back(fallback_location: @user)
+      flash[:notice] = I18n.t("messages.logged_in_as") + " #{@user.name}!"
     else
       redirect_back(fallback_location: root_url)
-      flash[:alert] = (I18n.t("messages.sign_up_failed") + ". " + I18n.t("messages.user_exists"))
+      flash[:alert] = (I18n.t("messages.sign_up_failed") + ". " + I18n.t("messages.validate_input"))
     end
   end
 
@@ -33,9 +28,7 @@ before_action :redirect_cancel, only: [:update]
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.update!(update_params)
-    if @user.save
+    if @user.update_attributes(update_params)
       redirect_to user_path(@user), notice: I18n.t("messages.profile_updated")
     else
       render :edit
@@ -51,6 +44,10 @@ before_action :redirect_cancel, only: [:update]
   end
 
   private
+
+  def find_user
+    @user = User.find(params[:id])
+  end
 
   def create_params
     params.require(:user).permit(:name, :password, :password_confirmation)

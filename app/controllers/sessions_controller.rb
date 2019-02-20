@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
       end
 
     else
-      redirect_to request.referer, alert: I18n.t("messages.login_failed")
+      redirect_to request.referer, alert: (I18n.t("messages.login_failed") + ". " + I18n.t("messages.validate_input"))
     end
   end
 

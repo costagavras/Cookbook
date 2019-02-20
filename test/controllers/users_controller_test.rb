@@ -38,11 +38,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should update user" do
-    patch user_url(@user), params: {user: {name: "Giorgio",
-    password: "123", password_confirmation: "123"}}
-  end
-
   test "should delete user" do
     assert_difference("User.count", -1) do
       delete user_url(@user)

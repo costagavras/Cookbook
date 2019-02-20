@@ -64,7 +64,9 @@ en:
     login_failed: "Login failed"
     logged_out: "Logged out"
     sign_up_failed: "Sign up failed"
+    validate_input: "Please, validate your input"
     profile_updated: "Profile successfully updated"
+    profile_not_updated: "Profile could not be updated"
     sure_to_delete_recipe: "Are you sure you want to delete this recipe?"
     user_exists: "The username already exists!"
 

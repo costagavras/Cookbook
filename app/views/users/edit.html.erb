@@ -7,14 +7,14 @@
 </div>
 
 <div class="error_css">
-<%  if @user.errors.any? %>
-  <h2><%= t("user.errors")%>:</h2>
-  <ul>
-      <%  @user.errors.full_messages.each do |message| %>
+  <% if @user.errors.any? %>
+    <h2><%= t("user.errors")%>:</h2>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
         <li> <%= message %> </li>
       <% end  %>
-  </ul>
-<% end %>
+    </ul>
+  <% end %>
 </div>
 
   <div class="field">
