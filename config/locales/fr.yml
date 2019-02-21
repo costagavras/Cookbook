@@ -64,7 +64,9 @@ fr:
     login_failed: "Connéxion faillie"
     logged_out: "Déconnecté"
     sign_up_failed: "Inscription faillie"
+    validate_input: "SVP, validez les données"
     profile_updated: "Profil mis à jour"
+    profile_not_updated: "La mise à jour dj profil a échoué"
     sure_to_delete_recipe: "Êtes-vous sûr de vouloir supprimer cette recette?"
     user_exists: "Cet'usager existe déjà!"
 
