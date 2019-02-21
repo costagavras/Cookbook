@@ -28,6 +28,14 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     get edit_recipe_path(@recipe)
     assert_response :success
   end
+  
+  test "should successfully delete recipe" do
+    get recipe_path(@recipe)
+    assert_difference("Recipe.count", -1) do
+      delete recipe_url(@recipe)
+    end
+    assert_redirected_to recipes_url(locale: :en)
+  end
 
   # test "should create recipe" do
   #   assert_difference("Recipe.count") do
