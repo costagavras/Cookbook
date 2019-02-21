@@ -19,4 +19,22 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "should show recipes" do
+    get recipes_path(@user)
+    assert_response :success
+  end
+
+  test "should show edit" do
+    get edit_recipe_path(@recipe)
+    assert_response :success
+  end
+
+  # test "should create recipe" do
+  #   assert_difference("Recipe.count") do
+  #     post recipes_path, params: {recipe: {name: @recipe.name, prep_time: @recipe.prep_time, ingredients: @recipe.ingredients,
+  #     directions: @recipe.directions, servings: @recipe.servings, visits: @recipe.visits, user: @recipe.user},
+  #     category: @recipe.category, complexity: @recipe.complexity}
+  #   end
+  # end
+
 end

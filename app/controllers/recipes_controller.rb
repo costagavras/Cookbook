@@ -90,7 +90,7 @@ class RecipesController < ApplicationController
       if params[:recipe][:screencapture_name] == "" #this param is a string
         screencapture_name = "Screencapture"
       else
-        screencapture_name = params[:recipe][:screencapture_name].gsub(" ", "_")
+        screencapture_name = params[:recipe][:screencapture_name]
       end
       #Set up path to save the captured image
       Dir.chdir(Rails.root.join("#{Rails.root}","app","assets", "images"))
