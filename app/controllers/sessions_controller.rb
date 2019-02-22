@@ -13,9 +13,9 @@ class SessionsController < ApplicationController
       if flash[:previous_page] && flash[:previous_page] != :login
         redirect_to flash[:previous_page], info: I18n.t("messages.logged_in")
       else
-        redirect_to request.referer, info: I18n.t("messages.logged_in_as") + " #{@user.name}!"
+        redirect_back(fallback_location: root_url)
+        flash[:info] = I18n.t("messages.logged_in_as") + " #{@user.name}!"
       end
-
     else
       redirect_to request.referer, alert: (I18n.t("messages.login_failed") + ". " + I18n.t("messages.validate_input"))
     end
