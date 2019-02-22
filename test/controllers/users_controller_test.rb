@@ -68,4 +68,17 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url(locale: :en)
   end
 
+  test "should signup and log out" do
+    user = create(:user)
+    assert_difference("User.count") do
+      post users_path, params: {user: {name: "Ostrica",
+      password: user.password, password_confirmation: user.password_confirmation}}
+      assert user.valid?
+    end
+    assert_equal "Logged in as Ostrica!", flash[:notice]
+    delete session_path(user)
+    assert_redirected_to root_url(locale: :en)
+    assert_equal "Logged out", flash[:info]
+  end
+
 end
