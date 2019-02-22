@@ -8,7 +8,6 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new
-    # @hunt = Hunt.find(params[:hunt_id])
     @comment.description = params[:comment][:description]
     @comment.user = current_user
     @comment.recipe = Recipe.find(params[:recipe_id])

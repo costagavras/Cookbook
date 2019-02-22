@@ -39,4 +39,19 @@ class CommentTest < ActiveSupport::TestCase
     assert comment.valid?
   end
 
+  test "comment should have user" do
+    comment = build(:comment, user: nil)
+    refute comment.valid?
+  end
+
+  test "comment should have recipe" do
+    comment = build(:comment, recipe: nil)
+    refute comment.valid?
+  end
+
+  test "comment should have description" do
+    comment = build(:comment, description: "")
+    refute comment.valid?
+  end
+
 end
