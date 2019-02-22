@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :category do
-    name {"tourism"}
+    name "desserts"
   end
 end

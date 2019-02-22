@@ -1,10 +1,13 @@
 FactoryBot.define do
-  factory :hunt do
+  factory :recipe do
     name {"Here we are"}
-    difficulty_level {1}
-    hunt_date { DateTime.now.to_date + 10.days }
-    category_id {6}
-    hunt_time { Time.now + 10.days }
-    max_participants {20}
+    prep_time 20
+    user_id 1
+    category_id 1
+    complexity 1
+    ingredients "a lot"
+    directions "do this and that"
+    servings 3
+    visits 1
   end
 end
