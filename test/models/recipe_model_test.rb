@@ -32,7 +32,12 @@ class RecipeTest < ActiveSupport::TestCase
     refute @recipe.valid?
   end
 
+  #factories
 
+  test "factory recipe must be valid" do
+    recipe = build(:recipe)
+    assert recipe.valid?
+  end
 
 
 end

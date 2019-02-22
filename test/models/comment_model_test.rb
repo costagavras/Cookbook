@@ -32,4 +32,11 @@ class CommentTest < ActiveSupport::TestCase
     end
   end
 
+  #factories
+
+  test "factory comment must be valid" do
+    comment = build(:comment)
+    assert comment.valid?
+  end
+
 end

@@ -41,5 +41,29 @@ class UserTest < ActiveSupport::TestCase
     assert_not duplicate_user.valid?
   end
 
+# factories
+
+  test "factory user must be valid" do
+    user = build(:user)
+    assert user.valid?
+  end
+
+  test "user is invalid without the first name" do
+    user = build(:user)
+    user.name = nil
+    refute user.valid?
+  end
+
+  test "user is invalid if password confirmation doesn't match" do
+    user = build(:user)
+    user.password_confirmation = "234"
+    refute user.valid?
+  end
+
+  test "user should be unique" do
+    user = create(:user)
+    user2 = build(:user)
+    refute user2.valid?
+  end
 
 end
