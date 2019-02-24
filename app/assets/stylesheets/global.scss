@@ -23,9 +23,9 @@ body {
 
 #switch_lang {
   position: relative;
-  top: 10rem;
+  top: 5rem;
   right: 2rem;
-  padding: 5rem;
+  padding: 1rem 5rem;
   font-size: 3rem;
   a{
     padding: 0.5rem;
@@ -45,7 +45,7 @@ body {
   padding: 1rem;
   text-align: left;
   position: relative;
-  top: 2rem;
+  top: -2rem;
   left: 2rem;
   font-size: 1rem;
 }
@@ -57,7 +57,8 @@ a {
 
 .navigation_bar {
   // background-color: rgba(255, 255, 255, 0.2);
-  // // position: absolute;
+  position: relative;
+  top: -5rem;
 }
 
 .open_button:hover {
@@ -125,7 +126,6 @@ a {
 }
 
 .nav_1 {
-  padding-top: 40px;
   height: 200px;
   text-align: center;
   .top_top {
