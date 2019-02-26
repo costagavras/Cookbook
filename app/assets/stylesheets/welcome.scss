@@ -21,15 +21,20 @@
   // grid-column: 1/5;
   // grid-row: 2/3;
   // position: relative;
-  margin: 2% 1% 2% 1%;
+  margin: 2%;
     .image {
       display: inline-block;
       width: 25%;
-      height:  450px;
-      @media screen and (max-width: 1050px) {
-        display: block;
+      height:  400px;
+      @media screen and (max-width: 1250px) {
+        margin: auto;
+        width: 35%;
+        height:  250px;
+      }
+      @media screen and (max-width: 750px) {
         margin: auto;
         width: 50%;
+        height:  150px;
       }
       img {
         width: 100%;
