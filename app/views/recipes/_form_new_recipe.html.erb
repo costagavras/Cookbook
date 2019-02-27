@@ -65,29 +65,32 @@
   </fieldset>
 
   <fieldset><legend><%= t("form.web_grabbed") %></legend>
-    <div class="load_image_menu">
-      <div class="upload_image">
-        <%=f.label :screencapture, t("form.input_URL") %>
-        <%=f.url_field :screencapture, value: nil %>
+    <% if recipe.screencapture.attached? %>
+      <div class="screencapture_menu">
+        <div class="show_image">
+          <h3><%= t("form.screencapture_name") %>: &nbsp;<%= recipe.screencapture.filename.base %></h3>
+        </div>
+        <div class="remove_image">
+          <%=f.label :remove_screencapture, t("form.remove_screencapture") %>
+          <%= f.check_box :remove_screencapture %>
+        </div>
+        <div class="remove_image">
+          <%#=f.label :remove_screencapture_saved_locally, t("form.remove_screencapture_from_drive") %>
+          <%#= f.check_box :remove_screencapture_saved_locally %>
+        </div>
       </div>
-      <div class="image_name">
-        <%=f.label :screencapture_name, t("form.screencapture_name") %>
-        <%= f.text_field :screencapture_name, value: nil, size: 30, maxlength: 100 %>
+    <%else%>
+      <div class="load_image_menu">
+        <div class="upload_image">
+          <%=f.label :screencapture, t("form.input_URL") %>
+          <%=f.url_field :screencapture, value: nil %>
+        </div>
+        <div class="image_name">
+          <%=f.label :screencapture_name, t("form.screencapture_name") %>
+          <%= f.text_field :screencapture_name, value: nil, size: 30, maxlength: 100 %>
+        </div>
       </div>
-      <div class="show_image">
-        <% if recipe.screencapture.attached? %>
-            <h3><%= t("form.screencapture_name") %> &nbsp;<%= recipe.screencapture.filename.base %></h3>
-        <%end%>
-      </div>
-      <div class="remove_image">
-        <%=f.label :remove_screencapture, t("form.remove_screencapture") %>
-        <%= f.check_box :remove_screencapture %>
-      </div>
-      <div class="remove_image">
-        <%=f.label :remove_screencapture_saved_locally, t("form.remove_screencapture_from_drive") %>
-        <%= f.check_box :remove_screencapture_saved_locally %>
-      </div>
-    </div>
+    <%end%>
   </fieldset>
 
   <h3> <%= f.submit t("form.edit"), onclick: "show_loader();" %></h3>

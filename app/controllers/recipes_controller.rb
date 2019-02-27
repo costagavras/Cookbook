@@ -33,7 +33,7 @@ class RecipesController < ApplicationController
     @recipe.directions = params[:recipe][:directions]
 
     if params[:recipe][:photos] #this param is an object
-      @recip.photos.attach(params[:recipe][:photos])
+      @recipe.photos.attach(params[:recipe][:photos])
     end
 
     if params[:recipe][:screencapture] != "" #this param is a string
@@ -46,7 +46,7 @@ class RecipesController < ApplicationController
       Dir.chdir(Rails.root.join("#{Rails.root}","app","assets", "images"))
       #run phantomjs
       system "phantomjs #{PATH_TO_PHANTOM_SCRIPT} #{params["recipe"]["screencapture"]} #{screencapture_name}.png"
-      #attaching file from app/assets/images
+      #attaching file from app/assets/images/screencapture_name.png
       @recipe.screencapture.attach(
         io: File.open(Rails.root.join("#{Rails.root}","app","assets", "images", "#{screencapture_name}.png")),
         filename: "#{screencapture_name}.png",
@@ -90,26 +90,29 @@ class RecipesController < ApplicationController
       if params[:recipe][:screencapture_name] == "" #this param is a string
         screencapture_name = "Screencapture"
       else
-        screencapture_name = params[:recipe][:screencapture_name]
+        screencapture_name = params[:recipe][:screencapture_name].gsub(" ", "_")
       end
       #Set up path to save the captured image
       Dir.chdir(Rails.root.join("#{Rails.root}","app","assets", "images"))
       #run phantomjs
       system "phantomjs #{PATH_TO_PHANTOM_SCRIPT} #{params["recipe"]["screencapture"]} #{screencapture_name}.png"
-      #attaching file from app/assets/images
+      #attaching file from app/assets/images/screencapture_name.png
       @recipe.screencapture.attach(
         io: File.open(Rails.root.join("#{Rails.root}","app","assets", "images", "#{screencapture_name}.png")),
         filename: "#{screencapture_name}.png",
         content_type: "image/png")
+      if @recipe.screencapture.attached?
+        File.delete(Rails.root.join("#{Rails.root}","app","assets", "images", "#{@recipe.screencapture.filename.base}.png"))
+      end
     end
 
       #webshot alternative, much slower and height needs to be set explicitly
       # @ws = Webshot::Screenshot.instance
       # @ws.capture "#{params["recipe"]["screencapture"]}", "#{params["recipe"]["screencapture_name"]}.png", width: 1024, height: 30000
 
-    if params[:recipe][:remove_screencapture_saved_locally] == "1"
-      File.delete(Rails.root.join("#{Rails.root}","app","assets", "images", "#{@recipe.screencapture.filename.base}.png"))
-    end
+    # if params[:recipe][:remove_screencapture_saved_locally] == "1"
+    #   File.delete(Rails.root.join("#{Rails.root}","app","assets", "images", "#{@recipe.screencapture.filename.base}.png"))
+    # end
 
     if params[:recipe][:remove_screencapture] == "1"
       @recipe.screencapture.purge_later

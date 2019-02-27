@@ -130,6 +130,7 @@
     }
     label {
       padding-right: 1rem;
+      font-size: 1.5rem;
     }
   }
   .servings_field, .prep_time_field{
@@ -153,12 +154,16 @@
     font-size: 20px;
     margin-bottom: 3%;
   }
-  .load_image_menu {
+  .load_image_menu, .screencapture_menu {
     padding: 2%;
     display: grid;
     text-align: left;
     .upload_image, .show_image, .remove_image, .image_name {
       padding: 1%;
+      h3 {
+        font-size: 1.5rem;
+        padding-left: 2%;
+      }
       label {
         font-size: 1.5rem;
         width: fit-content;
