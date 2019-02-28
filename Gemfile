@@ -5,7 +5,7 @@ ruby '2.5.1'
 
 gem 'pry'
 gem 'pry-rails'
-gem 'bundler', '~> 1.16.2'
+# gem 'bundler', '~> 2.0.1'
 #I18n gem
 gem 'rails-i18n'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -49,7 +49,8 @@ gem 'webshot'
 # gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bootsnap', '~> 1.4', '>= 1.4.1'
+# gem 'bootsnap', '>= 1.1.0', require: false
 gem 'faker'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
