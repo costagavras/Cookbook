@@ -8,6 +8,7 @@ if(document.querySelector(".log_in")){
 
   login.addEventListener('click', function(event){
     event.preventDefault();
+    alert("Hello");
     log_in_form.style.display = "block";
     sign_up_form.style.display = "none";
   });
