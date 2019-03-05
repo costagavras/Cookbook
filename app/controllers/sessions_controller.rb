@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
     @user = User.find_by(name: params[:name])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      if flash[:previous_page] && flash[:previous_page] != :login
-        redirect_to flash[:previous_page], info: I18n.t("messages.logged_in")
+      if request.referer && request.referer != :login
+        redirect_to request.referer, info: I18n.t("messages.logged_in")
       else
         redirect_back(fallback_location: root_url)
         flash[:info] = I18n.t("messages.logged_in_as") + " #{@user.name}!"
