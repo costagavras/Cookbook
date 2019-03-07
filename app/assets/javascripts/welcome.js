@@ -10,6 +10,14 @@
 // 	document.cookie = name+"="+value+expires+"; path=/";
 // }
 
+/*read lang cookie and translate categories labels on link click*/
+
+document.addEventListener("DOMContentLoaded", function(){
+  var lang = readCookie("lang_locale");
+	// debugger;
+  translateCategories(lang);
+});
+
 function readCookie(name) {
 	var nameEQ = name + "=";
 	var ca = document.cookie.split(';');
@@ -19,19 +27,11 @@ function readCookie(name) {
 		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
 	}
 	return null;
-}
+};
 //
 // function eraseCookie(name) {
 // 	createCookie(name,"",-1);
 // }
-
-/*read lang cookie and translate categories labels on link click*/
-
-document.addEventListener("DOMContentLoaded", function(){
-  var lang = readCookie("lang_locale");
-	// debugger;
-  translateCategories(lang);
-});
 
 function translateCategories(lang) {
     var arEnLang = ["antipasti", "soups", "main course", "sides", "desserts"];
@@ -71,4 +71,4 @@ function translateCategories(lang) {
 
       arCategories[i].innerText = arNewCat[itemPos].toUpperCase();
     }
-}
+};

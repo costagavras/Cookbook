@@ -16,8 +16,6 @@ document.addEventListener('DOMContentLoaded', function(){
     close.addEventListener('click', function(){
       event.preventDefault();
       sign_up_form.style.display = "none";
-
-
     });
   }
 });

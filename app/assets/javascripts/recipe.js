@@ -7,14 +7,14 @@ document.addEventListener("DOMContentLoaded", function(){
 function show_loader(){
   var loader = document.querySelector(".loader");
   loader.style.visibility = "visible";
-}
+};
 
 function reset_filter(){
   var filter_number_fields = document.querySelectorAll(".filter_number_field");
   for (var i = 0; i < filter_number_fields.length; i++){
     filter_number_fields[i].value = "";
   }
-}
+};
 
 document.addEventListener("DOMContentLoaded", function return_to_filter(){
   var filter_button = document.querySelector(".filter_button");
@@ -28,7 +28,7 @@ function horizontal_bar() {
   var height = photoScroll.scrollHeight - photoScroll.clientHeight; //scrollHeight less scrolled distance, always decreasing
   var scrolled = (photoScrollTop / height) * 100;
   document.getElementById("myBar").style.width = scrolled + "%";
-}
+};
 
 function show_comments() {
   var comments = document.querySelector(".comment_section");
@@ -39,6 +39,6 @@ function show_comments() {
   }
   else {
     comments.style.visibility = "visible";
-  };
+  }
   event.preventDefault();
-}
+};
