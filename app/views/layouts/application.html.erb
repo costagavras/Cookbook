@@ -8,6 +8,9 @@
 
     <link href="https://fonts.googleapis.com/css?family=Ruluko" rel="stylesheet">
 
+    <%= stylesheet_link_tag    'application' %>
+    <%= javascript_include_tag 'application' %>
+
     <% %w(192 384).each do |s| %>
       <%= favicon_link_tag "android-chrome-#{s}x#{s}.png", rel: 'android-chrome-icon', type: 'image/png', sizes: "#{s}x#{s}" %>
     <% end %>
