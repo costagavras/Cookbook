@@ -1,5 +1,4 @@
-document.addEventListener("readystatechange", function(){
-  if (document.readyState === "complete") {
+document.addEventListener('DOMContentLoaded', function(){
     if(document.querySelector(".log_in")){
       var sign_up_form = document.querySelector(".sign_up_form")
       var login = document.querySelector(".log_in");
@@ -19,5 +18,4 @@ document.addEventListener("readystatechange", function(){
 
       });
     }
-  }
 });

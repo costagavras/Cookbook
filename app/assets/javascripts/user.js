@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     signin.addEventListener('click', function(event){
       event.preventDefault();
-      window.alert("Hello");
+      alert("Hello");
       sign_up_form.style.display = "block";
       log_in_form.style.display = "none";
     });

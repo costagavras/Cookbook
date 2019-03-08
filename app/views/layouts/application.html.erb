@@ -65,8 +65,8 @@
             <% else %>
               <div class="logged_out">
                 <% if !request.path_info.include?("search") %>
-                  <li class="sign_in"><%= link_to t("homepage.sign_up"), new_user_path, :class => "signin_button" %></li>
-                  <li class="log_in"><%= link_to t("homepage.log_in"), new_session_path, :class => "login_button" %></li>
+                  <li class="sign_in"><%= submit_tag(t("homepage.sign_up"), name: nil, class: "signin_button", onclick: "show_sign_in();") %></li>
+                  <li class="log_in"><%= submit_tag(t("homepage.log_in"), name: nil, class: "login_button", onclick: "show_log_in();") %></li>
                 <% end %>
               </div>
             <% end %>
@@ -121,6 +121,8 @@
         </div>
       <% end %>
     </div>
+    <!-- <script src="app/assets/javascripts/user.js"></script>
+    <script src="app/assets/javascripts/session.js"></script> -->
     </main>
     <footer>
       <div class="info_nav">
