@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function(){
+function show_sign_in(){
 
   if(document.querySelector(".sign_in")){
     var signin = document.querySelector(".sign_in");
@@ -17,5 +17,6 @@ document.addEventListener('DOMContentLoaded', function(){
       event.preventDefault();
       sign_up_form.style.display = "none";
     });
-  }
-});
+  };
+  
+}
