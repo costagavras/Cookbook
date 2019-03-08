@@ -136,28 +136,28 @@
 }
 
 #anti {
-  background-image: url("antipasto.jpg");
+  background-image: image-url("antipasto.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 #soup {
-  background-image: url("soup.jpg");
+  background-image: url(image_path("soup.jpg"));
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 #main {
-  background-image: url("lasagne.jpg");
+  background-image: url(asset-path("lasagne.jpg"));
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 #side {
-  background-image: url("contorni.jpg");
+  background-image: asset-data-url("contorni.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -165,7 +165,7 @@
 }
 
 #dess {
-  background-image: url("tiramisu_cat.jpg");
+  background-image: image-url("tiramisu_cat.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

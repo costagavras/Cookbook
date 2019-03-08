@@ -8,7 +8,6 @@ function show_sign_in(){
 
     signin.addEventListener('click', function(event){
       event.preventDefault();
-      alert("Hello");
       sign_up_form.style.display = "block";
       log_in_form.style.display = "none";
     });
@@ -18,5 +17,5 @@ function show_sign_in(){
       sign_up_form.style.display = "none";
     });
   };
-  
+
 }
