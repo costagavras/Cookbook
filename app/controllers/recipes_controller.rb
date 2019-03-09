@@ -6,8 +6,7 @@ class RecipesController < ApplicationController
   before_action :set_up_user_recipes, only: [:index, :filter]
   before_action :redirect_cancel, only: [:create, :update]
 
-  # PATH_TO_PHANTOM_SCRIPT = Rails.root.join('app', 'assets', 'javascripts', 'screencapture.js')
-  PATH_TO_PHANTOM_SCRIPT = Rails.root.join('app', helper.asset_path("application.js"))
+  PATH_TO_PHANTOM_SCRIPT = Rails.root.join('app', 'assets', 'javascripts', 'screencapture.js')
 
   def index
   end
