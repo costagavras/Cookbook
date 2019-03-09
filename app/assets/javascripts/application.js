@@ -14,4 +14,3 @@
 //= require activestorage
 //= require welcome
 //= require_tree .
-//= require turbolinks

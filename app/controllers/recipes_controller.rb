@@ -7,7 +7,7 @@ class RecipesController < ApplicationController
   before_action :redirect_cancel, only: [:create, :update]
 
   # PATH_TO_PHANTOM_SCRIPT = Rails.root.join('app', 'assets', 'javascripts', 'screencapture.js')
-  PATH_TO_PHANTOM_SCRIPT = Rails.root.join('assets', 'javascripts', 'screencapture.js')
+  PATH_TO_PHANTOM_SCRIPT = Rails.root.join('app', helper.asset_path("application.js"))
 
   def index
   end
@@ -44,14 +44,12 @@ class RecipesController < ApplicationController
         screencapture_name = params[:recipe][:screencapture_name].gsub(" ", "_")
       end
       #Set up path to save the captured image
-      # Dir.chdir(Rails.root.join("#{Rails.root}","app","assets", "images"))
-      Dir.chdir(Rails.root.join("assets", "images"))
+      Dir.chdir(Rails.root.join("#{Rails.root}","app","assets", "images"))
       #run phantomjs
       system "phantomjs #{PATH_TO_PHANTOM_SCRIPT} #{params["recipe"]["screencapture"]} #{screencapture_name}.png"
       #attaching file from app/assets/images/screencapture_name.png
       @recipe.screencapture.attach(
-        # io: File.open(Rails.root.join("#{Rails.root}","app","assets", "images", "#{screencapture_name}.png")),
-        io: File.open(Rails.root.join("assets", "images", "#{screencapture_name}.png")),
+        io: File.open(Rails.root.join("#{Rails.root}","app","assets", "images", "#{screencapture_name}.png")),
         filename: "#{screencapture_name}.png",
         content_type: "image/png")
     end
@@ -97,18 +95,18 @@ class RecipesController < ApplicationController
       end
       #Set up path to save the captured image
       # Dir.chdir(Rails.root.join("#{Rails.root}","app","assets", "images"))
-      Dir.chdir(Rails.root.join("assets", "images"))
+      Dir.chdir(Rails.root.join("#{Rails.root}", "assets", "images"))
       #run phantomjs
       system "phantomjs #{PATH_TO_PHANTOM_SCRIPT} #{params["recipe"]["screencapture"]} #{screencapture_name}.png"
       #attaching file from app/assets/images/screencapture_name.png
       @recipe.screencapture.attach(
         # io: File.open(Rails.root.join("#{Rails.root}","app","assets", "images", "#{screencapture_name}.png")),
-        io: File.open(Rails.root.join("assets", "images", "#{screencapture_name}.png")),
+        io: File.open(Rails.root.join("#{Rails.root}", "assets", "images", "#{screencapture_name}.png")),
         filename: "#{screencapture_name}.png",
         content_type: "image/png")
       if @recipe.screencapture.attached?
         # File.delete(Rails.root.join("#{Rails.root}","app","assets", "images", "#{@recipe.screencapture.filename.base}.png"))
-        File.delete(Rails.root.join("assets", "images", "#{@recipe.screencapture.filename.base}.png"))
+        File.delete(Rails.root.join("#{Rails.root}", "assets", "images", "#{@recipe.screencapture.filename.base}.png"))
       end
     end
 
