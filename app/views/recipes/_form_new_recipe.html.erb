@@ -44,54 +44,54 @@
   <h3> <%= f.label :directions, t("recipe.directions") %> </h3>
     <%= f.text_area :directions %>
 
-  <fieldset><legend><%= t("form.photo_upload") %></legend>
-    <div class="load_image_menu">
-      <div class="upload_image">
-        <%=f.label :photos, t("form.upload_photo"), accept: "application/pdf,image/png,image/jpg,image/jpeg" %>
-        <%=f.file_field :photos, multiple: true %>
-      </div>
-      <div class="show_image">
-        <% if recipe.photos.attached? %>
-          <%recipe.photos.each do |photo|%>
-            <h3><%= t("form.photo_name") %> &nbsp;<%= photo.filename %></h3>
-          <%end%>
-        <%end%>
-      </div>
-      <div class="remove_image">
-        <%=f.label :remove_photos, t("form.remove_photos") %>
-        <%= f.check_box :remove_photos %>
-      </div>
-    </div>
-  </fieldset>
-
-  <fieldset><legend><%= t("form.web_grabbed") %></legend>
-    <% if recipe.screencapture.attached? %>
-      <div class="screencapture_menu">
-        <div class="show_image">
-          <h3><%= t("form.screencapture_name") %>: &nbsp;<%= recipe.screencapture.filename.base %></h3>
-        </div>
-        <div class="remove_image">
-          <%=f.label :remove_screencapture, t("form.remove_screencapture") %>
-          <%= f.check_box :remove_screencapture %>
-        </div>
-        <div class="remove_image">
-          <%#=f.label :remove_screencapture_saved_locally, t("form.remove_screencapture_from_drive") %>
-          <%#= f.check_box :remove_screencapture_saved_locally %>
-        </div>
-      </div>
-    <%else%>
+  <% if attachment == "photos" || attachment == nil %>
+    <fieldset><legend><%= t("form.photo_upload") %></legend>
       <div class="load_image_menu">
         <div class="upload_image">
-          <%=f.label :screencapture, t("form.input_URL") %>
-          <%=f.url_field :screencapture, value: nil %>
+          <%=f.label :photos, t("form.upload_photo"), accept: "application/pdf,image/png,image/jpg,image/jpeg" %>
+          <%=f.file_field :photos, multiple: true %>
         </div>
-        <div class="image_name">
-          <%=f.label :screencapture_name, t("form.screencapture_name") %>
-          <%= f.text_field :screencapture_name, value: nil, size: 30, maxlength: 100 %>
+        <div class="show_image">
+          <% if recipe.photos.attached? %>
+            <%recipe.photos.each do |photo|%>
+              <h3><%= t("form.photo_name") %> &nbsp;<%= photo.filename %></h3>
+            <%end%>
+            <div class="remove_image">
+              <%=f.label :remove_photos, t("form.remove_photos") %>
+              <%= f.check_box :remove_photos %>
+            </div>
+          <%end%>
         </div>
       </div>
-    <%end%>
-  </fieldset>
+    </fieldset>
+  <%end%>
+
+  <% if attachment == "screencapture" || attachment == nil %>
+    <fieldset><legend><%= t("form.web_grabbed") %></legend>
+      <% if recipe.screencapture.attached? %>
+        <div class="screencapture_menu">
+          <div class="show_image">
+            <h3><%= t("form.screencapture_name") %>: &nbsp;<%= recipe.screencapture.filename.base %></h3>
+          </div>
+          <div class="remove_image">
+            <%=f.label :remove_screencapture, t("form.remove_screencapture") %>
+            <%= f.check_box :remove_screencapture %>
+          </div>
+        </div>
+      <%else%>
+        <div class="load_image_menu">
+          <div class="upload_image">
+            <%=f.label :screencapture, t("form.input_URL") %>
+            <%=f.url_field :screencapture, value: nil %>
+          </div>
+          <div class="image_name">
+            <%=f.label :screencapture_name, t("form.screencapture_name") %>
+            <%= f.text_field :screencapture_name, value: nil, size: 30, maxlength: 100 %>
+          </div>
+        </div>
+      <%end%>
+    </fieldset>
+  <%end%>
 
   <h3> <%= f.submit t("form.edit"), onclick: "show_loader();" %></h3>
 

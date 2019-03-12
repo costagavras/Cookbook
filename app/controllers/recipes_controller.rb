@@ -6,12 +6,13 @@ class RecipesController < ApplicationController
   before_action :set_up_user_recipes, only: [:index, :filter]
   before_action :redirect_cancel, only: [:create, :update]
 
-  # PATH_TO_PHANTOM_SCRIPT = Rails.root.join("#{Rails.root}", 'app', 'assets', 'javascripts', 'screencapture.js')
   PATH_TO_PHANTOM_SCRIPT = Rails.root.join("#{Rails.root}", 'app', 'assets', 'javascripts', 'screencapture.js')
+
   def index
   end
 
   def new
+    @attachment = nil
   end
 
   def show
@@ -32,25 +33,31 @@ class RecipesController < ApplicationController
     @recipe.ingredients = params[:recipe][:ingredients]
     @recipe.directions = params[:recipe][:directions]
 
-    if params[:recipe][:photos] #this param is an object
+    if !@recipe.screencapture.attached? && params[:recipe][:photos] #this param is an object
       @recipe.photos.attach(params[:recipe][:photos])
     end
 
-    if params[:recipe][:screencapture] != "" #this param is a string
-      if params[:recipe][:screencapture_name] == "" #this param is a string
-        screencapture_name = "Screencapture"
-      else
-        screencapture_name = params[:recipe][:screencapture_name].gsub(" ", "_")
+    if !@recipe.screencapture.attached? && !@recipe.photos.attached?
+      if params[:recipe][:screencapture] != "" #this param is a string
+        if params[:recipe][:screencapture_name] == "" #this param is a string
+          screencapture_name = "Screencapture"
+        else
+          screencapture_name = params[:recipe][:screencapture_name].gsub(" ", "_")
+        end
+        #Set up path to save the captured image
+        Dir.chdir(Rails.root.join("#{Rails.root}","app","assets", "images"))
+        #run phantomjs and save it to asset pipeline
+        system "phantomjs #{PATH_TO_PHANTOM_SCRIPT} #{params["recipe"]["screencapture"]} #{screencapture_name}.png"
+        #attaching and sending image to Amazon storage from app/assets/images/screencapture_name.png
+        @recipe.screencapture.attach(
+          io: File.open(Rails.root.join("#{Rails.root}","app","assets", "images", "#{screencapture_name}.png")),
+          filename: "#{screencapture_name}.png",
+          content_type: "image/png")
+        if @recipe.screencapture.attached?
+          #deleting image from asset pipeline afterwards but keeping it in Amazon storage
+          File.delete(Rails.root.join("#{Rails.root}","app","assets", "images", "#{@recipe.screencapture.filename.base}.png"))
+        end
       end
-      #Set up path to save the captured image
-      Dir.chdir(Rails.root.join("#{Rails.root}","app","assets", "images"))
-      #run phantomjs
-      system "phantomjs #{PATH_TO_PHANTOM_SCRIPT} #{params["recipe"]["screencapture"]} #{screencapture_name}.png"
-      #attaching file from app/assets/images/screencapture_name.png
-      @recipe.screencapture.attach(
-        io: File.open(Rails.root.join("#{Rails.root}","app","assets", "images", "#{screencapture_name}.png")),
-        filename: "#{screencapture_name}.png",
-        content_type: "image/png")
     end
 
     if @recipe.save
@@ -65,6 +72,14 @@ class RecipesController < ApplicationController
 
   def edit
     @category = Category.find_by(id: params[:category_id])
+    if @recipe.photos.attached?
+      @attachment = "photos"
+    elsif @recipe.screencapture.attached?
+      @attachment = "screencapture"
+    else
+      @attachment = nil
+    end
+    puts @attachment
   end
 
   def update
@@ -78,45 +93,48 @@ class RecipesController < ApplicationController
     @recipe.ingredients = params[:recipe][:ingredients]
     @recipe.directions = params[:recipe][:directions]
 
-    if params[:recipe][:photos] #this param is an object
+    #if no screencapture attached and not photos attached
+    if !@recipe.screencapture.attached? && params[:recipe][:photos] #this param is an object
       @recipe.photos.attach(params[:recipe][:photos])
     end
 
-    if params[:recipe][:remove_photos] == "1"
+    if !@recipe.screencapture.attached? && @recipe.photos.attached? && params[:recipe][:remove_photos] == "1"
       @recipe.photos.purge_later
+      @purged = true
     end
 
-    if params[:recipe][:remove_screencapture] != "1" && params[:recipe][:screencapture] != "" #this param is a string
-      if params[:recipe][:screencapture_name] == "" #this param is a string
-        screencapture_name = "Screencapture"
-      else
-        screencapture_name = params[:recipe][:screencapture_name].gsub(" ", "_")
+
+    #if not removing screencapture (= attaching)
+    if !@recipe.screencapture.attached? && !@recipe.photos.attached? && !@purged && params[:recipe][:remove_screencapture] != "1"
+      #Check if URL to attach is specified and to on with producing screencapture
+      if params[:recipe][:screencapture] != "" #this param is a string
+        if params[:recipe][:screencapture_name] == "" #this param is a string
+          screencapture_name = "Screencapture"
+        else
+          screencapture_name = params[:recipe][:screencapture_name].gsub(" ", "_")
+        end
+        #Set up path to save the captured image
+        Dir.chdir(Rails.root.join("#{Rails.root}","app","assets", "images"))
+        #run phantomjs and save it to asset pipeline
+        system "phantomjs #{PATH_TO_PHANTOM_SCRIPT} #{params["recipe"]["screencapture"]} #{screencapture_name}.png"
+        #attaching and sending image to Amazon storage from app/assets/images/screencapture_name.png
+        @recipe.screencapture.attach(
+          io: File.open(Rails.root.join("#{Rails.root}","app","assets", "images", "#{screencapture_name}.png")),
+          filename: "#{screencapture_name}.png",
+          content_type: "image/png")
+        if @recipe.screencapture.attached?
+          #deleting image from asset pipeline afterwards but keeping it in Amazon storage
+          File.delete(Rails.root.join("#{Rails.root}","app","assets", "images", "#{@recipe.screencapture.filename.base}.png"))
+        end
       end
-      #Set up path to save the captured image
-      Dir.chdir(Rails.root.join("#{Rails.root}","app","assets", "images"))
-      #run phantomjs
-      system "phantomjs #{PATH_TO_PHANTOM_SCRIPT} #{params["recipe"]["screencapture"]} #{screencapture_name}.png"
-      #attaching file from app/assets/images/screencapture_name.png
-      @recipe.screencapture.attach(
-        io: File.open(Rails.root.join("#{Rails.root}","app","assets", "images", "#{screencapture_name}.png")),
-        filename: "#{screencapture_name}.png",
-        content_type: "image/png")
-      if @recipe.screencapture.attached?
-        File.delete(Rails.root.join("#{Rails.root}","app","assets", "images", "#{@recipe.screencapture.filename.base}.png"))
-      end
+      #removing screencapture
+    elsif @recipe.screencapture.attached? && !@recipe.photos.attached? && params[:recipe][:remove_screencapture] == "1"
+      @recipe.screencapture.purge_later
     end
 
       #webshot alternative, much slower and height needs to be set explicitly
       # @ws = Webshot::Screenshot.instance
       # @ws.capture "#{params["recipe"]["screencapture"]}", "#{params["recipe"]["screencapture_name"]}.png", width: 1024, height: 30000
-
-    # if params[:recipe][:remove_screencapture_saved_locally] == "1"
-    #   File.delete(Rails.root.join("#{Rails.root}","app","assets", "images", "#{@recipe.screencapture.filename.base}.png"))
-    # end
-
-    if params[:recipe][:remove_screencapture] == "1"
-      @recipe.screencapture.purge_later
-    end
 
     if @recipe.save
       redirect_to recipe_path(@recipe), info: I18n.t("recipe.updated")
