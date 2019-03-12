@@ -11,7 +11,6 @@
 // }
 
 /*read lang cookie and translate categories labels on link click*/
-
 document.addEventListener("DOMContentLoaded", function(){
   var lang = readCookie("lang_locale");
 	// debugger;
