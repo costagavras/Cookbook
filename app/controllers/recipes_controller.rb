@@ -7,7 +7,7 @@ class RecipesController < ApplicationController
   before_action :redirect_cancel, only: [:create, :update]
 
   # PATH_TO_PHANTOM_SCRIPT = Rails.root.join("#{Rails.root}", 'app', 'assets', 'javascripts', 'screencapture.js')
-  PATH_TO_PHANTOM_SCRIPT = Rails.root.join("#{Rails.root}", 'app', 'assets', 'javascripts', 'application.js')
+  PATH_TO_PHANTOM_SCRIPT = Rails.root.join("#{Rails.root}", 'app', 'assets', 'javascripts', 'screencapture.js')
   def index
   end
 
@@ -86,7 +86,7 @@ class RecipesController < ApplicationController
       @recipe.photos.purge_later
     end
 
-    if params[:recipe][:screencapture] != "" #this param is a string
+    if params[:recipe][:remove_screencapture] != "1" && params[:recipe][:screencapture] != "" #this param is a string
       if params[:recipe][:screencapture_name] == "" #this param is a string
         screencapture_name = "Screencapture"
       else
