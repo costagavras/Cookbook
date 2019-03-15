@@ -36,7 +36,7 @@
       <% if @trace && @trace.any? %>
         <h3>Surf History</h3>
           <% @trace[0..2].each do |trace| %>
-            <li><%= link_to trace, trace %></li>
+            <ul><%= link_to trace, trace %></ul>
           <% end %>
       <% end %>
     </div>

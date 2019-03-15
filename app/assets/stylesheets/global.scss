@@ -50,6 +50,8 @@ body {
   top: -2rem;
   left: 2rem;
   font-size: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 a {
@@ -117,13 +119,19 @@ a {
 
   .sign_in, .log_in {
     margin: 25px;
-    padding: 20px;
   }
 
   .signin_button, .login_button{
     padding-right: 22px;
     padding-left: 22px;
-    font-size: 48px;
+    font-size: 3rem;
+
+    @media screen and (max-width: 1150px) {
+      font-size: 2.5rem;
+    }
+    @media screen and (max-width: 600px) {
+      font-size: 2rem;
+    }
   }
 }
 
