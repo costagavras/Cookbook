@@ -37,6 +37,22 @@
   z-index: 600;
   background-color: white;
   left: 40%;
+  @media screen and (max-width: 1250px) {
+    margin: auto;
+    left: 30%;
+    width: 300px;
+  }
+  @media screen and (max-width: 750px) {
+    margin: auto;
+    left: 5%;
+    width: 250px;
+    top: 10%;
+  }
+  .name_field, .password_field {
+    h3 {
+      margin-bottom: 0.5rem;
+    }
+  }
 }
 
 .submit {
