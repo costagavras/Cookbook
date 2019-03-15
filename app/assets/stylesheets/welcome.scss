@@ -86,7 +86,15 @@
       margin-left: 50px;
       margin-right: 50px;
       border: solid 3px white;
+      @media screen and (max-width: 1250px) {
+        width: 225px;
+        height: 225px;
       }
+      @media screen and (max-width: 750px) {
+        width: 200px;
+        height: 200px;
+      }
+    }
       a:hover {
         color: #404040 !important;
         font-weight: 700 !important;

@@ -192,6 +192,9 @@ a {
       font-size: 2em;
       margin: 0px;
       padding-bottom: 0.5em;
+      @media screen and (max-width: 600px) {
+        font-size: 1.5rem;
+      }
     }
     @media screen and (max-width: 600px) {
       text-align: center;
