@@ -138,6 +138,15 @@
   box-shadow: 0 2px 5px #000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   z-index: 1;
+  @media screen and (max-width: 1200px) {
+    width: 700px;
+  }
+  @media screen and (max-width: 900px) {
+    width: 550px;
+  }
+  @media screen and (max-width: 600px) {
+    width: 250px;
+  }
   h3 {
     margin-top: 0;
     label {
@@ -151,6 +160,12 @@
   }
   input {
     font-size: 1.5rem;
+    @media screen and (max-width: 900px) {
+      font-size: 1.25rem;
+    }
+    @media screen and (max-width: 600px) {
+      font-size: 1rem;
+    }
   }
   #recipe_name {
     font-size: 1.5rem;

@@ -95,6 +95,15 @@ button {
   font-size: 2rem;
   position: relative;
   left: 25rem;
+  @media screen and (max-width: 1200px) {
+    left: 20rem;
+  }
+  @media screen and (max-width: 900px) {
+    left: 16rem;
+  }
+  @media screen and (max-width: 600px) {
+    left: 7rem;
+  }
 }
 
 .close_sign_up {
