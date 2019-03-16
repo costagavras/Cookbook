@@ -237,10 +237,10 @@
       }
     }
   }
-  .comments_status {
+  .comments_status, .images_status {
     display: flex;
   }
-  #comments_show {
+  #comments_show, #images_show {
     text-decoration: underline;
     font-size: 1.5rem;
     color: rgb(155, 81, 21);

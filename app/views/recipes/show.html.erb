@@ -15,6 +15,10 @@
       <h3><%= t("recipe.ingredients")%>: &nbsp;&nbsp;<span><%=@recipe.ingredients%></span></h3>
       <h3><%= t("recipe.directions")%>: &nbsp;&nbsp;<span><%=@recipe.directions%></span></h3>
       <br>
+      <div class="images_status">
+        <h3>Images:</h3>
+        <h3><span class="images_show" id="images_show" onclick="show_images();">hide</span></h3>
+      </div>
       <div class="comments_status">
         <h3>Comments:</h3>
         <h3><span class="comments_show" id="comments_show" onclick="show_comments();">hide</span></h3>
