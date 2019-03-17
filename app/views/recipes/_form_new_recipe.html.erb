@@ -62,7 +62,7 @@
         <div class="show_image">
           <% if recipe.photos.attached? %>
             <%recipe.photos.each do |photo|%>
-              <h3><%= t("form.photo_name") %> &nbsp;<%= photo.filename %></h3>
+              <h3><%= t("form.photo_name") %>: &nbsp;<span><%= photo.filename %><span></h3>
             <%end%>
             <div class="remove_image">
               <%=f.label :remove_photos, t("form.remove_photos") %>
