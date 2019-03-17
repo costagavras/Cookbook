@@ -16,21 +16,29 @@
   <h3> <%= f.label :name, t("recipe.name") %> </h3>
     <%= f.text_field :name %>
 
-  <fieldset><legend><%= t("recipe.category") %></legend>
+  <fieldset><legend><%= t("recipe.category") %></legend><div class="fs_category">
     <% categories.each do |category| %>
+    <div class="category_block">
       <%= radio_button_tag(:category_id, category.id, value: :category_id) %>
       <%= label_tag(:category_id, category.name, :class => "category_names") %>
+    </div>
     <% end %>
-  </fieldset>
+  </div></fieldset>
 
-  <fieldset><legend><%= t("recipe.difficulty") %></legend>
-    <%= radio_button_tag(:complexity, "1", value: :complexity) %>
-    <%= label_tag(:complexity, t("form.easy")) %>
-    <%= radio_button_tag(:complexity, "2", value: :complexity) %>
-    <%= label_tag(:complexity, t("form.average")) %>
-    <%= radio_button_tag(:complexity, "3", value: :complexity) %>
-    <%= label_tag(:complexity, t("form.hard")) %>
-  </fieldset>
+  <fieldset><legend><%= t("recipe.difficulty") %></legend><div class="fs_difficulty">
+    <div class="difficulty_block">
+      <%= radio_button_tag(:complexity, "1", value: :complexity) %>
+      <%= label_tag(:complexity, t("form.easy")) %>
+    </div>
+    <div class="difficulty_block">
+      <%= radio_button_tag(:complexity, "2", value: :complexity) %>
+      <%= label_tag(:complexity, t("form.average")) %>
+    </div>
+    <div class="difficulty_block">
+      <%= radio_button_tag(:complexity, "3", value: :complexity) %>
+      <%= label_tag(:complexity, t("form.hard")) %>
+    </div>
+  </div></fieldset>
 
   <div class="servings_field"><h3><%= f.label(:servings, t("recipe.servings")) %></h3>
       <%= f.number_field :servings, min: 1, max: 20 %></div>
