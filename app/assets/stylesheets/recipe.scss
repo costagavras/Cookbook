@@ -456,10 +456,18 @@ input[type="radio" i] {
 
 .filter_section {
   position: relative;
-  padding-left: 1%;
-  margin: 1%;
-  border: 1rem solid rgb(155, 81, 21);
+  border: 0.75rem solid rgb(155, 81, 21);
   border-radius: 3rem;
+  margin: 0 2%;
+  fieldset legend {
+    font-size: 1.75rem;
+    @media screen and (max-width: 900px) {
+      font-size: 1.5rem;
+    }
+    @media screen and (max-width: 600px) {
+      font-size: 1.35rem;
+    }
+  }
   .filter, .filter_conditions_message, .filter_conditions_header {
     margin: 1rem;
     padding: 0;
@@ -480,6 +488,9 @@ input[type="radio" i] {
     label {
       font-size: 2rem;
       vertical-align: middle;
+      @media screen and (max-width: 900px) {
+        font-size: 1.25rem;
+      }
     }
     input[type="radio"]{
       height: 2rem;
@@ -489,7 +500,7 @@ input[type="radio" i] {
   }
   .filter_form {
     margin: 2% 0 2% 5%;
-    width: 30%;
+    width: 25%;
     padding: 1rem;
     border: 2.5px solid rgb(155, 81, 21);
     border-radius: 2rem;
@@ -509,6 +520,27 @@ input[type="radio" i] {
     }
     @media screen and (max-width: 600px) {
       width: 80%;
+      margin: 2% auto;
+    }
+  }
+  .fs_filter {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+  .fs_filter_block {
+    display: block;
+    text-align: right;
+    padding: 1%;
+    margin: 1%;
+    label {
+      font-size: 1.5rem;
+      @media screen and (max-width: 900px) {
+        font-size: 1.25rem;
+      }
+      @media screen and (max-width: 600px) {
+        font-size: 1rem;
+      }
     }
   }
 }
