@@ -109,7 +109,7 @@
      <%= yield %>
     <hr>
     <div class="most_popular">
-      <% if current_user %>
+      <% if current_user && !request.path_info.include?("about") %>%>
         <h2 class="most_viewed"><%=t("homepage.most_popular")%></h2>
         <div class="most_viewed_block">
           <% most_viewed_recipes.each do |recipe|%>
