@@ -54,3 +54,15 @@
 .block > .index_recipe > h3 > a:hover {
   color: red;
 }
+
+h2.no_recipes {
+  @media screen and (max-width: 1200px) {
+    font-size: 2.25rem;
+  }
+  @media screen and (max-width: 900px) {
+    font-size: 2rem;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 1.5rem;
+  }
+}

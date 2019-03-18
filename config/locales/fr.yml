@@ -92,6 +92,7 @@ fr:
     search_found: "Recettes trouvées:"
     search_not_found: "Oops! Rien n'a été trouvé!"
     search_all: "Cette recherche a retourné toutes les recettes!"
+    no_recipes_available: "Oops! Il n'y a pas de recettes dans cette catégorie."
 
   filter:
     returns_0: "Ce filtre retourne 0 recettes"

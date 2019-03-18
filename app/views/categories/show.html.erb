@@ -2,20 +2,25 @@
   <h1><span class = "category_names"><%= @category.name %></span></h1>
 </div>
 <hr>
-<div class="block">
-  <% @category.recipes.most_viewed.each do |recipe|%>
-    <%if @user_recipes.include?(recipe)%>
-      <div class = "index_recipe">
-          <h3><%=link_to(recipe.name, recipe_path(recipe))%></h3>
-          <h3><%= t("recipe.prep_time")%>: &nbsp;&nbsp;<span><%=recipe.prep_time%> <%= t("recipe.min")%></h3>
-          <h3><%= t("recipe.servings")%>: &nbsp;&nbsp;<span><%=recipe.servings%></span></h3>
-          <h3><%= t("recipe.difficulty")%>: &nbsp;&nbsp;
-          <span><%recipe.complexity.times do %>
-                    <%= image_tag 'cookbook_no_bg.png', :class => "logo_img_diff", :width => "30", :length => "30" %>
-                <%end%>
-          </span>
-          </h3>
-      </div>
+
+<%if @category.recipes.count != 0%>
+  <div class="block">
+    <% @category.recipes.most_viewed.each do |recipe|%>
+      <%if @user_recipes.include?(recipe)%>
+        <div class = "index_recipe">
+            <h3><%=link_to(recipe.name, recipe_path(recipe))%></h3>
+            <h3><%= t("recipe.prep_time")%>: &nbsp;&nbsp;<span><%=recipe.prep_time%> <%= t("recipe.min")%></h3>
+            <h3><%= t("recipe.servings")%>: &nbsp;&nbsp;<span><%=recipe.servings%></span></h3>
+            <h3><%= t("recipe.difficulty")%>: &nbsp;&nbsp;
+            <span><%recipe.complexity.times do %>
+                      <%= image_tag 'cookbook_no_bg.png', :class => "logo_img_diff", :width => "30", :length => "30" %>
+                  <%end%>
+            </span>
+            </h3>
+        </div>
+      <%end%>
     <%end%>
-  <%end%>
-</div>
+  </div>
+<%else%>
+  <h2 class="no_recipes"><%= t("recipe.no_recipes_available")%></h2>
+<%end%>

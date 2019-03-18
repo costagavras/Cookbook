@@ -90,6 +90,7 @@ it:
     search_found: "Ricette trovate:"
     search_not_found: "Caspiterina! Non ho trovato niente!"
     search_all: "Questa ricerca ha ritornato tutte le ricette!"
+    no_recipes_available: "Oops! Non ci sono ricette in questa categoria."
 
   filter:
     returns_0: "Il filtro ha trovato 0 ricette"
