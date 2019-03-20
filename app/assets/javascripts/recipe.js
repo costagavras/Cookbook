@@ -1,7 +1,20 @@
+// window.addEventListener('DOMContentLoaded', (event) => {
+//     alert('DOM fully loaded and parsed');
+// });
+
 document.addEventListener("DOMContentLoaded", function(){
+  adjustHeight();
+  adjustHeight();
+  // var recipePhotosArea = document.querySelector(".recipe_photos");
+  // recipePhotosArea.addEventListener('onclick', adjustHeight);
+});
+
+function adjustHeight(){
   var recipeHeight = document.querySelector(".recipe").clientHeight;
   document.querySelector(".photo").setAttribute("style","height:"+recipeHeight+"px");
-});
+  // alert('adjustHeightfired2');
+}
+
 
 function show_loader(){
   var loader = document.querySelector(".loader");
