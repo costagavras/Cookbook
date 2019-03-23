@@ -96,11 +96,13 @@
             <% end %>
           </div>
       </div>
-      <div class="flash_message">
-        <% flash.each do |key, message| %>
-          <div class="flash-<%= key %>"><span class="error_message"><%= message %></span></div>
-        <% end %>
-      </div>
+      <% if current_user %>
+        <div class="flash_message">
+          <% flash.each do |key, message| %>
+            <div class="flash-<%= key %>"><span class="error_message"><%= message %></span></div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
 
     <main>
