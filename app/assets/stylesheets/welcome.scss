@@ -46,6 +46,15 @@
   margin: 0 auto;
   height: 550px;
   box-sizing: border-box;
+  @media screen and (max-width: 1200px) {
+    height: 500px;
+  }
+  @media screen and (max-width: 800px) {
+    height: 350px;
+  }
+  @media screen and (max-width: 400px) {
+    height: 250px;
+  }
 }
 
 .content {
