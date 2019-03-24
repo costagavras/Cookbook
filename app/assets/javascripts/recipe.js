@@ -1,12 +1,8 @@
-// window.addEventListener('DOMContentLoaded', (event) => {
-//     alert('DOM fully loaded and parsed');
-// });
 
-document.addEventListener("DOMContentLoaded", function(){
+$(document).ready(function() {
   adjustHeight();
-  adjustHeight();
-  // var recipePhotosArea = document.querySelector(".recipe_photos");
-  // recipePhotosArea.addEventListener('onclick', adjustHeight);
+  $(".recipe_photos").on("dblclick", adjustHeight);
+  $(".filter_button").on("click", return_to_filter);
 });
 
 function adjustHeight(){
@@ -15,23 +11,28 @@ function adjustHeight(){
   // alert('adjustHeightfired2');
 }
 
-
 function show_loader(){
-  var loader = document.querySelector(".loader");
-  loader.style.visibility = "visible";
+  // var loader = document.querySelector(".loader");
+  // loader.style.visibility = "visible";
+  $(".loader").show();
 };
 
 function reset_filter(){
-  var filter_number_fields = document.querySelectorAll(".filter_number_field");
+  var filter_number_fields = $(".filter_number_field");
   for (var i = 0; i < filter_number_fields.length; i++){
     filter_number_fields[i].value = "";
   }
 };
 
-document.addEventListener("DOMContentLoaded", function return_to_filter(){
-  var filter_button = document.querySelector(".filter_button");
-  filter_button.scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
-});
+// $(document).ready(function(){
+//   return_to_filter();
+// });
+
+function return_to_filter(){
+  // var filter_button = $(".filter_button");
+  $(".filter_button").scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
+};
+
 
 // When the user scrolls the photo window, execute myFunction
 function horizontal_bar() {
@@ -95,9 +96,8 @@ function show_images() {
     var recipePhotos = document.querySelector(".recipe_photos")
     recipePhotos.setAttribute("style","grid-template-columns:"+"50% 50%");
     images.style.visibility = "visible";
-    createCookie("images", "visible")
+    createCookie("images", "visible");
   }
   event.preventDefault();
-  var recipeHeight = document.querySelector(".recipe").clientHeight;
-  images.setAttribute("style","height:"+recipeHeight+"px");
+  adjustHeight();
 };
