@@ -38,13 +38,57 @@ function horizontal_bar() {
   document.getElementById("myBar").style.width = scrolled + "%";
 };
 
+// document.addEventListener("DOMContentLoaded", function(){
+//   // Added cookie logic to avoid losing hidden/unhidden status on refresh page
+//   var comments = document.querySelector(".comment_section");
+//   var show_link = document.querySelector(".comments_show");
+//   comments.style.visibility = readCookie("comments");
+//   show_link.innerText = comments.style.visibility == "hidden" ? "unhide" : "hide";
+//
+//   var images = document.querySelector(".photo");
+//   var show_images_link = document.querySelector(".images_show");
+//   var recipePhotos = document.querySelector(".recipe_photos")
+//   images.style.visibility = readCookie("images");
+//   show_images_link.innerText = images.style.visibility == "hidden" ? "unhide" : "hide";
+//   if (images.style.visibility == "hidden") {
+//     recipePhotos.setAttribute("style","grid-template-columns:"+"100% 0%");
+//   }
+//   else {
+//     recipePhotos.setAttribute("style","grid-template-columns:"+"50% 50%");
+//   }
+// });
+
+// function show_comments() {
+//   var comments = document.querySelector(".comment_section");
+//   var show_link = document.querySelector(".comments_show");
+//   show_link.innerText = show_link.innerText == "hide" ? "unhide" : "hide";
+//   if (show_link.innerText == "unhide") {
+//     comments.style.visibility = "hidden";
+//     // Added cookie logic to avoid losing hidden/unhidden status on refresh page
+//     createCookie("comments", "hidden");
+//   }
+//   else {
+//     comments.style.visibility = "visible";
+//     createCookie("comments", "visible");
+//   }
+//   event.preventDefault();
+//   adjustHeight();
+// };
+
 document.addEventListener("DOMContentLoaded", function(){
   // Added cookie logic to avoid losing hidden/unhidden status on refresh page
-  var comments = document.querySelector(".comment_section");
-  var show_link = document.querySelector(".comments_show");
-  comments.style.visibility = readCookie("comments");
-  show_link.innerText = comments.style.visibility == "hidden" ? "unhide" : "hide";
+  //jQueried
+  $(".comment_section").css("display", readCookie("comments"));
+  if (readCookie("comments") == "none") {
+      $(".comments_show").text("unhide");
+      $(".comment_section").hide();
+    }
+    else {
+      $(".comments_show").text("hide");
+      $(".comment_section").show();
+    }
 
+  //regular JS
   var images = document.querySelector(".photo");
   var show_images_link = document.querySelector(".images_show");
   var recipePhotos = document.querySelector(".recipe_photos")
@@ -58,24 +102,26 @@ document.addEventListener("DOMContentLoaded", function(){
   }
 });
 
+//jQueried
 function show_comments() {
-  var comments = document.querySelector(".comment_section");
-  var show_link = document.querySelector(".comments_show");
-  show_link.innerText = show_link.innerText == "hide" ? "unhide" : "hide";
-  if (show_link.innerText == "unhide") {
-    comments.style.visibility = "hidden";
-    // Added cookie logic to avoid losing hidden/unhidden status on refresh page
-    createCookie("comments", "hidden");
-  }
-  else {
-    comments.style.visibility = "visible";
-    createCookie("comments", "visible");
-  }
+  var comments = $(".comment_section");
+  var comments_visibility = $(".comment_section").css("display");
+    if (comments_visibility == "block") {
+      $(".comments_show").text("unhide");
+      comments.hide();
+      // Added cookie logic to avoid losing hidden/unhidden status on refresh page
+      createCookie("comments", "none");
+    }
+    else {
+      $(".comments_show").text("hide");
+      comments.show();
+      createCookie("comments", "block");
+    }
   event.preventDefault();
-  var recipeHeight = document.querySelector(".recipe").clientHeight;
-  document.querySelector(".photo").setAttribute("style","height:"+recipeHeight+"px");
+  adjustHeight();
 };
 
+//regular JS
 function show_images() {
   var images = document.querySelector(".photo");
   var show_images_link = document.querySelector(".images_show");
