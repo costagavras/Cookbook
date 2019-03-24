@@ -2,7 +2,6 @@
 $(document).ready(function() {
   adjustHeight();
   $(".recipe_photos").on("dblclick", adjustHeight);
-  // $(".filter_button").on("click", return_to_filter);
 });
 
 function adjustHeight(){
@@ -24,10 +23,11 @@ function reset_filter(){
   }
 };
 
-function return_to_filter(){
-  $(".filter_button").scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
-};
-
+//Identical to DOMContentLoaded, puts filter section well in sight
+$(document).ready(function() {
+  var filter_section = document.querySelector(".filter_section");
+  filter_section.scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
+});
 
 // When the user scrolls the photo window, execute myFunction
 function horizontal_bar() {
