@@ -2,7 +2,7 @@
 $(document).ready(function() {
   adjustHeight();
   $(".recipe_photos").on("dblclick", adjustHeight);
-  $(".filter_button").on("click", return_to_filter);
+  // $(".filter_button").on("click", return_to_filter);
 });
 
 function adjustHeight(){
@@ -24,12 +24,7 @@ function reset_filter(){
   }
 };
 
-// $(document).ready(function(){
-//   return_to_filter();
-// });
-
 function return_to_filter(){
-  // var filter_button = $(".filter_button");
   $(".filter_button").scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
 };
 
