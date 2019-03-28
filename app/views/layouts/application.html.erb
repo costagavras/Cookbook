@@ -113,7 +113,6 @@
      <%= render 'sessions/form' %>
      <%= render 'users/form' %>
      <%= yield %>
-    <hr>
     <div class="most_popular">
       <% if current_user && !request.path_info.include?("about") %>
         <h2 class="most_viewed"><%=t("homepage.most_popular")%></h2>
