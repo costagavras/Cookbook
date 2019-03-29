@@ -79,7 +79,7 @@ class RecipesController < ApplicationController
     else
       @attachment = nil
     end
-    puts @attachment
+    # puts @attachment
   end
 
   def update

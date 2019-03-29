@@ -19,7 +19,7 @@
   <fieldset><legend><%= t("recipe.category") %></legend><div class="fs_category">
     <% categories.each do |category| %>
     <div class="category_block">
-      <%= radio_button_tag(:category_id, category.id, value: :category_id) %>
+      <%= radio_button_tag(:category_id, category.id, recipe.category_id == category.id) %>
       <%= label_tag(:category_id, category.name, :class => "category_names") %>
     </div>
     <% end %>
@@ -27,15 +27,15 @@
 
   <fieldset><legend><%= t("recipe.difficulty") %></legend><div class="fs_difficulty">
     <div class="difficulty_block">
-      <%= radio_button_tag(:complexity, "1", value: :complexity) %>
+      <%= radio_button_tag(:complexity, 1, recipe.complexity == 1) %>
       <%= label_tag(:complexity, t("form.easy")) %>
     </div>
     <div class="difficulty_block">
-      <%= radio_button_tag(:complexity, "2", value: :complexity) %>
+      <%= radio_button_tag(:complexity, 2, recipe.complexity == 2) %>
       <%= label_tag(:complexity, t("form.average")) %>
     </div>
     <div class="difficulty_block">
-      <%= radio_button_tag(:complexity, "3", value: :complexity) %>
+      <%= radio_button_tag(:complexity, 3, recipe.complexity == 3) %>
       <%= label_tag(:complexity, t("form.hard")) %>
     </div>
   </div></fieldset>
