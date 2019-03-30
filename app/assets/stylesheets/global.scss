@@ -8,16 +8,28 @@ html{
 
 main {
   position: relative;
-  top: -12rem;
+  top: -13rem;
+  @media screen and (max-width: 1200px) {
+    top: -16rem;
+  }
+  @media screen and (max-width: 900px) {
+    top: -19rem;
+  }
+  @media screen and (max-width: 600px) {
+    top: -22rem;
+  }
 }
 
 body {
-  margin: 0;
   // background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5)), url("apicius.jpg");
+  height: 100vh;
   background-image: url("apicius.jpg");
   background-repeat: no-repeat;
-  background-size: contain;
-  // background-color: rgba(255, 255, 255, 0.5);
+  // background-size: contain;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+
 }
 
 .lang_switch {
@@ -29,15 +41,30 @@ body {
   top: 5rem;
   right: 2rem;
   padding: 1rem 5rem;
-  font-size: 3rem;
+  font-size: 4rem;
   a{
     padding: 0.5rem;
   }
   a:hover {
-    opacity: 0.1;
+    opacity: 0.5;
     transition: opacity 0.3s;
   }
   @media screen and (max-width: 1500px) {
+    top: 0;
+    font-size: 3rem;
+    padding: 0;
+  }
+  @media screen and (max-width: 1200px) {
+    top: 0;
+    font-size: 2.5rem;
+    padding: 0;
+  }
+  @media screen and (max-width: 900px) {
+    top: 0;
+    font-size: 2.25rem;
+    padding: 0;
+  }
+  @media screen and (max-width: 600px) {
     top: 0;
     font-size: 2rem;
     padding: 0;
@@ -53,8 +80,9 @@ body {
   left: 2rem;
   font-size: 1rem;
   margin: 2rem 0;
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 900px) {
     left: 0.5rem;
+    visibility: hidden;
   }
   ul {
     @media screen and (max-width: 1200px) {
@@ -95,7 +123,6 @@ a {
 }
 
 .top_top, .top_center, .top_bottom {
-  // display: inline-block;
   @media screen and (max-width: 600px) {
     display: block;
     text-align: center;
@@ -137,8 +164,7 @@ a {
   }
 
   .signin_button, .login_button{
-    padding-right: 22px;
-    padding-left: 22px;
+    padding: 0 1rem;
     font-size: 2rem;
     border-radius: 15px;
 
@@ -146,7 +172,7 @@ a {
       font-size: 1.75rem;
     }
     @media screen and (max-width: 600px) {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
     }
   }
   .search_field {
@@ -214,8 +240,14 @@ a {
       font-size: 2em;
       margin: 0px;
       padding-bottom: 0.5em;
-      @media screen and (max-width: 600px) {
+      @media screen and (max-width: 1200px) {
+        font-size: 1.75rem;
+      }
+      @media screen and (max-width: 900px) {
         font-size: 1.5rem;
+      }
+      @media screen and (max-width: 600px) {
+        font-size: 1.25rem;
       }
     }
     @media screen and (max-width: 600px) {
@@ -264,8 +296,18 @@ h1{
 
 
 footer {
-  padding: 30px;
+  position: relative;
+  padding: 1%;
   background-color: rgba(255, 255, 255, 0.1);
+  @media screen and (max-width: 1200px) {
+    top: -12rem;
+  }
+  @media screen and (max-width: 900px) {
+    top: -15rem;
+  }
+  @media screen and (max-width: 600px) {
+    top: -18rem;
+  }
 }
 
 .info_nav {
@@ -276,19 +318,22 @@ footer {
     li {
       color: black;
       display: inline;
-      padding-left: 10px;
-      padding-right: 10px;
+      padding: 0 1rem;
 
     }
-    a {
+    a, p {
       color: black;
-      // background-color: yellow;
       padding: 3px;
       font-size: 1.5rem;
-    }
-    p {
-      color: black;
-      font-size: 1.5rem;
+      @media screen and (max-width: 1200px) {
+        font-size: 1.3rem;
+      }
+      @media screen and (max-width: 900px) {
+        font-size: 1.1rem;
+      }
+      @media screen and (max-width: 600px) {
+        font-size: 1rem;
+      }
     }
   }
 }
