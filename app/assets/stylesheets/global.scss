@@ -7,23 +7,12 @@ html{
 }
 
 main {
-  position: relative;
-  top: -13rem;
-  @media screen and (max-width: 1200px) {
-    top: -16rem;
-  }
-  @media screen and (max-width: 900px) {
-    top: -19rem;
-  }
-  @media screen and (max-width: 600px) {
-    top: -22rem;
-  }
 }
 
 body {
-  // background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5)), url("apicius.jpg");
+  background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5)), url("apicius.jpg");
   height: 100vh;
-  background-image: url("apicius.jpg");
+  // background-image: url("apicius.jpg");
   background-repeat: no-repeat;
   // background-size: contain;
   background-position: center center;
@@ -75,9 +64,8 @@ body {
   display: table;
   padding: 1rem;
   text-align: left;
-  position: relative;
+  position: absolute;
   top: -2rem;
-  left: 2rem;
   font-size: 1rem;
   margin: 2rem 0;
   @media screen and (max-width: 900px) {
@@ -102,8 +90,7 @@ a {
 }
 
 .navigation_bar {
-  // background-color: rgba(255, 255, 255, 0.2);
-  position: relative;
+  // position: relative;
   display: inline-block;
   top: -15rem;
 }
@@ -134,7 +121,6 @@ a {
   li {
     list-style-type: none;
     display: block;
-    margin: 25px;
   }
   a:hover {
     background-color: #f19f4d;
@@ -195,8 +181,6 @@ a {
 }
 
 .nav_1 {
-  height: 200px;
-  padding-bottom: 5rem;
   text-align: center;
   .top_top {
     .logo_text {
@@ -262,13 +246,7 @@ a {
 }
 
 .nav_2 {
-  padding: 6rem 0.5rem 0.5rem;
-  @media screen and (max-width: 900px) {
-    padding: 10rem 0.5rem 0.5rem;
-  }
-  @media screen and (max-width: 600px) {
-    padding: 6rem 0.5rem 0.5rem;
-  }
+  padding: 5% 0.5rem 0.5rem;
   text-align: center;
   .search_bar {
     display: inline;
@@ -296,18 +274,9 @@ h1{
 
 
 footer {
-  position: relative;
+  // position: relative;
   padding: 1%;
   background-color: rgba(255, 255, 255, 0.1);
-  @media screen and (max-width: 1200px) {
-    top: -12rem;
-  }
-  @media screen and (max-width: 900px) {
-    top: -15rem;
-  }
-  @media screen and (max-width: 600px) {
-    top: -18rem;
-  }
 }
 
 .info_nav {
