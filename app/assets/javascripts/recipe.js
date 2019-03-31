@@ -23,10 +23,27 @@ function reset_filter(){
   }
 };
 
+$(".filter_section").ready(function() {
+  if (readCookie("filter") != $(".filter_section_hidden").css("display")) {
+   hide_filter();
+  }
+});
+
 function hide_filter(){
-
-$(".filter_form").css("display") == "block" ? $(".filter_form").css("display", "none") : $(".filter_form").css("display", "block")
-
+  if ($(".filter_section_hidden").css("display") == "block") {
+    $(".filter_section_hidden").css("display", "none");
+    $(".filter_section").css("width", "4rem");
+    $(".filter_section").css("height", "3rem");
+    $("#hide_filter_button").text("+");
+    createCookie("filter", "none");
+  }
+  else {
+    $(".filter_section_hidden").css("display", "block");
+    $(".filter_section").css("width", "auto");
+    $(".filter_section").css("height", "auto");
+    $("#hide_filter_button").text("-");
+    createCookie("filter", "block");
+  }
 };
 
 //Identical to DOMContentLoaded, puts filter section well in sight

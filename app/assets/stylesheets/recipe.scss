@@ -456,16 +456,24 @@ input[type="radio" i] {
 
 /*styling Filter */
 
+.filter_section_hidden {
+  display: none;
+}
+
 .filter_section {
   position: relative;
   border: 0.75rem solid rgb(155, 81, 21);
+  width: 4rem;
+  height: 3rem;
   border-radius: 3rem;
   margin: 0 2%;
   #hide_filter_button, #unhide_filter_button {
     position: relative;
     display: block;
+    width: 2rem;
     top: 0.5rem;
     left: 1rem;
+    font-size: 1.5rem;
   }
   fieldset legend {
     font-size: 1.75rem;
