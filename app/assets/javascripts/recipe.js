@@ -22,8 +22,8 @@ function reset_filter(){
 };
 
 $(".filter_section").ready(function() {
-  if (readCookie("filter") != $(".filter_section_hidden").css("display")) {
-   hide_filter();
+  if (readCookie("filter") == "block" && $(".filter_section_hidden").css("display") == "none") {
+    hide_filter();
   }
 });
 
