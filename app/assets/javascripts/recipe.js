@@ -11,9 +11,7 @@ function adjustHeight(){
 }
 
 function show_loader(){
-  // var loader = document.querySelector(".loader");
-  // loader.style.visibility = "visible";
-  $(".loader").show();
+  $(".loader").css("visibility", "visible");
 };
 
 function reset_filter(){
