@@ -290,19 +290,20 @@
       margin-bottom: 3rem;
 
       a {
+      font-size: xx-large;
       font-weight: bold;
       border: none;
-      background: #f19f4d;
+      background: rgba(108, 100, 14, 0.75);
       color: #ffffff !important;
       padding: 20px;
       border-radius: 6px;
       display: inline-block;
       }
       a:hover {
-        color: #404040 !important;
+        color: #ffffff !important;
         font-weight: 700 !important;
         letter-spacing: 3px;
-        background: none;
+        background: #f19f4d;
         -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
         -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
         transition: all 0.3s ease 0s;

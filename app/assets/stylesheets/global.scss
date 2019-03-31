@@ -127,7 +127,7 @@ a {
   }
   a {
     display: inline-block;
-    background-color: #f19f4d;
+    background: rgba(108, 100, 14, 0.75);
     padding: 10px;
     text-decoration: none;
     font-size: 2rem;
@@ -177,7 +177,12 @@ a {
       font-size: 1rem;
     }
   }
-
+  .search_button{
+    border-radius: 10px;
+  }
+  .search_button:hover {
+    background-color: #f19f4d;
+  }
 }
 
 .nav_1 {
@@ -275,6 +280,7 @@ h1{
 
 footer {
   // position: relative;
+  margin-top: 5%;
   padding: 1%;
   background-color: rgba(255, 255, 255, 0.1);
 }
@@ -310,7 +316,7 @@ footer {
 //styling for most popular recipes
 
 .most_popular {
-  margin: 0 10% 0;
+  margin: 5% 10% 0;
   h2 {
     @media screen and (max-width: 1200px) {
       font-size: 2rem;
