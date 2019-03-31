@@ -23,6 +23,12 @@ function reset_filter(){
   }
 };
 
+function hide_filter(){
+
+$(".filter_form").css("display") == "block" ? $(".filter_form").css("display", "none") : $(".filter_form").css("display", "block")
+
+};
+
 //Identical to DOMContentLoaded, puts filter section well in sight
 $(document).ready(function() {
   var filter_section = document.querySelector(".filter_section");

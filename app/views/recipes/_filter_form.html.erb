@@ -1,5 +1,8 @@
 <div class="filter_section">
 
+<!-- <%= button_tag "-", type: "submit", name: "hide", value: true, id: "hide_filter_button", onclick: "hide_filter();" %> -->
+<%= button_tag "+", type: "submit", name: "unhide", value: true, id: "hide_filter_button", onclick: "hide_filter();" %>
+
   <%= form_tag(recipe_filter_path, class: "filter_form") do |f| %>
 
     <fieldset><legend><%= t("recipe.prep_time") %></legend></legend><div class="fs_filter">
