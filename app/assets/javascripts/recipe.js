@@ -38,43 +38,6 @@ function horizontal_bar() {
   document.getElementById("myBar").style.width = scrolled + "%";
 };
 
-// document.addEventListener("DOMContentLoaded", function(){
-//   // Added cookie logic to avoid losing hidden/unhidden status on refresh page
-//   var comments = document.querySelector(".comment_section");
-//   var show_link = document.querySelector(".comments_show");
-//   comments.style.visibility = readCookie("comments");
-//   show_link.innerText = comments.style.visibility == "hidden" ? "unhide" : "hide";
-//
-//   var images = document.querySelector(".photo");
-//   var show_images_link = document.querySelector(".images_show");
-//   var recipePhotos = document.querySelector(".recipe_photos")
-//   images.style.visibility = readCookie("images");
-//   show_images_link.innerText = images.style.visibility == "hidden" ? "unhide" : "hide";
-//   if (images.style.visibility == "hidden") {
-//     recipePhotos.setAttribute("style","grid-template-columns:"+"100% 0%");
-//   }
-//   else {
-//     recipePhotos.setAttribute("style","grid-template-columns:"+"50% 50%");
-//   }
-// });
-
-// function show_comments() {
-//   var comments = document.querySelector(".comment_section");
-//   var show_link = document.querySelector(".comments_show");
-//   show_link.innerText = show_link.innerText == "hide" ? "unhide" : "hide";
-//   if (show_link.innerText == "unhide") {
-//     comments.style.visibility = "hidden";
-//     // Added cookie logic to avoid losing hidden/unhidden status on refresh page
-//     createCookie("comments", "hidden");
-//   }
-//   else {
-//     comments.style.visibility = "visible";
-//     createCookie("comments", "visible");
-//   }
-//   event.preventDefault();
-//   adjustHeight();
-// };
-
 document.addEventListener("DOMContentLoaded", function(){
   // Added cookie logic to avoid losing hidden/unhidden status on refresh page
   //jQueried
@@ -92,9 +55,9 @@ document.addEventListener("DOMContentLoaded", function(){
   var images = document.querySelector(".photo");
   var show_images_link = document.querySelector(".images_show");
   var recipePhotos = document.querySelector(".recipe_photos")
-  images.style.visibility = readCookie("images");
-  show_images_link.innerText = images.style.visibility == "hidden" ? "unhide" : "hide";
-  if (images.style.visibility == "hidden") {
+  images.style.display = readCookie("images");
+  show_images_link.innerText = images.style.display == "none" ? "unhide" : "hide";
+  if (images.style.display == "none") {
     recipePhotos.setAttribute("style","grid-template-columns:"+"100% 0%");
   }
   else {
@@ -125,20 +88,18 @@ function show_comments() {
 function show_images() {
   var images = document.querySelector(".photo");
   var show_images_link = document.querySelector(".images_show");
-  show_images_link.innerText = show_images_link.innerText == "hide" ? "unhide" : "hide";
+  var recipePhotos = document.querySelector(".recipe_photos")
+  show_images_link.innerText = readCookie("images") == "block" ? "unhide" : "hide";
   if (show_images_link.innerText == "unhide") {
-    var recipePhotos = document.querySelector(".recipe_photos")
     recipePhotos.setAttribute("style","grid-template-columns:"+"100% 0%");
-    images.style.visibility = "hidden";
-    // Added cookie logic to avoid losing hidden/unhidden status on refresh page
-    createCookie("images", "hidden")
+    images.style.display = "none";
+    createCookie("images", "none")
   }
   else {
-    var recipePhotos = document.querySelector(".recipe_photos")
     recipePhotos.setAttribute("style","grid-template-columns:"+"50% 50%");
-    images.style.visibility = "visible";
-    createCookie("images", "visible");
+    images.style.display = "block";
+    createCookie("images", "block");
+    adjustHeight();
   }
   event.preventDefault();
-  adjustHeight();
 };
