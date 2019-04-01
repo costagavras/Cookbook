@@ -1,7 +1,9 @@
 
 $(document).ready(function() {
-  adjustHeight();
-  $(".recipe_photos").on("dblclick", adjustHeight);
+  if (document.querySelector(".recipe")) {
+    adjustHeight();
+    $(".recipe_photos").on("dblclick", adjustHeight);
+  }
 });
 
 function adjustHeight(){
@@ -46,8 +48,10 @@ function hide_filter(){
 
 //Identical to DOMContentLoaded, puts filter section well in sight
 $(document).ready(function() {
+  if (document.querySelector(".filter_section")) {
   var filter_section = document.querySelector(".filter_section");
   filter_section.scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
+  }
 });
 
 // When the user scrolls the photo window, execute myFunction
@@ -73,16 +77,18 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
   //regular JS
-  var images = document.querySelector(".photo");
-  var show_images_link = document.querySelector(".images_show");
-  var recipePhotos = document.querySelector(".recipe_photos")
-  images.style.display = readCookie("images");
-  show_images_link.innerText = images.style.display == "none" ? "unhide" : "hide";
-  if (images.style.display == "none") {
-    recipePhotos.setAttribute("style","grid-template-columns:"+"100% 0%");
-  }
-  else {
-    recipePhotos.setAttribute("style","grid-template-columns:"+"50% 50%");
+  if (document.querySelector(".photo")) {
+    var images = document.querySelector(".photo");
+    var show_images_link = document.querySelector(".images_show");
+    var recipePhotos = document.querySelector(".recipe_photos")
+    images.style.display = readCookie("images");
+    show_images_link.innerText = images.style.display == "none" ? "unhide" : "hide";
+    if (images.style.display == "none") {
+      recipePhotos.setAttribute("style","grid-template-columns:"+"100% 0%");
+    }
+    else {
+      recipePhotos.setAttribute("style","grid-template-columns:"+"50% 50%");
+    }
   }
 });
 
