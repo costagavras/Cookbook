@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get 'welcome/index'
     get '/', to: 'welcome#index'
     get '/welcome/about', :as => 'about'
+    get '/welcome/database', to: "recipes#database", :as => 'recipes_database'
     post '/recipes/search', to: "recipes#search", :as => 'recipe_search'
     post '/recipes/filter', to: "recipes#filter", :as => 'recipe_filter'
 

@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
 
-  before_action :select_recipe, except: [:index, :new, :create, :filter, :search]
+  before_action :select_recipe, except: [:index, :new, :create, :filter, :search, :database]
   before_action :set_up_new, only: [:new, :create]
   before_action :categories_recipes, only: [:index, :new, :create, :edit, :update, :filter, :search]
   before_action :set_up_user_recipes, only: [:index, :filter]
@@ -225,6 +225,8 @@ class RecipesController < ApplicationController
     end
   end
 
+  def database
+  end
 
   private
 

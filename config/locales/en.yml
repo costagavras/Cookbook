@@ -46,6 +46,7 @@ en:
     about: "About this project & me"
     most_popular: "Most popular"
     views: "views"
+    database: "Recipes db"
 
   user:
     edit_profile: "Edit your profile"

@@ -46,6 +46,7 @@ fr:
     about: "Du projet & de moi"
     most_popular: "Les plus populaires"
     views: "vue"
+    database: "Base données recettes"
 
   user:
     edit_profile: "Editer profil"

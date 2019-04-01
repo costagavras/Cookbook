@@ -46,6 +46,7 @@ it:
     about: "Di questo progetto & di me"
     most_popular: "Le piu' popolari"
     views: "visualizzazioni"
+    database: "Database ricette"
 
   user:
     edit_profile: "Rivedere profilo utente"
