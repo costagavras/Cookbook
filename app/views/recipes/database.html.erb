@@ -30,7 +30,7 @@
     </div>
     <div class="db_grid_item">
       <div class="db_surprise_button">
-        <%= button_tag(t("filter.surprise"), name: nil, class: "reset_button", onclick: "") %>
+        <%= button_tag(t("filter.surprise"), name: nil, class: "reset_button", onclick: "getRandomRecipe();") %>
       </div>
     </div>
   </div>
@@ -41,6 +41,6 @@
     <h3 id="db_recipe_name"><h3>
     <h4 id="db_recipe_category"><h4>
     <h4 id="db_recipe_area"><h4>
-    <img src="" alt="N/A"></img>
+    <img id="db_recipe_pic" src="" alt="N/A"></img>
   </div>
 </div>

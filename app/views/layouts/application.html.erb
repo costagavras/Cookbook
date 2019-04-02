@@ -12,6 +12,8 @@
       crossorigin="anonymous">
     </script>
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
@@ -31,7 +33,7 @@
 
     <div class="lang_switch">
       <%if !request.path_info.include?("search") && !request.path_info.include?("filter") %>
-          <span id="switch_lang"><%=link_to("🇨🇦", {:locale=>"en"}, :id => "en")%>  <%=link_to("🇮🇹", {:locale=>"it"}, :id => "it")%>   <%=link_to("🇫🇷", {:locale=>"fr"}, :id => "fr")%>  <%=link_to("🇷🇺", {:locale=>"ru"}, :id => "ru") %>
+          <span id="switch_lang"><%=link_to("🇬🇧", {:locale=>"en"}, :id => "en")%>  <%=link_to("🇮🇹", {:locale=>"it"}, :id => "it")%>   <%=link_to("🇫🇷", {:locale=>"fr"}, :id => "fr")%>  <%=link_to("🇷🇺", {:locale=>"ru"}, :id => "ru") %>
           </span>
       <%end%>
     </div>
