@@ -1,4 +1,40 @@
 <div class="db_header">
-  <h1>External database (TheMealDB) |
-    <a href="https://www.linkedin.com/in/constantinefleshtor/"> LinkedIn</a></h1>
+  <h1>External database |
+    <a href="https://www.themealdb.com"> TheMealDB</a></h1>
+</div>
+<div class="db_search_area">
+  <div class="db_search_grid">
+    <div class="db_grid_item">
+      <div class"db_search_by_area">
+        <%#= select_tag "people", :class => "search_area_field", options_from_collection_for_select(@people.collect {|p| [ p['name'], p['id'] ] }) %>
+        <%= submit_tag(t("filter.filter"), name: nil, class: "filter_button", id: "filter_button") %>
+      </div>
+    </div>
+    <div class="db_grid_item">
+      <div class"db_search_by_category">
+        <%= submit_tag(t("filter.filter"), name: nil, class: "filter_button", id: "filter_button") %>
+      </div>
+    </div>
+    <div class="db_grid_item">
+      <div class"db_search_by_ingredient">
+        <%= submit_tag(t("filter.filter"), name: nil, class: "filter_button", id: "filter_button") %>
+      </div>
+    </div>
+    <div class="db_grid_item">
+      <div class="search_bar">
+        <%= form_tag(recipes_database_path, {:method => 'get', :id => 'db_search_form'}) do %>
+          <%= text_field_tag :db_recipe, params[:recipe], :class => "search_field", :placeholder => t("homepage.search_text") %>
+          <%= submit_tag t("homepage.search_button"), name: nil, :class => "search_button" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="db_grid_item">
+      <div class="db_surprise_button">
+        <%= button_tag(t("filter.surprise"), name: nil, class: "reset_button", onclick: "") %>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="db_search_result_area">
 </div>

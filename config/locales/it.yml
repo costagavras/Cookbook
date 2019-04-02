@@ -107,6 +107,7 @@ it:
     reset: "Resettare"
     for: "Filtrato per:"
     choose_condition: "Per favore scegliere condizione E/O!"
+    surprise: "Mi sento fortunato!"
 
   form:
     easy: "Bassa"

@@ -109,6 +109,7 @@ fr:
     reset: "Resetter"
     for: "Filtré par:"
     choose_condition: "SVP choisir condition ET/OU!"
+    surprise: "J'ai de la chance!"
 
   form:
     easy: "Facile"
