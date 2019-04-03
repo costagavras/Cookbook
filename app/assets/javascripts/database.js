@@ -21,7 +21,8 @@ function getRandomRecipe(){
           dbRecipeName.innerText = response.data["meals"][0]["strMeal"],
           dbRecipeCategory.innerText = "Category: " + response.data["meals"][0]["strCategory"],
           dbRecipeArea.innerText = "Cuisine: " + response.data["meals"][0]["strArea"],
-          dbRecipePic.src = response.data["meals"][0]["strMealThumb"]
+          dbRecipePic.src = response.data["meals"][0]["strMealThumb"],
+          dbRecipePic.style.display = "block";
     })
 }
 
@@ -40,8 +41,12 @@ function getSearchedRecipe(){
             dbRecipeCategory.innerText = "Category: " + response.data["meals"][0]["strCategory"],
             dbRecipeArea.innerText = "Cuisine: " + response.data["meals"][0]["strArea"],
             dbRecipePic.src = response.data["meals"][0]["strMealThumb"]
+            dbRecipePic.style.display = "block";
           } else {
-            dbRecipeName.innerText = "The database does not contain recipes with this keyword"
+            dbRecipeName.innerText = "The database does not contain recipes with this keyword",
+            dbRecipeCategory.style.display = "none";
+            dbRecipeArea.style.display = "none";
+            dbRecipePic.style.display = "none";
           }
         });
 }

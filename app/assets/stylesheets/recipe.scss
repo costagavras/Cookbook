@@ -580,11 +580,13 @@ input[type="radio" i] {
 .db_search_grid {
   .db_grid_item {
     .search_bar {
-      #db_search_form {
         #db_recipe {
           font-size: 1.5em;
         }
-      }
+        #search_button {
+          padding: 0.5em;
+          margin: 0.5em;
+        }
     }
   }
 }
@@ -593,8 +595,12 @@ input[type="radio" i] {
   .db_recipe_block {
     #db_recipe_name {
       color: #9b5115;
+      font-size: 1.5em;
     }
     #db_recipe_pic {
+      display: none;
+      margin: auto;
+      width: auto;
       border-radius: 3em;
     }
   }
