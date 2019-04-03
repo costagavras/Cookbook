@@ -6,11 +6,11 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 function getRandomRecipe(){
-  const dbRandomRecipeURL = "https://www.themealdb.com/api/json/v1/1/random.php"
-  const dbRecipeName = document.getElementById("db_recipe_name");
-  const dbRecipeCategory = document.getElementById("db_recipe_category");
-  const dbRecipeArea = document.getElementById("db_recipe_area");
-  const dbRecipePic = document.getElementById("db_recipe_pic");
+  var dbRandomRecipeURL = "https://www.themealdb.com/api/json/v1/1/random.php"
+  var dbRecipeName = document.getElementById("db_recipe_name");
+  var dbRecipeCategory = document.getElementById("db_recipe_category");
+  var dbRecipeArea = document.getElementById("db_recipe_area");
+  var dbRecipePic = document.getElementById("db_recipe_pic");
 
   axios({
           url: dbRandomRecipeURL,
@@ -27,12 +27,12 @@ function getRandomRecipe(){
 }
 
 function getSearchedRecipe(){
-  const dbSearchedValue = document.getElementById("db_recipe").value;
-  const dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + dbSearchedValue;
-  const dbRecipeName = document.getElementById("db_recipe_name");
-  const dbRecipeCategory = document.getElementById("db_recipe_category");
-  const dbRecipeArea = document.getElementById("db_recipe_area");
-  const dbRecipePic = document.getElementById("db_recipe_pic");
+  var dbSearchedValue = document.getElementById("db_recipe").value;
+  var dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + dbSearchedValue;
+  var dbRecipeName = document.getElementById("db_recipe_name");
+  var dbRecipeCategory = document.getElementById("db_recipe_category");
+  var dbRecipeArea = document.getElementById("db_recipe_area");
+  var dbRecipePic = document.getElementById("db_recipe_pic");
 
   axios.get(dbSearchedRecipeURL)
         .then(function(response){
