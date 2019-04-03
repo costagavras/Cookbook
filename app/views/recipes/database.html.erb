@@ -22,10 +22,8 @@
     </div>
     <div class="db_grid_item">
       <div class="search_bar">
-        <%= form_tag(recipes_database_path, {:method => 'get', :id => 'db_search_form'}) do %>
           <%= text_field_tag :db_recipe, params[:recipe], :class => "search_field", :placeholder => t("homepage.search_text") %>
-          <%= submit_tag t("homepage.search_button"), name: nil, :class => "search_button" %>
-        <% end %>
+          <%= button_tag t("homepage.search_button"), name: nil, :class => "search_button", onclick: "getSearchedRecipe();" %>
       </div>
     </div>
     <div class="db_grid_item">
@@ -41,6 +39,6 @@
     <h3 id="db_recipe_name"><h3>
     <h4 id="db_recipe_category"><h4>
     <h4 id="db_recipe_area"><h4>
-    <img id="db_recipe_pic" src="" alt="N/A"></img>
+    <img id="db_recipe_pic" src="" alt="Recipe image N/A"></img>
   </div>
 </div>
