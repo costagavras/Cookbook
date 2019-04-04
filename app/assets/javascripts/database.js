@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(){
   // if (document.getElementById("db_recipe_name")) {
   //   getRandomRecipe();
+      getAreaList();
   // }
 })
 
@@ -68,3 +69,19 @@ function getSearchedRecipe(){
       //     }
       //     console.log(error.config);
       // });
+
+      function getAreaList(){
+        var dbAreaListURL = "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
+        var dbAreaSelectTag = document.getElementById("selector_area");
+        i = 0;
+
+        axios({
+                url: dbAreaListURL,
+                method: 'get', //default
+                data: '', //`data` is the data to be sent as the request body, only applicable for request methods 'PUT', 'POST', and 'PATCH'
+                dataType: 'json', // default
+              }).then(function(response){
+                  for(area in response.data["meals"][0])
+                    dbAreaSelectTag.innerText = ["strMeal"];
+          })
+      }
