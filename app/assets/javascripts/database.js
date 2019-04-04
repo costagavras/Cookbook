@@ -12,6 +12,8 @@ function getRandomRecipe(){
   var dbRecipeCategory = document.getElementById("db_recipe_category");
   var dbRecipeArea = document.getElementById("db_recipe_area");
   var dbRecipePic = document.getElementById("db_recipe_pic");
+  var dbRecipeBlock = document.querySelector(".db_recipe_block");
+  dbRecipeBlock.style.display = "block";
 
   axios({
           url: dbRandomRecipeURL,
@@ -34,6 +36,8 @@ function getSearchedRecipe(){
   var dbRecipeCategory = document.getElementById("db_recipe_category");
   var dbRecipeArea = document.getElementById("db_recipe_area");
   var dbRecipePic = document.getElementById("db_recipe_pic");
+  var dbRecipeBlock = document.querySelector(".db_recipe_block");
+  dbRecipeBlock.style.display = "block";
 
   axios.get(dbSearchedRecipeURL)
         .then(function(response){
@@ -73,7 +77,6 @@ function getSearchedRecipe(){
       function getAreaList(){
         var dbAreaListURL = "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
         var dbAreaSelectTag = document.getElementById("selector_area");
-        i = 0;
 
         axios({
                 url: dbAreaListURL,
@@ -81,7 +84,13 @@ function getSearchedRecipe(){
                 data: '', //`data` is the data to be sent as the request body, only applicable for request methods 'PUT', 'POST', and 'PATCH'
                 dataType: 'json', // default
               }).then(function(response){
-                  for(area in response.data["meals"][0])
-                    dbAreaSelectTag.innerText = ["strMeal"];
+                  var areaOption = document.createElement("option");
+                    areaOption.innerHTML = "Select cuisine...";
+                    dbAreaSelectTag.appendChild(areaOption);
+                  for(area in response.data["meals"]){
+                    var areaOption = document.createElement("option");
+                      areaOption.innerHTML = response.data["meals"][area]["strArea"];
+                      dbAreaSelectTag.appendChild(areaOption);
+                  }
           })
       }

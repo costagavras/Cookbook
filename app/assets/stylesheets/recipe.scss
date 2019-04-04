@@ -578,7 +578,9 @@ input[type="radio" i] {
   }
 }
 
-
+.db_recipe_block {
+  display: none;
+}
 
 .db_search_grid {
   .db_grid_item {
@@ -601,6 +603,7 @@ input[type="radio" i] {
       font-size: 1.5em;
     }
     #db_recipe_pic {
+      // transition: height 2s;
       display: none;
       margin: auto;
       width: auto;
