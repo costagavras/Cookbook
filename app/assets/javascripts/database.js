@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(){
   // if (document.getElementById("db_recipe_name")) {
-  //   getRandomRecipe();
       getAreaList();
+      getCategoryList();
+      getIngredientList();
   // }
 })
 
@@ -75,22 +76,52 @@ function getSearchedRecipe(){
       // });
 
       function getAreaList(){
-        var dbAreaListURL = "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
-        var dbAreaSelectTag = document.getElementById("selector_area");
+        var dbListURL = "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
+        var dbSelectTag = document.getElementById("selector_area");
 
-        axios({
-                url: dbAreaListURL,
-                method: 'get', //default
-                data: '', //`data` is the data to be sent as the request body, only applicable for request methods 'PUT', 'POST', and 'PATCH'
-                dataType: 'json', // default
-              }).then(function(response){
-                  var areaOption = document.createElement("option");
-                    areaOption.innerHTML = "Select cuisine...";
-                    dbAreaSelectTag.appendChild(areaOption);
-                  for(area in response.data["meals"]){
-                    var areaOption = document.createElement("option");
-                      areaOption.innerHTML = response.data["meals"][area]["strArea"];
-                      dbAreaSelectTag.appendChild(areaOption);
+        axios.get(dbListURL)
+                .then(function(response){
+                  var listOption = document.createElement("option");
+                    listOption.innerHTML = "Select cuisine...";
+                    dbSelectTag.appendChild(listOption);
+                  for(item in response.data["meals"]){
+                    var listOption = document.createElement("option");
+                      listOption.innerHTML = response.data["meals"][item]["strArea"];
+                      dbSelectTag.appendChild(listOption);
+                  }
+          })
+      }
+
+      function getCategoryList(){
+        var dbListURL = "https://www.themealdb.com/api/json/v1/1/list.php?c=list"
+        var dbSelectTag = document.getElementById("selector_category");
+
+        axios.get(dbListURL)
+                .then(function(response){
+                  var listOption = document.createElement("option");
+                    listOption.innerHTML = "Select category...";
+                    dbSelectTag.appendChild(listOption);
+                  for(item in response.data["meals"]){
+                    var listOption = document.createElement("option");
+                      listOption.innerHTML = response.data["meals"][item]["strCategory"];
+                      dbSelectTag.appendChild(listOption);
+                  }
+          })
+      }
+
+      function getIngredientList(){
+        var dbListURL = "https://www.themealdb.com/api/json/v1/1/list.php?i=list"
+        var dbSelectTag = document.getElementById("selector_ingredient");
+
+        axios.get(dbListURL)
+                .then(function(response){
+                  var listOption = document.createElement("option");
+                    listOption.innerHTML = "Select ingredient...";
+                    dbSelectTag.appendChild(listOption);
+                  for(item in response.data["meals"]){
+                    var listOption = document.createElement("option");
+                      listOption.innerHTML = response.data["meals"][item]["strIngredient"];
+                      dbSelectTag.appendChild(listOption);
                   }
           })
       }
