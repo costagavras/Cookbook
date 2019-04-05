@@ -8,7 +8,7 @@
 
 .block, .db_search_result_area, .db_search_grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-template-rows: auto;
   padding: 0.5em;
   width: 90%;
@@ -603,17 +603,17 @@ input[type="radio" i] {
     border: 2px solid rgb(155, 81, 21);
     margin: 1em;
     #selector_area, #selector_category, #selector_ingredient, #db_recipe {
-      font-size: 1.75em;
+      font-size: 1.5em;
       margin-top: 1em;
       width: 85%;
       @media screen and (max-width: 1200px) {
-        font-size: 1.5em;
-      }
-      @media screen and (max-width: 900px) {
         font-size: 1.4em;
       }
-      @media screen and (max-width: 600px) {
+      @media screen and (max-width: 900px) {
         font-size: 1.3em;
+      }
+      @media screen and (max-width: 600px) {
+        font-size: 1.2em;
       }
     }
     .search_bar {
@@ -626,14 +626,30 @@ input[type="radio" i] {
 
 .db_search_result_area {
   .db_recipe_block {
+    display: grid;
+    h3 {
+      margin: 0.5em 0;
+    }
+    h4 {
+      margin: 0.5em 0;
+    }
     #db_recipe_name {
       color: #9b5115;
       font-size: 1.5em;
+      @media screen and (max-width: 1200px) {
+        font-size: 1.4em;
+      }
+      @media screen and (max-width: 900px) {
+        font-size: 1.3em;
+      }
+      @media screen and (max-width: 600px) {
+        font-size: 1.2em;
+      }
     }
     #db_recipe_pic {
       margin: auto;
-      width: 50%;
-      border-radius: 3em;
+      width: 70%;
+      border-radius: 1em;
     }
   }
 }

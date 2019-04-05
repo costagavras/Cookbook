@@ -5,21 +5,21 @@
 <div class="db_search_area">
   <div class="db_search_grid">
     <div class="db_grid_item">
-      <div class"db_search_by_area">
+      <div class="db_search_by_area">
         <%= select_tag "selector_area" %>
-        <%= button_tag t("filter.filter"), name: nil, class: "reset_button", onclick: "" %>
+        <%= button_tag t("filter.filter"), name: nil, class: "reset_button", id: "area_select_btn" %>
       </div>
     </div>
     <div class="db_grid_item">
       <div class="db_search_by_category">
         <%= select_tag "selector_category" %>
-        <%= submit_tag(t("filter.filter"), name: nil, class: "reset_button", onclick: "") %>
+        <%= submit_tag(t("filter.filter"), name: nil, class: "reset_button", id: "category_select_btn") %>
       </div>
     </div>
     <div class="db_grid_item">
       <div class"db_search_by_ingredient">
         <%= select_tag "selector_ingredient" %>
-        <%= submit_tag(t("filter.filter"), name: nil, class: "reset_button", onclick: "") %>
+        <%= submit_tag(t("filter.filter"), name: nil, class: "reset_button", id: "ingredient_select_btn") %>
       </div>
     </div>
     <div class="db_grid_item">

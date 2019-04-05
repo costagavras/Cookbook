@@ -1,9 +1,17 @@
 document.addEventListener("DOMContentLoaded", function(){
+  //Prepopulating select_tags for filters
   if (document.querySelector(".db_header")) {
       getAreaList();
       getCategoryList();
       getIngredientList();
   }
+  //attaching functions to filter buttons
+  var areaBtn = document.getElementById("area_select_btn");
+  areaBtn.addEventListener("click", filterArea);
+  // var categoryBtn = document.getElementById("category_select_btn");
+  // categoryBtn.addEventListener("click", filterCategory);
+  // var ingredientBtn = document.getElementById("ingredient_select_btn");
+  // ingredientBtn.addEventListener("click", filterIngredient);
 })
 
  //setting up recipe blocks, one per recipe
@@ -144,6 +152,34 @@ function getSearchedRecipe(){
                   }
           })
       }
+
+      //functions for filters
+
+
+      function filterArea() {
+
+          removeRecipeBlocks();
+
+          var dbSearchedValue = document.getElementById("selector_area").value;
+          var dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/filter.php?a=" + dbSearchedValue;
+
+          axios.get(dbSearchedRecipeURL)
+                .then(function(response){
+                  if (response.data["meals"] != null) {
+                    // console.log(response.data["meals"]);
+                    for (var recipe = 0; recipe < response.data["meals"].length; recipe++) {
+                      var meal = response.data["meals"][recipe]["strMeal"];
+                      var area = "Cuisine: " + dbSearchedValue;
+                      var category = null;
+                      var picture = response.data["meals"][recipe]["strMealThumb"];
+                      doRecipeBlock(meal,area,category,picture);
+                    }
+                  } else {
+                    var meal = "The database does not contain recipes with this keyword";
+                    doRecipeBlock(meal);
+                  }
+                });
+        }
 
       //   .catch(function (error) {
       //     if (error.response) {
