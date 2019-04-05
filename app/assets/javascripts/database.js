@@ -8,10 +8,10 @@ document.addEventListener("DOMContentLoaded", function(){
   //attaching functions to filter buttons
   var areaBtn = document.getElementById("area_select_btn");
   areaBtn.addEventListener("click", filterArea);
-  // var categoryBtn = document.getElementById("category_select_btn");
-  // categoryBtn.addEventListener("click", filterCategory);
-  // var ingredientBtn = document.getElementById("ingredient_select_btn");
-  // ingredientBtn.addEventListener("click", filterIngredient);
+  var categoryBtn = document.getElementById("category_select_btn");
+  categoryBtn.addEventListener("click", filterCategory);
+  var ingredientBtn = document.getElementById("ingredient_select_btn");
+  ingredientBtn.addEventListener("click", filterIngredient);
 })
 
  //setting up recipe blocks, one per recipe
@@ -55,6 +55,15 @@ function removeRecipeBlocks() {
   }
 }
 
+//reset filters to nothing chosen
+function resetFilter(filterId) {
+  var filter = document.getElementById(filterId);
+  filter.selectedIndex = 0;
+  if (filterId === "db_recipe") {
+    filter.value = "";
+  }
+}
+
 function getRandomRecipe(){
 
   removeRecipeBlocks();
@@ -79,6 +88,9 @@ function getRandomRecipe(){
 function getSearchedRecipe(){
 
   removeRecipeBlocks();
+  resetFilter("selector_ingredient");
+  resetFilter("selector_category");
+  resetFilter("selector_area");
 
   var dbSearchedValue = document.getElementById("db_recipe").value;
   var dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + dbSearchedValue;
@@ -102,84 +114,142 @@ function getSearchedRecipe(){
 }
 
 
-      function getAreaList(){
-        var dbListURL = "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
-        var dbSelectTag = document.getElementById("selector_area");
+function getAreaList(){
+  var dbListURL = "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
+  var dbSelectTag = document.getElementById("selector_area");
 
-        axios.get(dbListURL)
-                .then(function(response){
-                  var listOption = document.createElement("option");
-                    listOption.innerHTML = "Select cuisine...";
-                    dbSelectTag.appendChild(listOption);
-                  for(item in response.data["meals"]){
-                    var listOption = document.createElement("option");
-                      listOption.innerHTML = response.data["meals"][item]["strArea"];
-                      dbSelectTag.appendChild(listOption);
-                  }
-          })
-      }
+  axios.get(dbListURL)
+          .then(function(response){
+            var listOption = document.createElement("option");
+              listOption.innerHTML = "Select cuisine...";
+              dbSelectTag.appendChild(listOption);
+            for(item in response.data["meals"]){
+              var listOption = document.createElement("option");
+                listOption.innerHTML = response.data["meals"][item]["strArea"];
+                dbSelectTag.appendChild(listOption);
+            }
+    })
+}
 
-      function getCategoryList(){
-        var dbListURL = "https://www.themealdb.com/api/json/v1/1/list.php?c=list"
-        var dbSelectTag = document.getElementById("selector_category");
+function getCategoryList(){
+  var dbListURL = "https://www.themealdb.com/api/json/v1/1/list.php?c=list"
+  var dbSelectTag = document.getElementById("selector_category");
 
-        axios.get(dbListURL)
-                .then(function(response){
-                  var listOption = document.createElement("option");
-                    listOption.innerHTML = "Select category...";
-                    dbSelectTag.appendChild(listOption);
-                  for(item in response.data["meals"]){
-                    var listOption = document.createElement("option");
-                      listOption.innerHTML = response.data["meals"][item]["strCategory"];
-                      dbSelectTag.appendChild(listOption);
-                  }
-          })
-      }
+  axios.get(dbListURL)
+          .then(function(response){
+            var listOption = document.createElement("option");
+              listOption.innerHTML = "Select category...";
+              dbSelectTag.appendChild(listOption);
+            for(item in response.data["meals"]){
+              var listOption = document.createElement("option");
+                listOption.innerHTML = response.data["meals"][item]["strCategory"];
+                dbSelectTag.appendChild(listOption);
+            }
+    })
+}
 
-      function getIngredientList(){
-        var dbListURL = "https://www.themealdb.com/api/json/v1/1/list.php?i=list"
-        var dbSelectTag = document.getElementById("selector_ingredient");
+function getIngredientList(){
+  var dbListURL = "https://www.themealdb.com/api/json/v1/1/list.php?i=list"
+  var dbSelectTag = document.getElementById("selector_ingredient");
 
-        axios.get(dbListURL)
-                .then(function(response){
-                  var listOption = document.createElement("option");
-                    listOption.innerHTML = "Select ingredient...";
-                    dbSelectTag.appendChild(listOption);
-                  for(item in response.data["meals"]){
-                    var listOption = document.createElement("option");
-                      listOption.innerHTML = response.data["meals"][item]["strIngredient"];
-                      dbSelectTag.appendChild(listOption);
-                  }
-          })
-      }
+  axios.get(dbListURL)
+          .then(function(response){
+            var listOption = document.createElement("option");
+              listOption.innerHTML = "Select ingredient...";
+              dbSelectTag.appendChild(listOption);
+            for(item in response.data["meals"]){
+              var listOption = document.createElement("option");
+                listOption.innerHTML = response.data["meals"][item]["strIngredient"];
+                dbSelectTag.appendChild(listOption);
+            }
+    })
+}
 
-      //functions for filters
+//functions for filters
+function filterArea() {
 
+    removeRecipeBlocks();
+    resetFilter("selector_ingredient");
+    resetFilter("selector_category");
+    resetFilter("db_recipe");
 
-      function filterArea() {
+    var dbSearchedValue = document.getElementById("selector_area").value;
+    var dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/filter.php?a=" + dbSearchedValue;
 
-          removeRecipeBlocks();
+    axios.get(dbSearchedRecipeURL)
+          .then(function(response){
+            if (response.data["meals"] != null) {
+              // console.log(response.data["meals"]);
+              for (var recipe = 0; recipe < response.data["meals"].length; recipe++) {
+                var meal = response.data["meals"][recipe]["strMeal"];
+                var area = "Cuisine: " + dbSearchedValue;
+                var category = null;
+                var picture = response.data["meals"][recipe]["strMealThumb"];
+                doRecipeBlock(meal,area,category,picture);
+              }
+            } else {
+              var meal = "The database does not contain recipes with this keyword";
+              doRecipeBlock(meal);
+            }
+          });
+}
 
-          var dbSearchedValue = document.getElementById("selector_area").value;
-          var dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/filter.php?a=" + dbSearchedValue;
+function filterCategory() {
 
-          axios.get(dbSearchedRecipeURL)
-                .then(function(response){
-                  if (response.data["meals"] != null) {
-                    // console.log(response.data["meals"]);
-                    for (var recipe = 0; recipe < response.data["meals"].length; recipe++) {
-                      var meal = response.data["meals"][recipe]["strMeal"];
-                      var area = "Cuisine: " + dbSearchedValue;
-                      var category = null;
-                      var picture = response.data["meals"][recipe]["strMealThumb"];
-                      doRecipeBlock(meal,area,category,picture);
-                    }
-                  } else {
-                    var meal = "The database does not contain recipes with this keyword";
-                    doRecipeBlock(meal);
-                  }
-                });
-        }
+    removeRecipeBlocks();
+    resetFilter("selector_ingredient");
+    resetFilter("selector_area");
+    resetFilter("db_recipe");
+
+    var dbSearchedValue = document.getElementById("selector_category").value;
+    var dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/filter.php?c=" + dbSearchedValue;
+
+    axios.get(dbSearchedRecipeURL)
+          .then(function(response){
+            if (response.data["meals"] != null) {
+              // console.log(response.data["meals"]);
+              for (var recipe = 0; recipe < response.data["meals"].length; recipe++) {
+                var meal = response.data["meals"][recipe]["strMeal"];
+                var area = null;
+                var category = "Category: " + dbSearchedValue;
+                var picture = response.data["meals"][recipe]["strMealThumb"];
+                doRecipeBlock(meal,area,category,picture);
+              }
+            } else {
+              var meal = "The database does not contain recipes with this keyword";
+              doRecipeBlock(meal);
+            }
+          });
+}
+
+function filterIngredient() {
+
+    removeRecipeBlocks();
+    resetFilter("selector_category");
+    resetFilter("selector_area");
+    resetFilter("db_recipe");
+
+    var dbSearchedValue = document.getElementById("selector_ingredient").value;
+    var dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/filter.php?i=" + dbSearchedValue;
+
+    axios.get(dbSearchedRecipeURL)
+          .then(function(response){
+            if (response.data["meals"] != null) {
+              // console.log(response.data["meals"]);
+              for (var recipe = 0; recipe < response.data["meals"].length; recipe++) {
+                var meal = response.data["meals"][recipe]["strMeal"];
+                var area = null;
+                var category = null;
+                var picture = response.data["meals"][recipe]["strMealThumb"];
+                doRecipeBlock(meal,area,category,picture);
+              }
+            } else {
+              var meal = "The database does not contain recipes with this keyword";
+              doRecipeBlock(meal);
+            }
+          });
+  }
+
 
       //   .catch(function (error) {
       //     if (error.response) {
