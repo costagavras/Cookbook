@@ -67,6 +67,10 @@ function resetFilter(filterId) {
 function getRandomRecipe(){
 
   removeRecipeBlocks();
+  resetFilter("selector_ingredient");
+  resetFilter("selector_category");
+  resetFilter("selector_area");
+  resetFilter("db_recipe");
 
   var dbRandomRecipeURL = "https://www.themealdb.com/api/json/v1/1/random.php"
 
@@ -151,6 +155,7 @@ function getCategoryList(){
 function getIngredientList(){
   var dbListURL = "https://www.themealdb.com/api/json/v1/1/list.php?i=list"
   var dbSelectTag = document.getElementById("selector_ingredient");
+  var arIngredientList = [];
 
   axios.get(dbListURL)
           .then(function(response){
@@ -158,8 +163,12 @@ function getIngredientList(){
               listOption.innerHTML = "Select ingredient...";
               dbSelectTag.appendChild(listOption);
             for(item in response.data["meals"]){
+              arIngredientList.push(response.data["meals"][item]["strIngredient"]);
+            }
+            arIngredientList.sort();
+            for(item in arIngredientList){
               var listOption = document.createElement("option");
-                listOption.innerHTML = response.data["meals"][item]["strIngredient"];
+                listOption.innerHTML = arIngredientList[item];
                 dbSelectTag.appendChild(listOption);
             }
     })
