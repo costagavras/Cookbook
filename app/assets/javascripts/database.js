@@ -7,6 +7,32 @@ document.addEventListener("DOMContentLoaded", function(){
 })
 
 
+function doRecipeBlock(meal, category, area, pic){
+  var dbSearchResultArea = document.querySelector(".db_search_result_area");
+  var dbRecipeBlock = document.createElement("div");
+  dbRecipeBlock.classList.add("db_recipe_block");
+  dbSearchResultArea.appendChild(dbRecipeBlock);
+  var dbRecipeName = document.createElement("h3");
+  dbRecipeName.id = "db_recipe_name";
+  dbRecipeBlock.appendChild(dbRecipeName);
+  var dbRecipeCategory = document.createElement("h4");
+  dbRecipeCategory.id = "db_recipe_category";
+  dbRecipeBlock.appendChild(dbRecipeCategory);
+  var dbRecipeArea = document.createElement("h4");
+  dbRecipeArea.id = "db_recipe_area";
+  dbRecipeBlock.appendChild(dbRecipeArea);
+  var dbRecipePic = document.createElement("img");
+  dbRecipePic.id = "db_recipe_pic";
+  dbRecipeBlock.appendChild(dbRecipePic);
+
+  dbRecipeName.innerText = meal;
+  dbRecipeCategory.innerText = category;
+  dbRecipeArea.innerText = area;
+  dbRecipePic.src = pic
+  dbRecipePic.style.display = "block";
+  dbRecipeBlock.style.display = "block";
+}
+
 function getRandomRecipe(){
   var dbRandomRecipeURL = "https://www.themealdb.com/api/json/v1/1/random.php"
   var dbRecipeName = document.getElementById("db_recipe_name");
@@ -33,26 +59,30 @@ function getRandomRecipe(){
 function getSearchedRecipe(){
   var dbSearchedValue = document.getElementById("db_recipe").value;
   var dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + dbSearchedValue;
+  var dbSearchResultArea = document.querySelector(".db_search_result_area");
+  var dbRecipeBlock = document.querySelector(".db_recipe_block");
   var dbRecipeName = document.getElementById("db_recipe_name");
   var dbRecipeCategory = document.getElementById("db_recipe_category");
   var dbRecipeArea = document.getElementById("db_recipe_area");
   var dbRecipePic = document.getElementById("db_recipe_pic");
-  var dbRecipeBlock = document.querySelector(".db_recipe_block");
-  dbRecipeBlock.style.display = "block";
 
   axios.get(dbSearchedRecipeURL)
         .then(function(response){
           if (response.data["meals"] != null) {
-            dbRecipeName.innerText = response.data["meals"][0]["strMeal"],
-            dbRecipeCategory.innerText = "Category: " + response.data["meals"][0]["strCategory"],
-            dbRecipeArea.innerText = "Cuisine: " + response.data["meals"][0]["strArea"],
-            dbRecipePic.src = response.data["meals"][0]["strMealThumb"]
-            dbRecipePic.style.display = "block";
+            // console.log(response.data["meals"]);
+            for (var recipe = 0; recipe < response.data["meals"].length; recipe++) {
+              var meal = response.data["meals"][recipe]["strMeal"];
+              var category = "Category: " + response.data["meals"][recipe]["strCategory"];
+              var area = "Cuisine: " + response.data["meals"][recipe]["strArea"];
+              var pic = response.data["meals"][recipe]["strMealThumb"];
+              doRecipeBlock(meal, category, area, pic);
+            }
           } else {
             dbRecipeName.innerText = "The database does not contain recipes with this keyword",
             dbRecipeCategory.style.display = "none";
             dbRecipeArea.style.display = "none";
             dbRecipePic.style.display = "none";
+            dbRecipeBlock.style.display = "block";
           }
         });
 }
