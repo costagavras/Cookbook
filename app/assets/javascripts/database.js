@@ -12,15 +12,27 @@ document.addEventListener("DOMContentLoaded", function(){
   categoryBtn.addEventListener("click", filterCategory);
   var ingredientBtn = document.getElementById("ingredient_select_btn");
   ingredientBtn.addEventListener("click", filterIngredient);
+
 })
 
  //setting up recipe blocks, one per recipe
-function doRecipeBlock(meal,category,area,picture){
+function doRecipeBlock(meal,category,area,picture,hidden_id,ingredients,instructions){
+
   var dbSearchResultArea = document.querySelector(".db_search_result_area");
   var dbRecipeBlock = document.createElement("div");
   dbRecipeBlock.classList.add("db_recipe_block");
   dbSearchResultArea.appendChild(dbRecipeBlock);
 
+  if (hidden_id != null) {
+    var dbHiddenId = document.createElement("p");
+    dbHiddenId.id = "hidden_id"
+    dbRecipeBlock.appendChild(dbHiddenId);
+    dbHiddenId.innerText = hidden_id;
+    dbHiddenId.setAttribute("hidden", true);
+    dbRecipeBlock.addEventListener("dblclick", function () {
+      openRecipeDetail(hidden_id);
+    }, false);
+  }
   if (meal != null) {
     var dbRecipeName = document.createElement("h3");
     dbRecipeName.id = "db_recipe_name";
@@ -39,6 +51,18 @@ function doRecipeBlock(meal,category,area,picture){
     dbRecipeBlock.appendChild(dbRecipeArea);
     dbRecipeArea.innerText = area;
   }
+  if (ingredients != null) {
+    var dbRecipeIngredients = document.createElement("h5");
+    dbRecipeIngredients.id = "db_recipe_ingr";
+    dbRecipeBlock.appendChild(dbRecipeIngredients);
+    dbRecipeIngredients.innerText = ingredients;
+  }
+  if (instructions != null) {
+    var dbRecipeInstructions = document.createElement("h5");
+    dbRecipeInstructions.id = "db_recipe_instr";
+    dbRecipeBlock.appendChild(dbRecipeInstructions);
+    dbRecipeInstructions.innerText = instructions;
+  }
   if (picture != null) {
     var dbRecipePic = document.createElement("img");
     dbRecipePic.id = "db_recipe_pic";
@@ -49,6 +73,7 @@ function doRecipeBlock(meal,category,area,picture){
 
   //deleting recipe blocks to clean up the page
 function removeRecipeBlocks() {
+
   var dbSearchResultArea = document.querySelector(".db_search_result_area");
   while (dbSearchResultArea.firstChild) {
     dbSearchResultArea.removeChild(dbSearchResultArea.firstChild);
@@ -57,6 +82,7 @@ function removeRecipeBlocks() {
 
 //reset filters to nothing chosen
 function resetFilter(filterId) {
+
   var filter = document.getElementById(filterId);
   filter.selectedIndex = 0;
   if (filterId === "db_recipe") {
@@ -80,13 +106,23 @@ function getRandomRecipe(){
           data: '', //`data` is the data to be sent as the request body, only applicable for request methods 'PUT', 'POST', and 'PATCH'
           dataType: 'json', // default
         }).then(function(response){
-          var meal = response.data["meals"][0]["strMeal"];
-          var category = "Category: " + response.data["meals"][0]["strCategory"];
-          var area = "Cuisine: " + response.data["meals"][0]["strArea"];
-          var picture = response.data["meals"][0]["strMealThumb"];
+          if (response.data["meals"] != null) {
 
-          doRecipeBlock(meal, category, area, picture);
-    })
+            var responsum = response.data["meals"][0];
+            var hidden_id = responsum["idMeal"];
+            var meal = responsum["strMeal"];
+            var category = "Category: " + responsum["strCategory"];
+            var area = "Cuisine: " + responsum["strArea"];
+            var picture = responsum["strMealThumb"];
+
+            doRecipeBlock(meal, category, area, picture, hidden_id);
+
+          } else {
+            var meal = "The database did not return a random recipe";
+            doRecipeBlock(meal);
+        }
+    });
+
 }
 
 function getSearchedRecipe(){
@@ -103,12 +139,14 @@ function getSearchedRecipe(){
         .then(function(response){
           if (response.data["meals"] != null) {
             // console.log(response.data["meals"]);
-            for (var recipe = 0; recipe < response.data["meals"].length; recipe++) {
-              var meal = response.data["meals"][recipe]["strMeal"];
-              var category = "Category: " + response.data["meals"][recipe]["strCategory"];
-              var area = "Cuisine: " + response.data["meals"][recipe]["strArea"];
-              var picture = response.data["meals"][recipe]["strMealThumb"];
-              doRecipeBlock(meal, category, area, picture);
+            var responsum = response.data["meals"];
+            for (var recipe = 0; recipe < responsum.length; recipe++) {
+              var hidden_id = responsum[recipe]["idMeal"];
+              var meal = responsum[recipe]["strMeal"];
+              var category = "Category: " + responsum[recipe]["strCategory"];
+              var area = "Cuisine: " + responsum[recipe]["strArea"];
+              var picture = responsum[recipe]["strMealThumb"];
+              doRecipeBlock(meal, category, area, picture, hidden_id);
             }
           } else {
             var meal = "The database does not contain recipes with this keyword";
@@ -189,12 +227,14 @@ function filterArea() {
           .then(function(response){
             if (response.data["meals"] != null) {
               // console.log(response.data["meals"]);
-              for (var recipe = 0; recipe < response.data["meals"].length; recipe++) {
-                var meal = response.data["meals"][recipe]["strMeal"];
+              var responsum = response.data["meals"];
+              for (var recipe = 0; recipe < responsum.length; recipe++) {
+                var hidden_id = responsum[recipe]["idMeal"];
+                var meal = responsum[recipe]["strMeal"];
                 var area = "Cuisine: " + dbSearchedValue;
                 var category = null;
-                var picture = response.data["meals"][recipe]["strMealThumb"];
-                doRecipeBlock(meal,area,category,picture);
+                var picture = responsum[recipe]["strMealThumb"];
+                doRecipeBlock(meal, area, category, picture, hidden_id);
               }
             } else {
               var meal = "The database does not contain recipes with this keyword";
@@ -217,12 +257,14 @@ function filterCategory() {
           .then(function(response){
             if (response.data["meals"] != null) {
               // console.log(response.data["meals"]);
-              for (var recipe = 0; recipe < response.data["meals"].length; recipe++) {
-                var meal = response.data["meals"][recipe]["strMeal"];
+              var responsum = response.data["meals"];
+              for (var recipe = 0; recipe < responsum.length; recipe++) {
+                var hidden_id = responsum[recipe]["idMeal"];
+                var meal = responsum[recipe]["strMeal"];
                 var area = null;
                 var category = "Category: " + dbSearchedValue;
-                var picture = response.data["meals"][recipe]["strMealThumb"];
-                doRecipeBlock(meal,area,category,picture);
+                var picture = responsum[recipe]["strMealThumb"];
+                doRecipeBlock(meal, area, category, picture, hidden_id);
               }
             } else {
               var meal = "The database does not contain recipes with this keyword";
@@ -245,12 +287,14 @@ function filterIngredient() {
           .then(function(response){
             if (response.data["meals"] != null) {
               // console.log(response.data["meals"]);
-              for (var recipe = 0; recipe < response.data["meals"].length; recipe++) {
-                var meal = response.data["meals"][recipe]["strMeal"];
+              var responsum = response.data["meals"];
+              for (var recipe = 0; recipe < responsum.length; recipe++) {
+                var hidden_id = responsum[recipe]["idMeal"];
+                var meal = responsum[recipe]["strMeal"];
                 var area = null;
                 var category = null;
-                var picture = response.data["meals"][recipe]["strMealThumb"];
-                doRecipeBlock(meal,area,category,picture);
+                var picture = responsum[recipe]["strMealThumb"];
+                doRecipeBlock(meal, area, category, picture, hidden_id);
               }
             } else {
               var meal = "The database does not contain recipes with this keyword";
@@ -259,6 +303,37 @@ function filterIngredient() {
           });
   }
 
+//loads full detail about the recipe
+function openRecipeDetail(hidden_id) {
+
+  removeRecipeBlocks();
+
+  var dbRecipeDetailURL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + hidden_id;
+  var arIngredients = [];
+
+  axios.get(dbRecipeDetailURL)
+        .then(function(response){
+          if (response.data["meals"] != null) {
+            // console.log(response.data["meals"]);
+            var responsum = response.data["meals"][0];
+            var meal = responsum["strMeal"];
+            var category = "Category: " + responsum["strCategory"];
+            var area = "Cuisine: " + responsum["strArea"];
+            var picture = responsum["strMealThumb"];
+            var instructions = responsum["strInstructions"];
+            for (var item = 1; item < 21; item++) {
+              if (responsum["strIngredient"+item] != "" && responsum["strIngredient"+item] != null) {
+                arIngredients[item-1] = " " + responsum["strIngredient"+item] + ": " + responsum["strMeasure"+item];
+              }
+            }
+            doRecipeBlock(meal, category, area, picture, hidden_id, arIngredients, instructions);
+
+          } else {
+            var meal = "Oops! Something went wrong!";
+            doRecipeBlock(meal);
+          }
+    })
+}
 
       //   .catch(function (error) {
       //     if (error.response) {
