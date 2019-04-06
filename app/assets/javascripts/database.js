@@ -20,15 +20,17 @@ function doRecipeBlock(meal,category,area,picture,mealId,ingredients,instruction
 
   var dbSearchResultArea = document.querySelector(".db_search_result_area");
   var dbRecipeBlock = document.createElement("div");
-  dbRecipeBlock.classList.add("db_recipe_block");
+
   dbSearchResultArea.appendChild(dbRecipeBlock);
   dbRecipeBlock.id = mealId;
 
   if (instructions == null) { //reduced info passed (first run)
+    dbRecipeBlock.classList.add("db_recipe_block");
     dbRecipeBlock.addEventListener("dblclick", function () {
       expandRecipeDetail(mealId, 0);
     }, false);
   } else { //full info passed (second run)
+    dbRecipeBlock.classList.add("db_recipe_block_detail");
     dbRecipeBlock.removeEventListener("dblclick", function () {
       expandRecipeDetail(mealId, 0);
     }, false);
