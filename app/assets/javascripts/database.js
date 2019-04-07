@@ -58,16 +58,16 @@ function doRecipeBlock(meal,category,area,picture,mealId,ingredients,instruction
     dbRecipeArea.innerText = area;
   }
   if (ingredients != null) {
-    var dbRecipeIngredients = document.createElement("h5");
+    var dbRecipeIngredients = document.createElement("p");
     dbRecipeIngredients.id = "db_hidden_element";
     dbRecipeBlock.appendChild(dbRecipeIngredients);
-    dbRecipeIngredients.innerText = "Ingredients: " + ingredients;
+    dbRecipeIngredients.innerText = "Ingredients: \n" + ingredients;
   }
   if (instructions != null) {
-    var dbRecipeInstructions = document.createElement("h5");
+    var dbRecipeInstructions = document.createElement("p");
     dbRecipeInstructions.id = "db_hidden_element";
     dbRecipeBlock.appendChild(dbRecipeInstructions);
-    dbRecipeInstructions.innerText = "Instructions: " + instructions;
+    dbRecipeInstructions.innerText = "Instructions: \n" + instructions;
   }
   if (picture != null) {
     var dbRecipePic = document.createElement("img");
@@ -84,6 +84,11 @@ function doRecipeBlock(meal,category,area,picture,mealId,ingredients,instruction
        for (var item of hiddenElements) { //correct way of looping through DOM node
          item.hidden = !item.hidden;
        }
+  }
+
+  //function to go to the previous view
+  function goBack() {
+
   }
 
 
@@ -351,7 +356,8 @@ function expandRecipeDetail(mealId, run) {
             }
     })
   } else {
-    toggleExpandRecipeView(mealId);
+    // toggleExpandRecipeView(mealId);
+    goBack();
   }
 }
 

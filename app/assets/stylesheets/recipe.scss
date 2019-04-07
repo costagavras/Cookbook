@@ -629,10 +629,10 @@ input[type="radio" i] {
   .db_recipe_block {
     display: grid;
     h3 {
-      margin: 0.5em 0;
+      margin: 0.3em 0;
     }
     h4 {
-      margin: 0.5em 0;
+      margin: 0.3em 0;
     }
     #db_recipe_name {
       color: #9b5115;
@@ -648,7 +648,7 @@ input[type="radio" i] {
       }
     }
     #db_recipe_pic {
-      margin: auto;
+      margin: 0.5em auto;
       width: 70%;
       border-radius: 1em;
     }
@@ -659,28 +659,45 @@ input[type="radio" i] {
 .db_search_result_area {
   .db_recipe_block_detail {
     display: grid;
+    grid-template-columns: 1fr 2fr;
+
     h3 {
-      margin: 0.5em 0;
+      color: #9b5115;
+      font-size: 2em;
+      grid-column: 2 / 3;
     }
     h4 {
-      margin: 0.5em 0;
-    }
-    #db_recipe_name {
-      color: #9b5115;
       font-size: 1.5em;
+      margin: 0.2em 0;
+      grid-column: 2 / 3;
+    }
+    p {
+      color: black;
+      font-size: 1.3em;
+      text-align: justify;
+      margin: 1em;
       @media screen and (max-width: 1200px) {
-        font-size: 1.4em;
-      }
-      @media screen and (max-width: 900px) {
-        font-size: 1.3em;
-      }
-      @media screen and (max-width: 600px) {
         font-size: 1.2em;
       }
+      @media screen and (max-width: 900px) {
+        font-size: 1.1em;
+      }
+      @media screen and (max-width: 600px) {
+        font-size: 1em;
+      }
     }
-    #db_recipe_pic {
-      margin: auto;
-      width: 70%;
+    p:last-of-type {
+      grid-column: 1 / 3;
+    }
+    p::first-line {
+      font-weight: bold;
+    }
+
+    img {
+      // grid-column: 2 / 3;
+      grid-row: 1 / 5;
+      margin: 1em auto;
+      width: 90%;
       border-radius: 1em;
     }
   }
