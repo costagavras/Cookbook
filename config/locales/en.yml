@@ -130,3 +130,6 @@ en:
     comments: "Comments"
     not_saved: "Comment not saved!"
     post: "Post your comment"
+
+  database:
+    back: "Back to search results"

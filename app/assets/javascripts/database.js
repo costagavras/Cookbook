@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function(){
     categoryBtn.addEventListener("click", filterCategory);
     var ingredientBtn = document.getElementById("ingredient_select_btn");
     ingredientBtn.addEventListener("click", filterIngredient);
+    document.querySelector(".db_go_back").hidden = true;
   }
 })
 
@@ -36,6 +37,9 @@ function doRecipeBlock(meal,category,area,picture,mealId,ingredients,instruction
     dbRecipeBlock.addEventListener("dblclick", function () {
       expandRecipeDetail(mealId, 1);
     }, false);
+    var goBackLink = document.querySelector(".db_go_back");
+    goBackLink.hidden = false;
+    goBackLink.addEventListener("click", goBack);
   }
 
   if (meal != null) {
@@ -93,6 +97,8 @@ function doRecipeBlock(meal,category,area,picture,mealId,ingredients,instruction
     // Convert string back to a function
     var myFunc = eval('(' + storedFunc + ')');
     myFunc();
+    var goBackLink = document.querySelector(".db_go_back");
+    goBackLink.hidden = true;
   }
 
 
