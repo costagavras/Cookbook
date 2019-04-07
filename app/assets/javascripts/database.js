@@ -4,15 +4,14 @@ document.addEventListener("DOMContentLoaded", function(){
       getAreaList();
       getCategoryList();
       getIngredientList();
+    //attaching functions to filter buttons
+    var areaBtn = document.getElementById("area_select_btn");
+    areaBtn.addEventListener("click", filterArea);
+    var categoryBtn = document.getElementById("category_select_btn");
+    categoryBtn.addEventListener("click", filterCategory);
+    var ingredientBtn = document.getElementById("ingredient_select_btn");
+    ingredientBtn.addEventListener("click", filterIngredient);
   }
-  //attaching functions to filter buttons
-  var areaBtn = document.getElementById("area_select_btn");
-  areaBtn.addEventListener("click", filterArea);
-  var categoryBtn = document.getElementById("category_select_btn");
-  categoryBtn.addEventListener("click", filterCategory);
-  var ingredientBtn = document.getElementById("ingredient_select_btn");
-  ingredientBtn.addEventListener("click", filterIngredient);
-
 })
 
  //setting up recipe blocks, one per recipe
@@ -79,6 +78,7 @@ function doRecipeBlock(meal,category,area,picture,mealId,ingredients,instruction
 
   //toggle expanded recipe view
   function toggleExpandRecipeView(mealId) {
+
      var recipeBlock = document.getElementById(mealId);
      var hiddenElements = recipeBlock.querySelectorAll("#db_hidden_element");
        for (var item of hiddenElements) { //correct way of looping through DOM node
@@ -89,6 +89,10 @@ function doRecipeBlock(meal,category,area,picture,mealId,ingredients,instruction
   //function to go to the previous view
   function goBack() {
 
+    var storedFunc = localStorage.getItem("func");
+    // Convert string back to a function
+    var myFunc = eval('(' + storedFunc + ')');
+    myFunc();
   }
 
 
@@ -120,6 +124,9 @@ function getRandomRecipe(){
   resetFilter("db_recipe");
 
   var dbRandomRecipeURL = "https://www.themealdb.com/api/json/v1/1/random.php"
+
+  localStorage.setItem("func", "getRandomRecipe");
+  localStorage.setItem("arg", "");
 
   axios({
           url: dbRandomRecipeURL,
@@ -153,8 +160,13 @@ function getSearchedRecipe(){
   resetFilter("selector_category");
   resetFilter("selector_area");
 
-  var dbSearchedValue = document.getElementById("db_recipe").value;
+  var dbSearchedValue = localStorage.arg ? localStorage.arg : document.getElementById("db_recipe").value;
+
   var dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + dbSearchedValue;
+
+  localStorage.setItem("func", "getSearchedRecipe");
+  localStorage.setItem("arg", dbSearchedValue);
+
 
   axios.get(dbSearchedRecipeURL)
         .then(function(response){
@@ -244,6 +256,9 @@ function filterArea() {
     var dbSearchedValue = document.getElementById("selector_area").value;
     var dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/filter.php?a=" + dbSearchedValue;
 
+    localStorage.setItem("func", "filterArea");
+    localStorage.setItem("arg", dbSearchedValue);
+
     axios.get(dbSearchedRecipeURL)
           .then(function(response){
             if (response.data["meals"] != null) {
@@ -274,6 +289,9 @@ function filterCategory() {
     var dbSearchedValue = document.getElementById("selector_category").value;
     var dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/filter.php?c=" + dbSearchedValue;
 
+    localStorage.setItem("func", "filterCategory");
+    localStorage.setItem("arg", dbSearchedValue);
+
     axios.get(dbSearchedRecipeURL)
           .then(function(response){
             if (response.data["meals"] != null) {
@@ -303,6 +321,9 @@ function filterIngredient() {
 
     var dbSearchedValue = document.getElementById("selector_ingredient").value;
     var dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/filter.php?i=" + dbSearchedValue;
+
+    localStorage.setItem("func", "filterIngredient");
+    localStorage.setItem("arg", dbSearchedValue);
 
     axios.get(dbSearchedRecipeURL)
           .then(function(response){
@@ -356,7 +377,6 @@ function expandRecipeDetail(mealId, run) {
             }
     })
   } else {
-    // toggleExpandRecipeView(mealId);
     goBack();
   }
 }

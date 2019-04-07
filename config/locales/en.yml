@@ -43,7 +43,7 @@ en:
     delete_recipe: "Delete recipe"
     headliner: "The place where your recipes are at home"
     made_by: "Made by Constantine"
-    about: "About this project & myself"
+    about_me: "About this project & myself"
     most_popular: "Most popular"
     views: "views"
     database: "Recipes db"
