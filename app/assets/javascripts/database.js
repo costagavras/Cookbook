@@ -166,7 +166,10 @@ function getSearchedRecipe(){
   resetFilter("selector_category");
   resetFilter("selector_area");
 
-  var dbSearchedValue = localStorage.arg ? localStorage.arg : document.getElementById("db_recipe").value;
+  // var dbSearchedValue = (localStorage.getItem("back") == "true") ? localStorage.arg : document.getElementById("db_recipe").value;
+
+  var dbSearchedValue = document.getElementById("db_recipe").value;
+
 
   var dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + dbSearchedValue;
 
@@ -192,6 +195,8 @@ function getSearchedRecipe(){
             doRecipeBlock(meal);
           }
         });
+        var goBackLink = document.querySelector(".db_go_back");
+        goBackLink.hidden = true;
 }
 
 
@@ -283,6 +288,8 @@ function filterArea() {
               doRecipeBlock(meal);
             }
           });
+          var goBackLink = document.querySelector(".db_go_back");
+          goBackLink.hidden = true;
 }
 
 function filterCategory() {
@@ -316,6 +323,8 @@ function filterCategory() {
               doRecipeBlock(meal);
             }
           });
+          var goBackLink = document.querySelector(".db_go_back");
+          goBackLink.hidden = true;
 }
 
 function filterIngredient() {
@@ -349,6 +358,8 @@ function filterIngredient() {
               doRecipeBlock(meal);
             }
           });
+          var goBackLink = document.querySelector(".db_go_back");
+          goBackLink.hidden = true;
   }
 
 //loads full detail about the recipe
