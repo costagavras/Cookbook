@@ -317,7 +317,7 @@ footer {
 
 //styling for most popular recipes
 
-.most_popular {
+.most_popular, .db_most_popular {
   margin: 5% 10% 0;
   h2 {
     @media screen and (max-width: 1200px) {
@@ -330,7 +330,7 @@ footer {
       font-size: 1.5rem;
     }
   }
-  .most_viewed_block {
+  .most_viewed_block, .db_most_viewed_block {
     display: grid;
     grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
     grid-template-rows: auto;

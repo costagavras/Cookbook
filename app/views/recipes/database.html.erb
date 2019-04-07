@@ -1,5 +1,5 @@
 <div class="db_header">
-  <h1>External database (<a href="https://www.themealdb.com">TheMealDB</a>)</h1>
+  <h1><%=t("database.header")%> (<a href="https://www.themealdb.com">TheMealDB</a>)</h1>
 </div>
 <hr>
 <div class="db_search_area">
@@ -40,4 +40,11 @@
    <h3>&#8678; <%=t("database.back")%></h3>
 </div>
 <div class="db_search_result_area">
+</div>
+<div class="db_most_popular">
+  <% if current_user && request.path_info.include?("database") %>
+    <h2 class="most_viewed"><%=t("homepage.most_popular")%></h2>
+    <div class="db_most_viewed_block">
+    </div>
+  <% end %>
 </div>

@@ -121,6 +121,41 @@ function resetFilter(filterId) {
   }
 }
 
+//nomen omen
+function updateRecentList(meal) {
+
+  if (localStorage.recentList) {
+    var retrievedRecentList = localStorage.getItem("recentList");
+    var arRecentList = JSON.parse(retrievedRecentList);
+    if (arRecentList.indexOf(meal) != -1) { //case meal is found inside
+      arRecentList.splice(arRecentList.indexOf(meal),1);
+      arRecentList.push(meal);
+    } else {
+      if (arRecentList.length < 10) {
+        arRecentList.push(meal);
+      } else {
+        arRecentList.shift();
+        arRecentList.push(meal)
+      }
+    }
+  } else {
+    var arRecentList = [meal];
+  }
+    localStorage.setItem("recentList", JSON.stringify(arRecentList));
+    var most_viewed_block = document.querySelector(".db_most_viewed_block");
+    while (most_viewed_block.firstChild) {
+      most_viewed_block.removeChild(most_viewed_block.firstChild);
+    }
+    for (var recipe = 0; recipe < arRecentList.length; recipe++) {
+      var index_recipe = document.createElement("div");
+      index_recipe.classList.add("index_recipe");
+      most_viewed_block.appendChild(index_recipe);
+      var recipe_name = document.createElement("h3");
+      index_recipe.appendChild(recipe_name);
+      recipe_name.innerText = arRecentList[recipe];
+    }
+}
+
 function getRandomRecipe(){
 
   removeRecipeBlocks();
@@ -386,6 +421,7 @@ function expandRecipeDetail(mealId, run) {
                   arIngredients[item-1] = " " + responsum["strIngredient"+item] + ": " + responsum["strMeasure"+item];
                 }
               }
+              updateRecentList(meal);
               doRecipeBlock(meal, category, area, picture, mealId, arIngredients, instructions);
 
             } else {

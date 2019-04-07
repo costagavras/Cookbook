@@ -132,4 +132,5 @@ en:
     post: "Post your comment"
 
   database:
+    header: "External database"
     back: "Back to search results"
