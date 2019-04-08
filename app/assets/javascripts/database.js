@@ -101,7 +101,7 @@ function doRecipeBlock(meal,category,area,picture,mealId,ingredients,instruction
   //function to go to the previous view is taken from localStorage
 function goBack() {
 
-  var storedFunc = localStorage.getItem("func");
+  var storedFunc = localStorage.getItem("lastFunction");
   // Convert string back to a function
   var myFunc = eval('(' + storedFunc + ')');
   myFunc();
@@ -191,8 +191,7 @@ function getRandomRecipe(){
 
   var dbRandomRecipeURL = "https://www.themealdb.com/api/json/v1/1/random.php"
 
-  localStorage.setItem("func", "getRandomRecipe");
-  localStorage.setItem("arg", "");
+  localStorage.setItem("lastFunction", "getRandomRecipe");
 
   axios({
           url: dbRandomRecipeURL,
@@ -229,13 +228,9 @@ function getSearchedRecipe(){
 
   var dbSearchedValue = (localStorage.recentRecipe) ? localStorage.recentRecipe : document.getElementById("db_recipe").value;
 
-  // var dbSearchedValue = document.getElementById("db_recipe").value;
-
-
   var dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + dbSearchedValue;
 
-  localStorage.setItem("func", "getSearchedRecipe");
-  localStorage.setItem("arg", dbSearchedValue);
+  localStorage.setItem("lastFunction", "getSearchedRecipe");
 
   axios.get(dbSearchedRecipeURL)
         .then(function(response){
@@ -329,8 +324,7 @@ function filterArea() {
     var dbSearchedValue = document.getElementById("selector_area").value;
     var dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/filter.php?a=" + dbSearchedValue;
 
-    localStorage.setItem("func", "filterArea");
-    localStorage.setItem("arg", dbSearchedValue);
+    localStorage.setItem("lastFunction", "filterArea");
 
     axios.get(dbSearchedRecipeURL)
           .then(function(response){
@@ -365,8 +359,7 @@ function filterCategory() {
     var dbSearchedValue = document.getElementById("selector_category").value;
     var dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/filter.php?c=" + dbSearchedValue;
 
-    localStorage.setItem("func", "filterCategory");
-    localStorage.setItem("arg", dbSearchedValue);
+    localStorage.setItem("lastFunction", "filterCategory");
 
     axios.get(dbSearchedRecipeURL)
           .then(function(response){
@@ -401,8 +394,7 @@ function filterIngredient() {
     var dbSearchedValue = document.getElementById("selector_ingredient").value;
     var dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/filter.php?i=" + dbSearchedValue;
 
-    localStorage.setItem("func", "filterIngredient");
-    localStorage.setItem("arg", dbSearchedValue);
+    localStorage.setItem("lastFunction", "filterIngredient");
 
     axios.get(dbSearchedRecipeURL)
           .then(function(response){
@@ -452,7 +444,7 @@ function expandRecipeDetail(mealId, run) {
               }
               updateRecentList(meal);
               doRecipeBlock(meal, category, area, picture, mealId, arIngredients, instructions);
-              localStorage.removeItem("recentRecipe");
+              localStorage.removeItem("recentRecipe"); //deletes reference to recentRecipe so no back links check in doRecipeBlock is correctly performed
             } else {
               var meal = "Oops! Something went wrong!";
               doRecipeBlock(meal);
