@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function(){
       getAreaList();
       getCategoryList();
       getIngredientList();
+      updateRecentList(null);
     //attaching functions to filter buttons
     var areaBtn = document.getElementById("area_select_btn");
     areaBtn.addEventListener("click", filterArea);
@@ -24,7 +25,7 @@ function doRecipeBlock(meal,category,area,picture,mealId,ingredients,instruction
   dbSearchResultArea.appendChild(dbRecipeBlock);
   dbRecipeBlock.id = mealId;
 
-  if (instructions == null) { //reduced info passed (first run)
+  if (instructions == null) { //reduced info passed (first run), sets dblclick to run full info on recipe
     dbRecipeBlock.classList.add("db_recipe_block");
     dbRecipeBlock.addEventListener("dblclick", function () {
       expandRecipeDetail(mealId, 0);
@@ -34,12 +35,15 @@ function doRecipeBlock(meal,category,area,picture,mealId,ingredients,instruction
     dbRecipeBlock.removeEventListener("dblclick", function () {
       expandRecipeDetail(mealId, 0);
     }, false);
-    dbRecipeBlock.addEventListener("dblclick", function () {
-      expandRecipeDetail(mealId, 1);
-    }, false);
-    var goBackLink = document.querySelector(".db_go_back");
-    goBackLink.hidden = false;
-    goBackLink.addEventListener("click", goBack);
+
+    if (!localStorage.recentRecipe) { //if localStorage.recent still exists (= recipe was clicked through most recent don't create links to go back)
+      dbRecipeBlock.addEventListener("dblclick", function () {
+        expandRecipeDetail(mealId, 1);
+      }, false);
+      var goBackLink = document.querySelector(".db_go_back");
+      goBackLink.hidden = false;
+      goBackLink.addEventListener("click", goBack);
+    }
   }
 
   if (meal != null) {
@@ -81,14 +85,14 @@ function doRecipeBlock(meal,category,area,picture,mealId,ingredients,instruction
 }
 
   //toggle expanded recipe view
-  function toggleExpandRecipeView(mealId) {
-
-     var recipeBlock = document.getElementById(mealId);
-     var hiddenElements = recipeBlock.querySelectorAll("#db_hidden_element");
-       for (var item of hiddenElements) { //correct way of looping through DOM node
-         item.hidden = !item.hidden;
-       }
-  }
+  // function toggleExpandRecipeView(mealId) {
+  //
+  //    var recipeBlock = document.getElementById(mealId);
+  //    var hiddenElements = recipeBlock.querySelectorAll("#db_hidden_element");
+  //      for (var item of hiddenElements) { //correct way of looping through DOM node
+  //        item.hidden = !item.hidden;
+  //      }
+  // }
 
   //function to go to the previous view
   function goBack() {
@@ -124,24 +128,32 @@ function resetFilter(filterId) {
 //nomen omen
 function updateRecentList(meal) {
 
-  if (localStorage.recentList) {
-    var retrievedRecentList = localStorage.getItem("recentList");
-    var arRecentList = JSON.parse(retrievedRecentList);
-    if (arRecentList.indexOf(meal) != -1) { //case meal is found inside
-      arRecentList.splice(arRecentList.indexOf(meal),1);
-      arRecentList.push(meal);
-    } else {
-      if (arRecentList.length < 10) {
+  if (meal != null) {
+    if (localStorage.recentList) {
+      var retrievedRecentList = localStorage.getItem("recentList");
+      var arRecentList = JSON.parse(retrievedRecentList);
+      if (arRecentList.indexOf(meal) != -1) { //case meal is found inside
+        arRecentList.splice(arRecentList.indexOf(meal),1);
         arRecentList.push(meal);
       } else {
-        arRecentList.shift();
-        arRecentList.push(meal)
+        if (arRecentList.length < 10) {
+          arRecentList.push(meal);
+        } else {
+          arRecentList.shift();
+          arRecentList.push(meal)
+        }
       }
+    } else {
+      var arRecentList = [meal];
     }
+      localStorage.setItem("recentList", JSON.stringify(arRecentList));
   } else {
-    var arRecentList = [meal];
+    if (localStorage.recentList) {
+      var retrievedRecentList = localStorage.getItem("recentList");
+      var arRecentList = JSON.parse(retrievedRecentList);
+    }
   }
-    localStorage.setItem("recentList", JSON.stringify(arRecentList));
+
     var most_viewed_block = document.querySelector(".db_most_viewed_block");
     while (most_viewed_block.firstChild) {
       most_viewed_block.removeChild(most_viewed_block.firstChild);
@@ -151,9 +163,16 @@ function updateRecentList(meal) {
       index_recipe.classList.add("index_recipe");
       most_viewed_block.appendChild(index_recipe);
       var recipe_name = document.createElement("h3");
+      recipe_name.classList.add("db_recent_name");
+      recipe_name.addEventListener("click", getRecipe);
       index_recipe.appendChild(recipe_name);
       recipe_name.innerText = arRecentList[recipe];
     }
+}
+
+function getRecipe(event) {
+  localStorage.setItem("recentRecipe", event.target.innerText)
+  getSearchedRecipe();
 }
 
 function getRandomRecipe(){
@@ -201,16 +220,15 @@ function getSearchedRecipe(){
   resetFilter("selector_category");
   resetFilter("selector_area");
 
-  // var dbSearchedValue = (localStorage.getItem("back") == "true") ? localStorage.arg : document.getElementById("db_recipe").value;
+  var dbSearchedValue = (localStorage.recentRecipe) ? localStorage.recentRecipe : document.getElementById("db_recipe").value;
 
-  var dbSearchedValue = document.getElementById("db_recipe").value;
+  // var dbSearchedValue = document.getElementById("db_recipe").value;
 
 
   var dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + dbSearchedValue;
 
   localStorage.setItem("func", "getSearchedRecipe");
   localStorage.setItem("arg", dbSearchedValue);
-
 
   axios.get(dbSearchedRecipeURL)
         .then(function(response){
@@ -423,7 +441,7 @@ function expandRecipeDetail(mealId, run) {
               }
               updateRecentList(meal);
               doRecipeBlock(meal, category, area, picture, mealId, arIngredients, instructions);
-
+              localStorage.removeItem("recentRecipe");
             } else {
               var meal = "Oops! Something went wrong!";
               doRecipeBlock(meal);
