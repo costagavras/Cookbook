@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", function(){
       getAreaList();
       getCategoryList();
       getIngredientList();
+
+    //updates 10 most recent recipes
       updateRecentList(null);
     //attaching functions to filter buttons
     var areaBtn = document.getElementById("area_select_btn");
@@ -12,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function(){
     categoryBtn.addEventListener("click", filterCategory);
     var ingredientBtn = document.getElementById("ingredient_select_btn");
     ingredientBtn.addEventListener("click", filterIngredient);
+    //hides go back button element
     document.querySelector(".db_go_back").hidden = true;
   }
 })
@@ -30,15 +33,15 @@ function doRecipeBlock(meal,category,area,picture,mealId,ingredients,instruction
     dbRecipeBlock.addEventListener("dblclick", function () {
       expandRecipeDetail(mealId, 0);
     }, false);
-  } else { //full info passed (second run)
+  } else { //full info passed (second run), removes eventlistener above and adds a new one
     dbRecipeBlock.classList.add("db_recipe_block_detail");
     dbRecipeBlock.removeEventListener("dblclick", function () {
       expandRecipeDetail(mealId, 0);
     }, false);
 
-    if (!localStorage.recentRecipe) { //if localStorage.recent still exists (= recipe was clicked through most recent don't create links to go back)
+    if (!localStorage.recentRecipe) { //if localStorage.recentRecipe still exists (= recipe was clicked through <10 most recent>) don't create links to go back
       dbRecipeBlock.addEventListener("dblclick", function () {
-        expandRecipeDetail(mealId, 1);
+        expandRecipeDetail(mealId, 1); //eventlistener sets goBack() that runs previous API function taken from localStorage
       }, false);
       var goBackLink = document.querySelector(".db_go_back");
       goBackLink.hidden = false;
@@ -46,6 +49,7 @@ function doRecipeBlock(meal,category,area,picture,mealId,ingredients,instruction
     }
   }
 
+  //setting up DOM elements
   if (meal != null) {
     var dbRecipeName = document.createElement("h3");
     dbRecipeName.id = "db_recipe_name";
@@ -94,19 +98,19 @@ function doRecipeBlock(meal,category,area,picture,mealId,ingredients,instruction
   //      }
   // }
 
-  //function to go to the previous view
-  function goBack() {
+  //function to go to the previous view is taken from localStorage
+function goBack() {
 
-    var storedFunc = localStorage.getItem("func");
-    // Convert string back to a function
-    var myFunc = eval('(' + storedFunc + ')');
-    myFunc();
-    var goBackLink = document.querySelector(".db_go_back");
-    goBackLink.hidden = true;
-  }
+  var storedFunc = localStorage.getItem("func");
+  // Convert string back to a function
+  var myFunc = eval('(' + storedFunc + ')');
+  myFunc();
+  var goBackLink = document.querySelector(".db_go_back");
+  goBackLink.hidden = true;
+}
 
 
-  //deleting recipe blocks to clean up the page
+  //deleting recipe blocks to clean up the page before each new API call
 function removeRecipeBlocks() {
 
   var dbSearchResultArea = document.querySelector(".db_search_result_area");
@@ -125,7 +129,7 @@ function resetFilter(filterId) {
   }
 }
 
-//nomen omen
+//updates array of 10 most recent recipes
 function updateRecentList(meal) {
 
   if (meal != null) {
@@ -147,13 +151,13 @@ function updateRecentList(meal) {
       var arRecentList = [meal];
     }
       localStorage.setItem("recentList", JSON.stringify(arRecentList));
-  } else {
+  } else { //case mean == null happens on page refresh (see first DOMContentLoaded function)
     if (localStorage.recentList) {
       var retrievedRecentList = localStorage.getItem("recentList");
       var arRecentList = JSON.parse(retrievedRecentList);
     }
   }
-
+    //deleting old most_viewed_blocks and setting up new ones
     var most_viewed_block = document.querySelector(".db_most_viewed_block");
     while (most_viewed_block.firstChild) {
       most_viewed_block.removeChild(most_viewed_block.firstChild);
@@ -164,17 +168,19 @@ function updateRecentList(meal) {
       most_viewed_block.appendChild(index_recipe);
       var recipe_name = document.createElement("h3");
       recipe_name.classList.add("db_recent_name");
-      recipe_name.addEventListener("click", getRecipe);
+      recipe_name.addEventListener("click", getRecipe); //add eventlistener to show detail
       index_recipe.appendChild(recipe_name);
       recipe_name.innerText = arRecentList[recipe];
     }
 }
 
+//show detail (bugs if name is similar to another recipe)
 function getRecipe(event) {
   localStorage.setItem("recentRecipe", event.target.innerText)
   getSearchedRecipe();
 }
 
+//API call for random recipe
 function getRandomRecipe(){
 
   removeRecipeBlocks();
@@ -213,6 +219,7 @@ function getRandomRecipe(){
 
 }
 
+//API call for search bar
 function getSearchedRecipe(){
 
   removeRecipeBlocks();
@@ -252,7 +259,7 @@ function getSearchedRecipe(){
         goBackLink.hidden = true;
 }
 
-
+//API call to populate area select_tag
 function getAreaList(){
   var dbListURL = "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
   var dbSelectTag = document.getElementById("selector_area");
@@ -270,6 +277,7 @@ function getAreaList(){
     })
 }
 
+//API call to populate category select_tag
 function getCategoryList(){
   var dbListURL = "https://www.themealdb.com/api/json/v1/1/list.php?c=list"
   var dbSelectTag = document.getElementById("selector_category");
@@ -287,6 +295,7 @@ function getCategoryList(){
     })
 }
 
+//API call to populate ingredient select_tag
 function getIngredientList(){
   var dbListURL = "https://www.themealdb.com/api/json/v1/1/list.php?i=list"
   var dbSelectTag = document.getElementById("selector_ingredient");
@@ -309,7 +318,7 @@ function getIngredientList(){
     })
 }
 
-//functions for filters
+//API call to run area filter
 function filterArea() {
 
     removeRecipeBlocks();
@@ -345,6 +354,7 @@ function filterArea() {
           goBackLink.hidden = true;
 }
 
+//API call to run category filter
 function filterCategory() {
 
     removeRecipeBlocks();
@@ -380,6 +390,7 @@ function filterCategory() {
           goBackLink.hidden = true;
 }
 
+//API call to run ingredient filter
 function filterIngredient() {
 
     removeRecipeBlocks();
@@ -418,7 +429,7 @@ function filterIngredient() {
 //loads full detail about the recipe
 function expandRecipeDetail(mealId, run) {
 
-  if (run == 0) {
+  if (run == 0) { //run that adds new info to the recipe
   removeRecipeBlocks();
 
   var dbRecipeDetailURL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealId;
@@ -448,7 +459,7 @@ function expandRecipeDetail(mealId, run) {
             }
     })
   } else {
-    goBack();
+    goBack(); //if in full info view, I go back and run function stored in localStorage
   }
 }
 
