@@ -356,6 +356,10 @@ footer {
           font-size: 0.8rem;
         }
       }
+      a:hover {
+        cursor: pointer;
+        color: rgba(85, 26, 139, 0.5);
+      }
     }
   }
   .most_viewed {

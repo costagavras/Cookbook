@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
     //updates 10 most recent recipes
       updateRecentList(null);
+    //delete localstorage items that make work category and area(cuisine) links
+      deleteLocalStorCatArea();
     //attaching functions to filter buttons
     var areaBtn = document.getElementById("area_select_btn");
     areaBtn.addEventListener("click", filterArea);
@@ -16,11 +18,12 @@ document.addEventListener("DOMContentLoaded", function(){
     ingredientBtn.addEventListener("click", filterIngredient);
     //hides go back button element
     document.querySelector(".db_go_back").hidden = true;
+
   }
 })
 
  //setting up recipe blocks, one per recipe
-function doRecipeBlock(meal,category,area,picture,mealId,ingredients,instructions){
+function doRecipeBlock(meal,area,category,picture,mealId,ingredients,instructions){
 
   var dbSearchResultArea = document.querySelector(".db_search_result_area");
   var dbRecipeBlock = document.createElement("div");
@@ -31,18 +34,16 @@ function doRecipeBlock(meal,category,area,picture,mealId,ingredients,instruction
   if (instructions == null) { //reduced info passed (first run), sets dblclick to run full info on recipe
     dbRecipeBlock.classList.add("db_recipe_block");
     dbRecipeBlock.addEventListener("dblclick", function () {
-      expandRecipeDetail(mealId, 0);
+      expandRecipeDetail(mealId);
     }, false);
   } else { //full info passed (second run), removes eventlistener above and adds a new one
     dbRecipeBlock.classList.add("db_recipe_block_detail");
     dbRecipeBlock.removeEventListener("dblclick", function () {
-      expandRecipeDetail(mealId, 0);
+      expandRecipeDetail(mealId);
     }, false);
 
     if (!localStorage.recentRecipe) { //if localStorage.recentRecipe still exists (= recipe was clicked through <10 most recent>) don't create links to go back
-      dbRecipeBlock.addEventListener("dblclick", function () {
-        expandRecipeDetail(mealId, 1); //eventlistener sets goBack() that runs previous API function taken from localStorage
-      }, false);
+      // dbRecipeBlock.addEventListener("dblclick", goBack); //eventlistener sets goBack() that runs previous API function taken from localStorage
       var goBackLink = document.querySelector(".db_go_back");
       goBackLink.hidden = false;
       goBackLink.addEventListener("click", goBack);
@@ -60,19 +61,23 @@ function doRecipeBlock(meal,category,area,picture,mealId,ingredients,instruction
     var dbRecipeCategory = document.createElement("h4");
     dbRecipeCategory.id = "db_recipe_category";
     dbRecipeBlock.appendChild(dbRecipeCategory);
-    dbRecipeCategory.innerText = category;
+    dbRecipeCategory.innerText = "Category: " + category;
+    localStorage.setItem("recipeCategory", category);
   }
   if (area != null) {
     var dbRecipeArea = document.createElement("h4");
     dbRecipeArea.id = "db_recipe_area";
     dbRecipeBlock.appendChild(dbRecipeArea);
-    dbRecipeArea.innerText = area;
+    dbRecipeArea.innerText = "Cuisine: " + area;
+    localStorage.setItem("recipeArea", area);
   }
   if (ingredients != null) {
     var dbRecipeIngredients = document.createElement("p");
     dbRecipeIngredients.id = "db_hidden_element";
     dbRecipeBlock.appendChild(dbRecipeIngredients);
     dbRecipeIngredients.innerText = "Ingredients: \n" + ingredients;
+    dbRecipeCategory.addEventListener("click", filterCategory);
+    dbRecipeArea.addEventListener("click", filterArea);
   }
   if (instructions != null) {
     var dbRecipeInstructions = document.createElement("p");
@@ -109,6 +114,14 @@ function goBack() {
   goBackLink.hidden = true;
 }
 
+function deleteLocalStorCatArea () {
+  if (localStorage.recipeArea) {
+    delete localStorage.recipeArea
+  }
+  if (localStorage.recipeCategory) {
+    delete localStorage.recipeCategory
+  }
+}
 
   //deleting recipe blocks to clean up the page before each new API call
 function removeRecipeBlocks() {
@@ -204,11 +217,11 @@ function getRandomRecipe(){
             var responsum = response.data["meals"][0];
             var mealId = responsum["idMeal"];
             var meal = responsum["strMeal"];
-            var category = "Category: " + responsum["strCategory"];
-            var area = "Cuisine: " + responsum["strArea"];
+            var category = responsum["strCategory"];
+            var area = responsum["strArea"];
             var picture = responsum["strMealThumb"];
 
-            doRecipeBlock(meal, category, area, picture, mealId);
+            doRecipeBlock(meal, area, category, picture, mealId);
 
           } else {
             var meal = "The database did not return a random recipe";
@@ -240,10 +253,10 @@ function getSearchedRecipe(){
             for (var recipe = 0; recipe < responsum.length; recipe++) {
               var mealId = responsum[recipe]["idMeal"];
               var meal = responsum[recipe]["strMeal"];
-              var category = "Category: " + responsum[recipe]["strCategory"];
-              var area = "Cuisine: " + responsum[recipe]["strArea"];
+              var category = responsum[recipe]["strCategory"];
+              var area = responsum[recipe]["strArea"];
               var picture = responsum[recipe]["strMealThumb"];
-              doRecipeBlock(meal, category, area, picture, mealId);
+              doRecipeBlock(meal, area, category, picture, mealId);
             }
           } else {
             var meal = "The database does not contain recipes with this keyword";
@@ -321,10 +334,16 @@ function filterArea() {
     resetFilter("selector_category");
     resetFilter("db_recipe");
 
+    if (localStorage.recipeArea) {
+      document.getElementById("selector_area").value = localStorage.recipeArea;
+      deleteLocalStorCatArea();
+    }
+
     var dbSearchedValue = document.getElementById("selector_area").value;
     var dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/filter.php?a=" + dbSearchedValue;
 
     localStorage.setItem("lastFunction", "filterArea");
+
 
     axios.get(dbSearchedRecipeURL)
           .then(function(response){
@@ -334,7 +353,7 @@ function filterArea() {
               for (var recipe = 0; recipe < responsum.length; recipe++) {
                 var mealId = responsum[recipe]["idMeal"];
                 var meal = responsum[recipe]["strMeal"];
-                var area = "Cuisine: " + dbSearchedValue;
+                var area = dbSearchedValue;
                 var category = null;
                 var picture = responsum[recipe]["strMealThumb"];
                 doRecipeBlock(meal, area, category, picture, mealId);
@@ -356,6 +375,11 @@ function filterCategory() {
     resetFilter("selector_area");
     resetFilter("db_recipe");
 
+    if (localStorage.recipeCategory) {
+      document.getElementById("selector_category").value = localStorage.recipeCategory;
+      deleteLocalStorCatArea();
+    }
+
     var dbSearchedValue = document.getElementById("selector_category").value;
     var dbSearchedRecipeURL = "https://www.themealdb.com/api/json/v1/1/filter.php?c=" + dbSearchedValue;
 
@@ -370,7 +394,7 @@ function filterCategory() {
                 var mealId = responsum[recipe]["idMeal"];
                 var meal = responsum[recipe]["strMeal"];
                 var area = null;
-                var category = "Category: " + dbSearchedValue;
+                var category = dbSearchedValue;
                 var picture = responsum[recipe]["strMealThumb"];
                 doRecipeBlock(meal, area, category, picture, mealId);
               }
@@ -419,9 +443,8 @@ function filterIngredient() {
   }
 
 //loads full detail about the recipe
-function expandRecipeDetail(mealId, run) {
+function expandRecipeDetail(mealId) {
 
-  if (run == 0) { //run that adds new info to the recipe
   removeRecipeBlocks();
 
   var dbRecipeDetailURL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealId;
@@ -433,8 +456,8 @@ function expandRecipeDetail(mealId, run) {
               // console.log(response.data["meals"]);
               var responsum = response.data["meals"][0];
               var meal = responsum["strMeal"];
-              var category = "Category: " + responsum["strCategory"];
-              var area = "Cuisine: " + responsum["strArea"];
+              var category = responsum["strCategory"];
+              var area = responsum["strArea"];
               var picture = responsum["strMealThumb"];
               var instructions = responsum["strInstructions"];
               for (var item = 1; item < 21; item++) {
@@ -443,16 +466,13 @@ function expandRecipeDetail(mealId, run) {
                 }
               }
               updateRecentList(meal);
-              doRecipeBlock(meal, category, area, picture, mealId, arIngredients, instructions);
+              doRecipeBlock(meal, area, category, picture, mealId, arIngredients, instructions);
               localStorage.removeItem("recentRecipe"); //deletes reference to recentRecipe so no back links check in doRecipeBlock is correctly performed
             } else {
               var meal = "Oops! Something went wrong!";
               doRecipeBlock(meal);
             }
     })
-  } else {
-    goBack(); //if in full info view, I go back and run function stored in localStorage
-  }
 }
 
       //   .catch(function (error) {

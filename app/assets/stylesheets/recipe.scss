@@ -670,6 +670,11 @@ input[type="radio" i] {
       font-size: 1.5em;
       margin: 0.2em 0;
       grid-column: 2 / 3;
+      color: rgb(85, 26, 139);
+    }
+    h4:hover {
+      cursor: pointer;
+      color: rgba(85, 26, 139, 0.5);
     }
     p {
       color: black;
@@ -718,4 +723,5 @@ input[type="radio" i] {
 }
 .db_recent_name:hover {
   cursor: pointer;
+  color: rgba(85, 26, 139, 0.5);
 }
