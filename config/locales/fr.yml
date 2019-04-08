@@ -130,3 +130,8 @@ fr:
     comments: "Commentaires"
     not_saved: "Commentaire n'est pas sauvegardé!"
     post: "Placez votre commentaire"
+
+  database:
+    header: "Base de recettes extérne"
+    back: "Retour aux résultats précédents"
+    recent: "Les plus récentes"

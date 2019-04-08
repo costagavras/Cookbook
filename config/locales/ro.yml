@@ -130,3 +130,8 @@ en:
     comments: "Comments"
     not_saved: "Comment not saved!"
     post: "Post your comment"
+
+  database:
+    header: "External recipe database"
+    back: "Back to search results"
+    recent: "Most recent"

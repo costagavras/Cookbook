@@ -44,30 +44,32 @@ it:
     headliner: "Il posto dove le tue ricette sono a casa"
     made_by: "Fatto da Constantine"
     about: "Di questo progetto & di me"
-    most_popular: "Le piu' popolari"
+    most_popular: "Le più popolari"
     views: "visualizzazioni"
     database: "Database ricette"
 
   user:
     edit_profile: "Rivedere profilo utente"
     delete_profile: "Sopprimere profilo utente"
-    sure_to_delete_profile: "E' sicuro di voler sopprimere il profilo utente?"
+    sure_to_delete_profile: "È sicuro di voler sopprimere il profilo utente?"
     deleted: "Utente cancellato"
     errors: "Errori"
     save_user: "Salvare"
     user: "Nome"
     password: "Password"
-    password_confirmation: "Confirmazion password"
-    user_exists: "Quest nome e' gia' preso!"
+    password_confirmation: "Confirmazione password"
 
   messages:
     pls_log_in: "Connettersi per favore"
     logged_in_as: "Connesso come"
-    login_failed: "Connessoine fallita"
+    login_failed: "Connessione fallita"
     logged_out: "Disconnesso"
     sign_up_failed: "Registrazione fallita"
+    validate_input: "Per favore, validare l'input"
     profile_updated: "Profilo aggiornato"
-    sure_to_delete_recipe: "E' sicuro di voler sopprimere la ricetta?"
+    profile_not_updated: "Profilo non è aggiornato"
+    sure_to_delete_recipe: "È sicuro di voler sopprimere la ricetta?"
+    user_exists: "Questo nome è già preso!"
 
   recipe:
     my_recipes: "Mie ricette"
@@ -79,7 +81,7 @@ it:
     category: "Categoria"
     prep_time: "Tempo di preparazione"
     servings: "Porzioni"
-    difficulty: "Difficolta'"
+    difficulty: "Difficoltà"
     ingredients: "Ingredienti"
     directions: "Istruzioni"
     added: "Ricetta aggiunta!"
@@ -128,3 +130,8 @@ it:
     comments: "Commenti"
     not_saved: "Commento non salvato!"
     post: "Inviare commento"
+
+    database:
+      header: "Base ricette esterna"
+      back: "Ritornare alla pagina precedente"
+      recent: "Le più recenti"

@@ -132,6 +132,6 @@ en:
     post: "Post your comment"
 
   database:
-    header: "External database"
+    header: "External recipe database"
     back: "Back to search results"
     recent: "Most recent"
