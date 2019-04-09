@@ -587,8 +587,25 @@ input[type="radio" i] {
   }
 }
 
-// .db_recipe_block {
-//   display: none;
+// .db_hr_1 {
+//   width: 30%;
+//   // height: 25px;
+//   // background-image: image-url("tomato.png");
+//   // background-repeat: repeat-x;
+//   // background-position: center;
+//   // background-color: transparent;
+//   // border: none;
+//   margin: 0.5% auto;
+//   background-color:#666;
+//   border: 2px dashed #000;
+//   opacity: 0.5;
+// }
+// .db_hr_2 {
+//   width: 75%;
+//   margin: 0.5% auto;
+//   background-color:#666;
+//   border: 2px dashed #000;
+//   opacity: 0.5;
 // }
 
 .db_search_grid {
@@ -699,7 +716,6 @@ input[type="radio" i] {
     }
 
     img {
-      // grid-column: 2 / 3;
       grid-row: 1 / 5;
       margin: 1em auto;
       width: 90%;
@@ -720,6 +736,7 @@ input[type="radio" i] {
 
 .db_recent_name {
   color: rgb(85, 26, 139);
+  word-wrap: break-word;
 }
 .db_recent_name:hover {
   cursor: pointer;
